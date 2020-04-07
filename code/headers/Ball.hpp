@@ -44,7 +44,7 @@ namespace Box2DAnimation
 
     public:
 
-        Ball(float x, float y, float r, World& world, Body::SMLF_SHAPES_ATIBUTES attrb);
+        Ball(float r, Body::BOX2D_LOCATION_ATTRBUTES transform, World& world, Body::SMLF_SHAPES_ATIBUTES attrb);
 
         void render(sf::RenderWindow& renderWindow) override;
         

@@ -4,12 +4,13 @@
 
 using namespace Box2DAnimation;
 
-Box2DAnimation::Ground::Ground(float x, float y, float size_x, float size_y, World& world, Body::SMLF_SHAPES_ATIBUTES attrb) : StaticBody(x, y, size_x, size_y, world)
+Box2DAnimation::Ground::Ground(Body::BOX2D_LOCATION_ATTRBUTES transform, World& world, Body::SMLF_SHAPES_ATIBUTES attrb) 
+    : StaticBody(transform,  world)
 {
 
-    sf::RectangleShape* rectangle = new sf::RectangleShape(sf::Vector2f(size_x, size_y));
-    rectangle->setPosition(x,y);
-    rectangle->setOrigin(size_x / 2, size_y / 2);
+    sf::RectangleShape* rectangle = new sf::RectangleShape(sf::Vector2f(transform.size.x, transform.size.y));
+    rectangle->setPosition(transform.position.x, transform.position.y);
+    rectangle->setOrigin(transform.size.x / 2, transform.size.y / 2);
     rectangle->setFillColor(attrb.fillColor);
 
     sfml_shape = std::shared_ptr<sf::Shape>(rectangle);

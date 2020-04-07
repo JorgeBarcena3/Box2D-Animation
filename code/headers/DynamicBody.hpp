@@ -39,7 +39,7 @@ namespace Box2DAnimation
 
     public:
 
-        DynamicBody(float x, float y, float size_x, float size_y, World& world);
+        DynamicBody(Body::BOX2D_LOCATION_ATTRBUTES transform, World& world);
 
         virtual void render(sf::RenderWindow& renderWindow) override;
 

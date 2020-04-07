@@ -39,7 +39,7 @@ namespace Box2DAnimation
         
     public:
 
-        Ground(float x, float y, float size_x, float size_y, World& world, Body::SMLF_SHAPES_ATIBUTES attrb);
+        Ground(Body::BOX2D_LOCATION_ATTRBUTES location, World& world, Body::SMLF_SHAPES_ATIBUTES attrb);
 
         void render(sf::RenderWindow& renderWindow) override;
         

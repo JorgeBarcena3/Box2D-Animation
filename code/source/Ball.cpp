@@ -5,14 +5,14 @@
 
 using namespace Box2DAnimation;
 
-Box2DAnimation::Ball::Ball(float x, float y, float r, World& world, Body::SMLF_SHAPES_ATIBUTES attrb) :
-    DynamicBody(x, y, r, r, world)
+Box2DAnimation::Ball::Ball(float r, Body::BOX2D_LOCATION_ATTRBUTES transform, World& world, Body::SMLF_SHAPES_ATIBUTES attrb) :
+    DynamicBody(transform, world)
 {
 
     radius = r;
 
     sf::CircleShape* circle = new sf::CircleShape(radius);
-    circle->setPosition(x, y);
+    circle->setPosition(transform.position.x, transform.position.y);
     circle->setOrigin(radius, radius);
     circle->setFillColor(attrb.fillColor);
     sfml_shape = std::shared_ptr<sf::Shape>(circle);
@@ -41,14 +41,16 @@ void Box2DAnimation::Ball::render(sf::RenderWindow& renderWindow)
 void Box2DAnimation::Ball::update(float time)
 {
 
+    sfml_shape->setRotation(
+        body->GetAngle() * 180 / b2_pi
+    );
+
     sfml_shape->setPosition(
         body->GetPosition().x * World::getInstance()->getWorldScale(),
         body->GetPosition().y * World::getInstance()->getWorldScale()
     );
 
-    sfml_shape->setRotation(
-        body->GetAngle() * 180 / b2_pi
-    );
+   
 
 
 }

@@ -48,6 +48,14 @@ namespace Box2DAnimation
             sf::Color outLineColor;
         };
 
+        struct BOX2D_LOCATION_ATTRBUTES
+        {
+            b2Vec2 position;
+            float rotation;
+            b2Vec2 size;
+
+        };
+
     protected:
 
         std::shared_ptr<sf::Shape> sfml_shape;

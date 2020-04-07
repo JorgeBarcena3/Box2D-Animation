@@ -37,7 +37,7 @@ namespace Box2DAnimation
         
     public:
 
-        StaticBody(float x, float y, float size_x, float size_y, World& world);
+        StaticBody(Body::BOX2D_LOCATION_ATTRBUTES, World& world);
 
         virtual void render(sf::RenderWindow& renderWindow) override;
 
