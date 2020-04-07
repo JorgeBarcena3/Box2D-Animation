@@ -1,2 +1,1 @@
-# Box2D-Animation
-Animation in C++ with Box2D
+# SFML-Base-Project
