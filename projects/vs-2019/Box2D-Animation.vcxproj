@@ -10,6 +10,13 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\code\source\main.cpp" />
+    <ClCompile Include="..\..\code\source\World.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\code\headers\World.hpp" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <ProjectGuid>{514A9884-F5EA-45DD-A2F4-A4B9B54BDB01}</ProjectGuid>
@@ -86,9 +93,6 @@
       <AdditionalDependencies>box2d.lib;sfml-main.lib;sfml-system-s.lib;sfml-window-s.lib;sfml-graphics-s.lib;freetype.lib;winmm.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="..\..\code\main.cpp" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

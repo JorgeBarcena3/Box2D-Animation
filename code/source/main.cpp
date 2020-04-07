@@ -19,15 +19,17 @@
 //
 
 
-#include<SFML/Window.hpp>
-#include<SFML/Graphics.hpp>
-
+#include <SFML/Window.hpp>
+#include <SFML/Graphics.hpp>
+#include "../headers/World.hpp"
 
 using namespace sf;
+using namespace Box2DAnimation;
 
 int main()
 {
 	RenderWindow window(VideoMode(800,600), "Box2D Animation - Jorge Barcena Lumbreras");
+	
 
 	window.setVerticalSyncEnabled(true);
 
