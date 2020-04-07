@@ -56,7 +56,7 @@ namespace Box2DAnimation
 
         };
 
-    protected:
+    public:
 
         std::shared_ptr<sf::Shape> sfml_shape;
 
@@ -64,7 +64,7 @@ namespace Box2DAnimation
 
         b2FixtureDef body_fixture;
 
-        b2PolygonShape shape;
+        std::shared_ptr< b2Shape > shape;
 
         b2Body * body;
 

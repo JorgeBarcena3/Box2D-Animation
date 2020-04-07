@@ -23,7 +23,7 @@
     <ClInclude Include="..\..\code\headers\Ball.hpp" />
     <ClInclude Include="..\..\code\headers\Body.hpp" />
     <ClInclude Include="..\..\code\headers\DynamicBody.hpp" />
-    <ClInclude Include="..\..\code\headers\Ground.hpp" />
+    <ClInclude Include="..\..\code\headers\Rectangle.hpp" />
     <ClInclude Include="..\..\code\headers\StaticBody.hpp" />
     <ClInclude Include="..\..\code\headers\World.hpp" />
   </ItemGroup>

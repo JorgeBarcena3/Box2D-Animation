@@ -50,10 +50,10 @@
     <ClInclude Include="..\..\code\headers\DynamicBody.hpp">
       <Filter>headers\Body</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\code\headers\Ground.hpp">
+    <ClInclude Include="..\..\code\headers\Ball.hpp">
       <Filter>headers\Body</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\code\headers\Ball.hpp">
+    <ClInclude Include="..\..\code\headers\Rectangle.hpp">
       <Filter>headers\Body</Filter>
     </ClInclude>
   </ItemGroup>

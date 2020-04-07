@@ -1,10 +1,10 @@
 #include "..\headers\Body.hpp"
-#include "..\headers\Ground.hpp"
+#include "..\headers\Rectangle.hpp"
 #include "..\headers\World.hpp"
 
 using namespace Box2DAnimation;
 
-Box2DAnimation::Ground::Ground(Body::BOX2D_LOCATION_ATTRBUTES transform, World& world, Body::SMLF_SHAPES_ATIBUTES attrb) 
+Box2DAnimation::Rectangle::Rectangle(Body::BOX2D_LOCATION_ATTRBUTES transform, World& world, Body::SMLF_SHAPES_ATIBUTES attrb) 
     : StaticBody(transform,  world)
 {
 
@@ -15,23 +15,27 @@ Box2DAnimation::Ground::Ground(Body::BOX2D_LOCATION_ATTRBUTES transform, World& 
 
     sfml_shape = std::shared_ptr<sf::Shape>(rectangle);
 
-    shape.SetAsBox(
+    b2PolygonShape new_shape;
+
+    new_shape.SetAsBox(
         sfml_shape->getLocalBounds().width / 2.0f / World::getInstance()->getWorldScale(),
         sfml_shape->getLocalBounds().height / 2.0f / World::getInstance()->getWorldScale()
     );
 
-    body->CreateFixture(&shape, 0);
+    shape = std::shared_ptr<b2Shape>(new b2PolygonShape(new_shape));
+
+    body->CreateFixture(shape.get(), 0);
 
 
 }
 
-void Box2DAnimation::Ground::render(sf::RenderWindow& renderWindow)
+void Box2DAnimation::Rectangle::render(sf::RenderWindow& renderWindow)
 {
    
     renderWindow.draw(*sfml_shape);
 }
 
-void Box2DAnimation::Ground::update(float time)
+void Box2DAnimation::Rectangle::update(float time)
 {
     sfml_shape->setPosition(
         body->GetPosition().x * World::getInstance()->getWorldScale(),

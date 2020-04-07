@@ -1,5 +1,5 @@
 #include "..\headers\Body.hpp"
-#include "..\headers\Ground.hpp"
+#include "..\headers\Rectangle.hpp"
 #include "..\headers\World.hpp"
 #include "..\headers\Ball.hpp"
 
@@ -17,15 +17,15 @@ Box2DAnimation::Ball::Ball(float r, Body::BOX2D_LOCATION_ATTRBUTES transform, Wo
     circle->setFillColor(attrb.fillColor);
     sfml_shape = std::shared_ptr<sf::Shape>(circle);
 
-    shape.SetAsBox(
-        sfml_shape->getLocalBounds().width /  2.0f / World::getInstance()->getWorldScale(),
-        sfml_shape->getLocalBounds().height / 2.0f / World::getInstance()->getWorldScale()
-    );
+    b2CircleShape new_shape;
+    new_shape.m_radius = r;
 
 
-    body_fixture.shape = &shape;
+    shape = std::shared_ptr<b2Shape>(new b2CircleShape(new_shape));
+
+    body_fixture.shape = shape.get();
     body_fixture.density = 1;
-    body_fixture.friction = 0.3f;
+    body_fixture.friction = 0;
     body_fixture.restitution = 0.6f; // Make it bounce a little bit
     body->CreateFixture(&body_fixture);
 

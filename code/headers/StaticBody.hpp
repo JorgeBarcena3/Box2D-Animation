@@ -39,9 +39,9 @@ namespace Box2DAnimation
 
         StaticBody(Body::BOX2D_LOCATION_ATTRBUTES, World& world);
 
-        virtual void render(sf::RenderWindow& renderWindow) override;
+        virtual void render(sf::RenderWindow& renderWindow) = 0;
 
-        virtual void update(float time) override;
+        virtual void update(float time) = 0;
 
     };
 

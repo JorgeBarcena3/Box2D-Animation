@@ -34,12 +34,12 @@ namespace Box2DAnimation
     /*
     * Abstraccion de la clase de b2World de box2D
     */
-    class Ground : public StaticBody
+    class Rectangle : public StaticBody
     {
         
     public:
 
-        Ground(Body::BOX2D_LOCATION_ATTRBUTES location, World& world, Body::SMLF_SHAPES_ATIBUTES attrb);
+        Rectangle(Body::BOX2D_LOCATION_ATTRBUTES location, World& world, Body::SMLF_SHAPES_ATIBUTES attrb);
 
         void render(sf::RenderWindow& renderWindow) override;
         

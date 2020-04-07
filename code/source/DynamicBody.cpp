@@ -12,18 +12,5 @@ Box2DAnimation::DynamicBody::DynamicBody(Body::BOX2D_LOCATION_ATTRBUTES transfor
 
     body = world.createBody(std::shared_ptr<Body>(this));
 
-    shape.SetAsBox(transform.size.x * 0.5f, transform.size.y * 0.5f);
-
-    body_fixture.shape = &shape;
-
-    body->CreateFixture(&body_fixture);
-
 }
 
-void Box2DAnimation::DynamicBody::render(sf::RenderWindow& renderWindow)
-{
-}
-
-void Box2DAnimation::DynamicBody::update(float time)
-{
-}
