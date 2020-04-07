@@ -13,55 +13,35 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-#ifndef WORLD_BOX2DANIMATION
-#define WORLD_BOX2DANIMATION
+#ifndef STATICBODY_BOX2DANIMATION
+#define STATICBODY_BOX2DANIMATION
 
 #include <memory>
 #include <vector>
-#include <box2d/b2_world.h>
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
+#include <box2d/box2d.h>
+#include "Body.hpp"
+
 
 namespace Box2DAnimation
 {
-    class Body;
-    
+
+    class World;
+
     /*
-    * Abstraccion de la clase de b2World de box2D 
+    * Abstraccion de la clase de b2World de box2D
     */
-    class World
+    class StaticBody : public Body
     {
-    private:
-
-        static std::shared_ptr< World > instance;
-
+        
     public:
 
-        static std::shared_ptr<World> getInstance();
+        StaticBody(float x, float y, float size_x, float size_y, World& world);
 
-    private:
+        virtual void render(sf::RenderWindow& renderWindow) override;
 
-        b2Vec2 gravity;
-
-        std::shared_ptr< b2World > world;
-
-        std::vector<std::shared_ptr<Body>> body_list;
-
-    public:
-
-        World(float x, float y);
-
-        b2Body* createBody(std::shared_ptr<Body> body);
-
-        void Update(float t);
-
-        void render(sf::RenderWindow& renderWindow);
-
-        inline void setGravity(float x, float y)
-        {
-            gravity = b2Vec2(x, y);
-            world->SetGravity(gravity);
-        }
+        virtual void update(float time) override;
 
     };
 

@@ -7,6 +7,12 @@
     <Filter Include="headers">
       <UniqueIdentifier>{b39d370d-4a12-4f48-af75-b58b2c1df747}</UniqueIdentifier>
     </Filter>
+    <Filter Include="headers\Body">
+      <UniqueIdentifier>{bc5623c5-12af-4cce-a755-7a84c472157e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="headers\Body\base">
+      <UniqueIdentifier>{06554307-06bc-4883-afea-456c07717b1c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\code\source\main.cpp">
@@ -15,10 +21,28 @@
     <ClCompile Include="..\..\code\source\World.cpp">
       <Filter>source</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\code\source\Body.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\code\source\StaticBody.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\code\source\DynamicBody.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\code\headers\World.hpp">
       <Filter>headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\code\headers\Body.hpp">
+      <Filter>headers\Body\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\code\headers\StaticBody.hpp">
+      <Filter>headers\Body</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\code\headers\DynamicBody.hpp">
+      <Filter>headers\Body</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

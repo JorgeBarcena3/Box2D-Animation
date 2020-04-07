@@ -51,6 +51,7 @@ int main()
 			}
 			
 			window.clear();
+			
 
 			window.display();
 		}
