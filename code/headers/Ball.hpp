@@ -13,62 +13,42 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-#ifndef BODY_BOX2DANIMATION
-#define BODY_BOX2DANIMATION
+#ifndef BALL_BOX2DANIMATION
+#define BALL_BOX2DANIMATION
 
 #include <memory>
 #include <vector>
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
 #include <box2d/box2d.h>
+#include "DynamicBody.hpp"
 
 
 namespace Box2DAnimation
 {
+
 
     class World;
 
     /*
     * Abstraccion de la clase de b2World de box2D
     */
-    class Body
+    class Ball : public DynamicBody
     {
-
-        friend class World;
 
     private:
 
-        static std::vector<std::shared_ptr<Body>> instances;
+        float radius;
+
+        b2CircleShape circle;
 
     public:
 
-        struct SMLF_SHAPES_ATIBUTES
-        {
-            sf::Color fillColor;
-            sf::Color outLineColor;
-        };
+        Ball(float x, float y, float r, World& world, Body::SMLF_SHAPES_ATIBUTES attrb);
 
-    protected:
-
-        std::shared_ptr<sf::Shape> sfml_shape;
-
-        b2BodyDef body_definition;
-
-        b2FixtureDef body_fixture;
-
-        b2PolygonShape shape;
-
-        b2Body * body;
-
-        std::shared_ptr< World > world;
+        void render(sf::RenderWindow& renderWindow) override;
         
-    public:
-
-        virtual void render(sf::RenderWindow& renderWindow) = 0;
-
-        virtual void update(float time) = 0;
-
-        ~Body();
+        void update(float time) override;
 
     };
 

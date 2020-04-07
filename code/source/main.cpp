@@ -22,41 +22,51 @@
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
 #include "../headers/World.hpp"
+#include "../headers/Ground.hpp"
+#include "../headers/Ball.hpp"
 
 using namespace sf;
 using namespace Box2DAnimation;
 
 int main()
 {
-	RenderWindow window(VideoMode(800,600), "Box2D Animation - Jorge Barcena Lumbreras");
-	
+    RenderWindow window(VideoMode(800, 600), "Box2D Animation - Jorge Barcena Lumbreras");
+    World world(0, 10.0f, 1);
 
-	window.setVerticalSyncEnabled(true);
+    Ground suelo(400, 575, 800, 50, world, Body::SMLF_SHAPES_ATIBUTES({Color::Green}));
+    Ball   ball(400, 300, 50, world, Body::SMLF_SHAPES_ATIBUTES({ Color::Red }));
 
-	bool exit = false;
+    window.setVerticalSyncEnabled(true);
 
-	do
-	{
-		Event event;
+    bool exit = false;
 
-		while (window.pollEvent(event))
-		{
-			switch (event.type)
-			{
-				case Event::Closed:
-				{
-					exit = true;
-					break;
-				}
-			}
-			
-			window.clear();
-			
+    do
+    {
+        Event event;
 
-			window.display();
-		}
+        while (window.pollEvent(event))
+        {
+            switch (event.type)
+            {
+            case Event::Closed:
+            {
+                exit = true;
+                break;
+            }
+            }
 
-	} while (!exit);
+            
+        }
 
-	return 0;
+        world.Update(0);
+
+        window.clear(sf::Color(180, 200, 255));
+
+        world.render(window);
+
+        window.display();
+
+    } while (!exit);
+
+    return 0;
 }

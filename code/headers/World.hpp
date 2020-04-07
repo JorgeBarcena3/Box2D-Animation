@@ -41,6 +41,8 @@ namespace Box2DAnimation
 
     private:
 
+        float worldScale;
+
         b2Vec2 gravity;
 
         std::shared_ptr< b2World > world;
@@ -49,7 +51,9 @@ namespace Box2DAnimation
 
     public:
 
-        World(float x, float y);
+        World(float x, float y, float worldScale = 1);
+
+        ~World();
 
         b2Body* createBody(std::shared_ptr<Body> body);
 
@@ -62,6 +66,8 @@ namespace Box2DAnimation
             gravity = b2Vec2(x, y);
             world->SetGravity(gravity);
         }
+
+        inline float getWorldScale() { return worldScale; }
 
     };
 

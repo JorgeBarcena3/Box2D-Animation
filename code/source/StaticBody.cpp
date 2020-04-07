@@ -6,7 +6,7 @@ using namespace Box2DAnimation;
 
 Box2DAnimation::StaticBody::StaticBody(float x, float y, float size_x, float size_y, World& world)
 {
-    body_definition.position.Set(x, y);
+    body_definition.position.Set(x / World::getInstance()->getWorldScale(), y / World::getInstance()->getWorldScale());
 
     body =  world.createBody(std::shared_ptr<Body>( this ));
 

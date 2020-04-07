@@ -13,62 +13,37 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-#ifndef BODY_BOX2DANIMATION
-#define BODY_BOX2DANIMATION
+#ifndef GROUND_BOX2DANIMATION
+#define GROUND_BOX2DANIMATION
 
 #include <memory>
 #include <vector>
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
 #include <box2d/box2d.h>
+#include "StaticBody.hpp"
 
 
 namespace Box2DAnimation
 {
+   
+
 
     class World;
 
     /*
     * Abstraccion de la clase de b2World de box2D
     */
-    class Body
+    class Ground : public StaticBody
     {
-
-        friend class World;
-
-    private:
-
-        static std::vector<std::shared_ptr<Body>> instances;
-
-    public:
-
-        struct SMLF_SHAPES_ATIBUTES
-        {
-            sf::Color fillColor;
-            sf::Color outLineColor;
-        };
-
-    protected:
-
-        std::shared_ptr<sf::Shape> sfml_shape;
-
-        b2BodyDef body_definition;
-
-        b2FixtureDef body_fixture;
-
-        b2PolygonShape shape;
-
-        b2Body * body;
-
-        std::shared_ptr< World > world;
         
     public:
 
-        virtual void render(sf::RenderWindow& renderWindow) = 0;
+        Ground(float x, float y, float size_x, float size_y, World& world, Body::SMLF_SHAPES_ATIBUTES attrb);
 
-        virtual void update(float time) = 0;
-
-        ~Body();
+        void render(sf::RenderWindow& renderWindow) override;
+        
+        void update(float time) override;
 
     };
 
