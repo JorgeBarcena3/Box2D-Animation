@@ -13,8 +13,8 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-#ifndef RECTANGLEDYNAMIC_BOX2DANIMATION
-#define RECTANGLEDYNAMIC_BOX2DANIMATION
+#ifndef CAR_BOX2DANIMATION
+#define CAR_BOX2DANIMATION
 
 #include <memory>
 #include <vector>
@@ -27,27 +27,19 @@
 namespace Box2DAnimation
 {
    
-
-
     class World;
 
     /*
     * Abstraccion de la clase de b2World de box2D
     */
-    class RectangleDynamic : public DynamicBody
+    class Car
     {
         
     public:
 
-        RectangleDynamic(Body::BOX2D_LOCATION_ATTRBUTES location, World& world, Body::SMLF_SHAPES_ATIBUTES attrb);
-
-        void render(sf::RenderWindow& renderWindow) override;
+        Car(Body::BOX2D_LOCATION_ATTRBUTES location, World& world, Body::SMLF_SHAPES_ATIBUTES attrb);
         
-        void update(float time) override;
-
-        void modifyFixture(b2PolygonShape newFixture);
-
-        virtual void updateFixture(b2FixtureDef fixture) override;
+        void update(float time);
 
 
     };
