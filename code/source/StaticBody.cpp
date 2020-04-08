@@ -11,3 +11,4 @@ Box2DAnimation::StaticBody::StaticBody(Body::BOX2D_LOCATION_ATTRBUTES transform,
 
     body =  world.createBody(std::shared_ptr<Body>( this ));
 }
+

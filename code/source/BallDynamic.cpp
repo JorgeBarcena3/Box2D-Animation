@@ -1,11 +1,11 @@
 #include "..\headers\Body.hpp"
-#include "..\headers\Rectangle.hpp"
+#include "..\headers\RectangleStatic.hpp"
+#include "..\headers\BallDynamic.hpp"
 #include "..\headers\World.hpp"
-#include "..\headers\Ball.hpp"
 
 using namespace Box2DAnimation;
 
-Box2DAnimation::Ball::Ball(float r, Body::BOX2D_LOCATION_ATTRBUTES transform, World& world, Body::SMLF_SHAPES_ATIBUTES attrb) :
+Box2DAnimation::BallDynamic::BallDynamic(float r, Body::BOX2D_LOCATION_ATTRBUTES transform, World& world, Body::SMLF_SHAPES_ATIBUTES attrb) :
     DynamicBody(transform, world)
 {
 
@@ -27,18 +27,19 @@ Box2DAnimation::Ball::Ball(float r, Body::BOX2D_LOCATION_ATTRBUTES transform, Wo
     body_fixture.density = 1;
     body_fixture.friction = 0;
     body_fixture.restitution = 0.6f; // Make it bounce a little bit
+
     body->CreateFixture(&body_fixture);
 
 
 }
 
-void Box2DAnimation::Ball::render(sf::RenderWindow& renderWindow)
+void Box2DAnimation::BallDynamic::render(sf::RenderWindow& renderWindow)
 {
    
     renderWindow.draw(*sfml_shape);
 }
 
-void Box2DAnimation::Ball::update(float time)
+void Box2DAnimation::BallDynamic::update(float time)
 {
 
     sfml_shape->setRotation(
@@ -52,5 +53,27 @@ void Box2DAnimation::Ball::update(float time)
 
    
 
+
+}
+
+void Box2DAnimation::BallDynamic::modifyFixture(b2CircleShape newShape, b2FixtureDef newFixture)
+{
+ 
+    shape = std::shared_ptr<b2Shape>(new b2CircleShape(newShape));
+
+    body_fixture = newFixture;
+    body_fixture.shape = shape.get();
+ 
+    body->CreateFixture(&body_fixture);
+
+}
+
+void Box2DAnimation::BallDynamic::updateFixture(b2FixtureDef fixture)
+{
+
+    body_fixture = fixture;
+    body_fixture.shape = shape.get();
+
+    body->CreateFixture(&body_fixture);
 
 }

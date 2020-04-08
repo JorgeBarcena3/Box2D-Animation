@@ -13,39 +13,39 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-#ifndef DYNAMICBODY_BOX2DANIMATION
-#define DYNAMICBODY_BOX2DANIMATION
+#ifndef RECTANGLEKINEMATIC_BOX2DANIMATION
+#define RECTANGLEKINEMATIC_BOX2DANIMATION
 
 #include <memory>
 #include <vector>
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
 #include <box2d/box2d.h>
-#include "Body.hpp"
+#include "KinematicBody.hpp"
 
 
 namespace Box2DAnimation
 {
-
 
     class World;
 
     /*
     * Abstraccion de la clase de b2World de box2D
     */
-    class DynamicBody : public Body
+    class RectangleKinematic : public KinematicBody
     {
-
-
+        
     public:
 
-        DynamicBody(Body::BOX2D_LOCATION_ATTRBUTES transform, World& world);
+        RectangleKinematic(Body::BOX2D_LOCATION_ATTRBUTES location, World& world, Body::SMLF_SHAPES_ATIBUTES attrb);
 
-        virtual void render(sf::RenderWindow& renderWindow) = 0;
+        void render(sf::RenderWindow& renderWindow) override;
+        
+        void update(float time) override;
 
-        virtual void update(float time) = 0;
+        void modifyFixture(b2PolygonShape newFixture);
 
-        virtual void updateFixture(b2FixtureDef fixture) = 0;
+        virtual void updateFixture(b2FixtureDef fixture) override;
 
 
     };

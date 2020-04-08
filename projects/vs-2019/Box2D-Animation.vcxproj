@@ -11,19 +11,23 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\code\source\Ball.cpp" />
+    <ClCompile Include="..\..\code\source\BallDynamic.cpp" />
     <ClCompile Include="..\..\code\source\Body.cpp" />
     <ClCompile Include="..\..\code\source\DynamicBody.cpp" />
-    <ClCompile Include="..\..\code\source\Ground.cpp" />
+    <ClCompile Include="..\..\code\source\KinematicBody.cpp" />
+    <ClCompile Include="..\..\code\source\RectangleKinematic.cpp" />
+    <ClCompile Include="..\..\code\source\RectangleStatic.cpp" />
     <ClCompile Include="..\..\code\source\main.cpp" />
     <ClCompile Include="..\..\code\source\StaticBody.cpp" />
     <ClCompile Include="..\..\code\source\World.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\code\headers\Ball.hpp" />
+    <ClInclude Include="..\..\code\headers\BallDynamic.hpp" />
     <ClInclude Include="..\..\code\headers\Body.hpp" />
     <ClInclude Include="..\..\code\headers\DynamicBody.hpp" />
-    <ClInclude Include="..\..\code\headers\Rectangle.hpp" />
+    <ClInclude Include="..\..\code\headers\KinematicBody.hpp" />
+    <ClInclude Include="..\..\code\headers\RectangleKinematic.hpp" />
+    <ClInclude Include="..\..\code\headers\RectangleStatic.hpp" />
     <ClInclude Include="..\..\code\headers\StaticBody.hpp" />
     <ClInclude Include="..\..\code\headers\World.hpp" />
   </ItemGroup>

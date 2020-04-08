@@ -76,6 +76,8 @@ namespace Box2DAnimation
 
         virtual void update(float time) = 0;
 
+        virtual void updateFixture(b2FixtureDef fixture) = 0;
+
         ~Body();
 
     };

@@ -22,56 +22,60 @@
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
 #include "../headers/World.hpp"
-#include "..\headers\Rectangle.hpp"
-#include "../headers/Ball.hpp"
+#include "..\headers\RectangleKinematic.hpp"
+#include "..\headers\RectangleStatic.hpp"
+#include "..\headers\BallDynamic.hpp"
 
 using namespace sf;
 using namespace Box2DAnimation;
 
 void configScene(std::vector<Body*>& body_list, World& world)
 {
-    //Suelo izquierda
-    body_list.push_back(new Rectangle(Body::BOX2D_LOCATION_ATTRBUTES({ { 96, 697 }, 0, {192,206} }), world, Body::SMLF_SHAPES_ATIBUTES({ Color::Blue })));
-    body_list.push_back(new Rectangle(Body::BOX2D_LOCATION_ATTRBUTES({ { 1149, 773 }, -9, {620,225} }), world, Body::SMLF_SHAPES_ATIBUTES({ Color::Blue })));
-    body_list.push_back(new Rectangle(Body::BOX2D_LOCATION_ATTRBUTES({ { 1490, 722 }, -9, {121,232} }), world, Body::SMLF_SHAPES_ATIBUTES({ Color::Green })));
 
+    sf::Color backColor = sf::Color(128, 192, 255);
+    sf::Color green = sf::Color(64, 192, 64);
 
     //Contenedor de bolas
-    body_list.push_back(new Rectangle(Body::BOX2D_LOCATION_ATTRBUTES({ { 1241, 511 }, 0, {38,387} }), world, Body::SMLF_SHAPES_ATIBUTES({ Color::Blue })));
-    body_list.push_back(new Rectangle(Body::BOX2D_LOCATION_ATTRBUTES({ { 1150, 286 }, -64, {38,200} }), world, Body::SMLF_SHAPES_ATIBUTES({ Color::Blue })));
-    body_list.push_back(new Rectangle(Body::BOX2D_LOCATION_ATTRBUTES({ { 1331, 286 }, 64, {38,200} }), world, Body::SMLF_SHAPES_ATIBUTES({ Color::Blue })));
+    body_list.push_back(new RectangleKinematic(Body::BOX2D_LOCATION_ATTRBUTES({ { 1241, 511 }, 0, {38,387} }), world, Body::SMLF_SHAPES_ATIBUTES({ backColor })));
+    body_list.push_back(new RectangleStatic(Body::BOX2D_LOCATION_ATTRBUTES({ { 1150, 286 }, -64, {38,200} }), world, Body::SMLF_SHAPES_ATIBUTES({ backColor })));
+    body_list.push_back(new RectangleStatic(Body::BOX2D_LOCATION_ATTRBUTES({ { 1331, 286 }, 64, {38,200} }), world, Body::SMLF_SHAPES_ATIBUTES({ backColor })));
 
+    //Suelo izquierda
+    body_list.push_back(new RectangleStatic(Body::BOX2D_LOCATION_ATTRBUTES({ { 96, 697 }, 0, {192,206} }), world, Body::SMLF_SHAPES_ATIBUTES({ backColor })));
+    body_list.push_back(new RectangleStatic(Body::BOX2D_LOCATION_ATTRBUTES({ { 1149, 773 }, -9, {620,225} }), world, Body::SMLF_SHAPES_ATIBUTES({ backColor })));
+    body_list.push_back(new RectangleStatic(Body::BOX2D_LOCATION_ATTRBUTES({ { 1490, 722 }, -9, {121,232} }), world, Body::SMLF_SHAPES_ATIBUTES({ green })));
+    body_list.push_back(new RectangleStatic(Body::BOX2D_LOCATION_ATTRBUTES({ { 1500, 400 }, 0, {50,800} }), world, Body::SMLF_SHAPES_ATIBUTES({ Color::Red })));
 
     //Caja de destino para meter las bolas
-    body_list.push_back(new Rectangle(Body::BOX2D_LOCATION_ATTRBUTES({ { 548, 254}, 0, {192,34} }), world, Body::SMLF_SHAPES_ATIBUTES({ Color::Blue })));
-    body_list.push_back(new Rectangle(Body::BOX2D_LOCATION_ATTRBUTES({ { 429, 283}, 51, {34,98} }), world, Body::SMLF_SHAPES_ATIBUTES({ Color::Blue })));
-    body_list.push_back(new Rectangle(Body::BOX2D_LOCATION_ATTRBUTES({ { 370, 283}, -51, {34,98} }), world, Body::SMLF_SHAPES_ATIBUTES({ Color::Blue })));
+    body_list.push_back(new RectangleStatic(Body::BOX2D_LOCATION_ATTRBUTES({ { 548, 254}, 0, {192,34} }), world, Body::SMLF_SHAPES_ATIBUTES({ backColor })));
+    body_list.push_back(new RectangleStatic(Body::BOX2D_LOCATION_ATTRBUTES({ { 429, 283}, 51, {34,98} }), world, Body::SMLF_SHAPES_ATIBUTES({ backColor })));
+    body_list.push_back(new RectangleStatic(Body::BOX2D_LOCATION_ATTRBUTES({ { 370, 283}, -51, {34,98} }), world, Body::SMLF_SHAPES_ATIBUTES({ backColor })));
 
     //Rampa aproximada con cubos
-    body_list.push_back(new Rectangle(Body::BOX2D_LOCATION_ATTRBUTES({ { 193, 670}, -310, {110,100} }), world, Body::SMLF_SHAPES_ATIBUTES({ Color::Blue })));
-    body_list.push_back(new Rectangle(Body::BOX2D_LOCATION_ATTRBUTES({ { 234, 704}, -317, {110,100} }), world, Body::SMLF_SHAPES_ATIBUTES({ Color::Blue })));
-    body_list.push_back(new Rectangle(Body::BOX2D_LOCATION_ATTRBUTES({ { 273, 738}, -324, {110,100} }), world, Body::SMLF_SHAPES_ATIBUTES({ Color::Blue })));
-    body_list.push_back(new Rectangle(Body::BOX2D_LOCATION_ATTRBUTES({ { 325, 763}, -333, {110,100} }), world, Body::SMLF_SHAPES_ATIBUTES({ Color::Blue })));
-    body_list.push_back(new Rectangle(Body::BOX2D_LOCATION_ATTRBUTES({ { 378, 777}, -346, { 93, 96} }), world, Body::SMLF_SHAPES_ATIBUTES({ Color::Blue })));
-    body_list.push_back(new Rectangle(Body::BOX2D_LOCATION_ATTRBUTES({ { 456, 785}, -356, { 80, 84} }), world, Body::SMLF_SHAPES_ATIBUTES({ Color::Blue })));
-    body_list.push_back(new Rectangle(Body::BOX2D_LOCATION_ATTRBUTES({ { 538, 786},   -8, { 87, 90} }), world, Body::SMLF_SHAPES_ATIBUTES({ Color::Blue })));
-    body_list.push_back(new Rectangle(Body::BOX2D_LOCATION_ATTRBUTES({ { 625, 765},  -25, {113,106} }), world, Body::SMLF_SHAPES_ATIBUTES({ Color::Blue })));
+    body_list.push_back(new RectangleStatic(Body::BOX2D_LOCATION_ATTRBUTES({ { 193, 670}, -310, {110,100} }), world, Body::SMLF_SHAPES_ATIBUTES({ backColor })));
+    body_list.push_back(new RectangleStatic(Body::BOX2D_LOCATION_ATTRBUTES({ { 234, 704}, -317, {110,100} }), world, Body::SMLF_SHAPES_ATIBUTES({ backColor })));
+    body_list.push_back(new RectangleStatic(Body::BOX2D_LOCATION_ATTRBUTES({ { 273, 738}, -324, {110,100} }), world, Body::SMLF_SHAPES_ATIBUTES({ backColor })));
+    body_list.push_back(new RectangleStatic(Body::BOX2D_LOCATION_ATTRBUTES({ { 325, 763}, -333, {110,100} }), world, Body::SMLF_SHAPES_ATIBUTES({ backColor })));
+    body_list.push_back(new RectangleStatic(Body::BOX2D_LOCATION_ATTRBUTES({ { 378, 777}, -346, { 93, 96} }), world, Body::SMLF_SHAPES_ATIBUTES({ backColor })));
+    body_list.push_back(new RectangleStatic(Body::BOX2D_LOCATION_ATTRBUTES({ { 456, 785}, -356, { 80, 84} }), world, Body::SMLF_SHAPES_ATIBUTES({ backColor })));
+    body_list.push_back(new RectangleStatic(Body::BOX2D_LOCATION_ATTRBUTES({ { 538, 786},   -8, { 87, 90} }), world, Body::SMLF_SHAPES_ATIBUTES({ backColor })));
+    body_list.push_back(new RectangleStatic(Body::BOX2D_LOCATION_ATTRBUTES({ { 625, 765},  -25, {113,106} }), world, Body::SMLF_SHAPES_ATIBUTES({ backColor })));
 
     //Fondo Rampa
-    body_list.push_back(new Rectangle(Body::BOX2D_LOCATION_ATTRBUTES({ { 437, 800},    0, {491,100} }), world, Body::SMLF_SHAPES_ATIBUTES({ Color::Blue })));
-    body_list.push_back(new Rectangle(Body::BOX2D_LOCATION_ATTRBUTES({ { 201, 751},    0, {065,125} }), world, Body::SMLF_SHAPES_ATIBUTES({ Color::Blue })));
+    body_list.push_back(new RectangleStatic(Body::BOX2D_LOCATION_ATTRBUTES({ { 437, 800},    0, {491,100} }), world, Body::SMLF_SHAPES_ATIBUTES({ backColor })));
+    body_list.push_back(new RectangleStatic(Body::BOX2D_LOCATION_ATTRBUTES({ { 201, 751},    0, {065,125} }), world, Body::SMLF_SHAPES_ATIBUTES({ backColor })));
 
 
     //Pelotas a spawnear
-    body_list.push_back(new Ball(15, Body::BOX2D_LOCATION_ATTRBUTES({ { 1241, 272}, 0, {0,0} }), world, Body::SMLF_SHAPES_ATIBUTES({ Color::Red })));
-    body_list.push_back(new Ball(15, Body::BOX2D_LOCATION_ATTRBUTES({ { 1220, 240}, 0, {0,0} }), world, Body::SMLF_SHAPES_ATIBUTES({ Color::Red })));
-    body_list.push_back(new Ball(15, Body::BOX2D_LOCATION_ATTRBUTES({ { 1241, 240}, 0, {0,0} }), world, Body::SMLF_SHAPES_ATIBUTES({ Color::Red })));
-    body_list.push_back(new Ball(15, Body::BOX2D_LOCATION_ATTRBUTES({ { 1260, 240}, 0, {0,0} }), world, Body::SMLF_SHAPES_ATIBUTES({ Color::Red })));
-    body_list.push_back(new Ball(15, Body::BOX2D_LOCATION_ATTRBUTES({ { 1200, 220}, 0, {0,0} }), world, Body::SMLF_SHAPES_ATIBUTES({ Color::Red })));
-    body_list.push_back(new Ball(15, Body::BOX2D_LOCATION_ATTRBUTES({ { 1220, 220}, 0, {0,0} }), world, Body::SMLF_SHAPES_ATIBUTES({ Color::Red })));
-    body_list.push_back(new Ball(15, Body::BOX2D_LOCATION_ATTRBUTES({ { 1241, 220}, 0, {0,0} }), world, Body::SMLF_SHAPES_ATIBUTES({ Color::Red })));
-    body_list.push_back(new Ball(15, Body::BOX2D_LOCATION_ATTRBUTES({ { 1260, 220}, 0, {0,0} }), world, Body::SMLF_SHAPES_ATIBUTES({ Color::Red })));
-    body_list.push_back(new Ball(15, Body::BOX2D_LOCATION_ATTRBUTES({ { 1280, 220}, 0, {0,0} }), world, Body::SMLF_SHAPES_ATIBUTES({ Color::Red })));
+    body_list.push_back(new BallDynamic(15, Body::BOX2D_LOCATION_ATTRBUTES({ { 1241, 272}, 0, {0,0} }), world, Body::SMLF_SHAPES_ATIBUTES({ green })));
+    body_list.push_back(new BallDynamic(15, Body::BOX2D_LOCATION_ATTRBUTES({ { 1220, 240}, 0, {0,0} }), world, Body::SMLF_SHAPES_ATIBUTES({ green })));
+    body_list.push_back(new BallDynamic(15, Body::BOX2D_LOCATION_ATTRBUTES({ { 1241, 240}, 0, {0,0} }), world, Body::SMLF_SHAPES_ATIBUTES({ green })));
+    body_list.push_back(new BallDynamic(15, Body::BOX2D_LOCATION_ATTRBUTES({ { 1260, 240}, 0, {0,0} }), world, Body::SMLF_SHAPES_ATIBUTES({ green })));
+    body_list.push_back(new BallDynamic(15, Body::BOX2D_LOCATION_ATTRBUTES({ { 1200, 220}, 0, {0,0} }), world, Body::SMLF_SHAPES_ATIBUTES({ green })));
+    body_list.push_back(new BallDynamic(15, Body::BOX2D_LOCATION_ATTRBUTES({ { 1220, 220}, 0, {0,0} }), world, Body::SMLF_SHAPES_ATIBUTES({ green })));
+    body_list.push_back(new BallDynamic(15, Body::BOX2D_LOCATION_ATTRBUTES({ { 1241, 220}, 0, {0,0} }), world, Body::SMLF_SHAPES_ATIBUTES({ green })));
+    body_list.push_back(new BallDynamic(15, Body::BOX2D_LOCATION_ATTRBUTES({ { 1260, 220}, 0, {0,0} }), world, Body::SMLF_SHAPES_ATIBUTES({ green })));
+    body_list.push_back(new BallDynamic(15, Body::BOX2D_LOCATION_ATTRBUTES({ { 1280, 220}, 0, {0,0} }), world, Body::SMLF_SHAPES_ATIBUTES({ green })));
 
 
 }
@@ -89,7 +93,7 @@ int main()
 
 
     //Objeto de prueba
-    body_list.push_back(new Ball(30, Body::BOX2D_LOCATION_ATTRBUTES({ { 89, 510}, 0, {0,0} }), world, Body::SMLF_SHAPES_ATIBUTES({ Color::Yellow })));
+    body_list.push_back(new BallDynamic(30, Body::BOX2D_LOCATION_ATTRBUTES({ { 89, 510}, 0, {0,0} }), world, Body::SMLF_SHAPES_ATIBUTES({ Color::Yellow })));
 
     window.setVerticalSyncEnabled(true);
 
@@ -115,9 +119,7 @@ int main()
                 {
                     auto body = body_list[body_list.size() - 1]->body;
 
-                    auto newSpeed = body->GetLinearVelocity();
-                    newSpeed.x += 10;
-                    newSpeed *= 100;
+                    auto newSpeed = b2Vec2(300 * body->GetMass(), 0);
 
                     body->ApplyLinearImpulse(newSpeed, body->GetPosition(), true);
 
@@ -132,7 +134,7 @@ int main()
 
         world.Update(0);
 
-        window.clear(sf::Color(180, 200, 255));
+        window.clear(sf::Color::White);
 
         world.render(window);
 

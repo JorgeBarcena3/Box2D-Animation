@@ -13,6 +13,9 @@
     <Filter Include="headers\Body\base">
       <UniqueIdentifier>{06554307-06bc-4883-afea-456c07717b1c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="headers\Objects">
+      <UniqueIdentifier>{df3edb3d-f44d-4107-bc4e-9e38c339b9d3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\code\source\main.cpp">
@@ -30,10 +33,16 @@
     <ClCompile Include="..\..\code\source\DynamicBody.cpp">
       <Filter>source</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\code\source\Ground.cpp">
+    <ClCompile Include="..\..\code\source\KinematicBody.cpp">
       <Filter>source</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\code\source\Ball.cpp">
+    <ClCompile Include="..\..\code\source\RectangleStatic.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\code\source\BallDynamic.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\code\source\RectangleKinematic.cpp">
       <Filter>source</Filter>
     </ClCompile>
   </ItemGroup>
@@ -50,11 +59,17 @@
     <ClInclude Include="..\..\code\headers\DynamicBody.hpp">
       <Filter>headers\Body</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\code\headers\Ball.hpp">
+    <ClInclude Include="..\..\code\headers\KinematicBody.hpp">
       <Filter>headers\Body</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\code\headers\Rectangle.hpp">
-      <Filter>headers\Body</Filter>
+    <ClInclude Include="..\..\code\headers\BallDynamic.hpp">
+      <Filter>headers\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\code\headers\RectangleStatic.hpp">
+      <Filter>headers\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\code\headers\RectangleKinematic.hpp">
+      <Filter>headers\Objects</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

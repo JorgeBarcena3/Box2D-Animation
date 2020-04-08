@@ -33,7 +33,7 @@ namespace Box2DAnimation
     /*
     * Abstraccion de la clase de b2World de box2D
     */
-    class Ball : public DynamicBody
+    class BallDynamic : public DynamicBody
     {
 
     private:
@@ -44,11 +44,17 @@ namespace Box2DAnimation
 
     public:
 
-        Ball(float r, Body::BOX2D_LOCATION_ATTRBUTES transform, World& world, Body::SMLF_SHAPES_ATIBUTES attrb);
+        BallDynamic(float r, Body::BOX2D_LOCATION_ATTRBUTES transform, World& world, Body::SMLF_SHAPES_ATIBUTES attrb);
 
         void render(sf::RenderWindow& renderWindow) override;
         
         void update(float time) override;
+
+        void modifyFixture(b2CircleShape newShape, b2FixtureDef newFixture);
+
+
+        // Inherited via DynamicBody
+        virtual void updateFixture(b2FixtureDef fixture) override;
 
     };
 
