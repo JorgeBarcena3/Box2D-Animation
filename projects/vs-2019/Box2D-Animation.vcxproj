@@ -15,6 +15,7 @@
     <ClCompile Include="..\..\code\source\Body.cpp" />
     <ClCompile Include="..\..\code\source\DynamicBody.cpp" />
     <ClCompile Include="..\..\code\source\KinematicBody.cpp" />
+    <ClCompile Include="..\..\code\source\RectangleDynamic.cpp" />
     <ClCompile Include="..\..\code\source\RectangleKinematic.cpp" />
     <ClCompile Include="..\..\code\source\RectangleStatic.cpp" />
     <ClCompile Include="..\..\code\source\main.cpp" />
@@ -26,6 +27,7 @@
     <ClInclude Include="..\..\code\headers\Body.hpp" />
     <ClInclude Include="..\..\code\headers\DynamicBody.hpp" />
     <ClInclude Include="..\..\code\headers\KinematicBody.hpp" />
+    <ClInclude Include="..\..\code\headers\RectangleDynamic.hpp" />
     <ClInclude Include="..\..\code\headers\RectangleKinematic.hpp" />
     <ClInclude Include="..\..\code\headers\RectangleStatic.hpp" />
     <ClInclude Include="..\..\code\headers\StaticBody.hpp" />

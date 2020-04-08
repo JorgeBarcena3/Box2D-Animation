@@ -85,12 +85,11 @@ int main()
 {
     RenderWindow window(VideoMode(1500, 800), "Box2D Animation - Jorge Barcena Lumbreras");
 
-    std::vector<Body*> body_list;
-
     World world(0, 100.0f, 1);
 
-    configScene(body_list, world);
+    std::vector<Body*> body_list;
 
+    configScene(body_list, world);
 
     //Objeto de prueba
     body_list.push_back(new BallDynamic(30, Body::BOX2D_LOCATION_ATTRBUTES({ { 89, 510}, 0, {0,0} }), world, Body::SMLF_SHAPES_ATIBUTES({ Color::Yellow })));

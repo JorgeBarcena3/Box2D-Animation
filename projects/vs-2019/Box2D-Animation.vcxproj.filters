@@ -45,6 +45,9 @@
     <ClCompile Include="..\..\code\source\RectangleKinematic.cpp">
       <Filter>source</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\code\source\RectangleDynamic.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\code\headers\World.hpp">
@@ -69,6 +72,9 @@
       <Filter>headers\Objects</Filter>
     </ClInclude>
     <ClInclude Include="..\..\code\headers\RectangleKinematic.hpp">
+      <Filter>headers\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\code\headers\RectangleDynamic.hpp">
       <Filter>headers\Objects</Filter>
     </ClInclude>
   </ItemGroup>
