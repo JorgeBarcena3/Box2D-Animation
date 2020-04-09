@@ -28,6 +28,27 @@
     <Filter Include="headers\Contact">
       <UniqueIdentifier>{d6525ae6-129a-4f46-a4f5-53d7ec359883}</UniqueIdentifier>
     </Filter>
+    <Filter Include="source\Body">
+      <UniqueIdentifier>{f5a850df-44cf-4b57-8749-808a3f19010d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\Contact">
+      <UniqueIdentifier>{bf6cafbd-2323-42e1-bc84-d3d0e9ce1291}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\Object">
+      <UniqueIdentifier>{d5f6e909-014b-412e-8c9a-2fd6b70f3e88}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\Body\Base">
+      <UniqueIdentifier>{91c384db-af60-4dca-8d27-ffa2ade57d5f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\Object\basic">
+      <UniqueIdentifier>{c53d485c-895a-4a25-a8f6-8ca6d568ad2f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\Object\Complex">
+      <UniqueIdentifier>{26f3223d-02b2-4544-ad6f-9ed36a41cb73}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\Object\Join">
+      <UniqueIdentifier>{0f1f710d-1e15-46af-8411-23133963be1d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\code\source\main.cpp">
@@ -36,44 +57,44 @@
     <ClCompile Include="..\..\code\source\World.cpp">
       <Filter>source</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\code\source\Body.cpp">
-      <Filter>source</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\code\source\StaticBody.cpp">
-      <Filter>source</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\code\source\DynamicBody.cpp">
-      <Filter>source</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\code\source\KinematicBody.cpp">
-      <Filter>source</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\code\source\RectangleStatic.cpp">
-      <Filter>source</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\code\source\BallDynamic.cpp">
-      <Filter>source</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\code\source\RectangleKinematic.cpp">
-      <Filter>source</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\code\source\RectangleDynamic.cpp">
-      <Filter>source</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\code\source\Car.cpp">
-      <Filter>source</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\code\source\RotationTorque.cpp">
-      <Filter>source</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\code\source\Windmill.cpp">
+    <ClCompile Include="..\..\code\source\Scene.cpp">
       <Filter>source</Filter>
     </ClCompile>
     <ClCompile Include="..\..\code\source\ContactHandler.cpp">
-      <Filter>source</Filter>
+      <Filter>source\Contact</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\code\source\Scene.cpp">
-      <Filter>source</Filter>
+    <ClCompile Include="..\..\code\source\BallDynamic.cpp">
+      <Filter>source\Object\basic</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\code\source\Body.cpp">
+      <Filter>source\Body\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\code\source\Car.cpp">
+      <Filter>source\Object\Complex</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\code\source\DynamicBody.cpp">
+      <Filter>source\Body</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\code\source\KinematicBody.cpp">
+      <Filter>source\Body</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\code\source\RectangleDynamic.cpp">
+      <Filter>source\Object\basic</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\code\source\RectangleKinematic.cpp">
+      <Filter>source\Object\basic</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\code\source\RectangleStatic.cpp">
+      <Filter>source\Object\basic</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\code\source\RotationTorque.cpp">
+      <Filter>source\Object\Join</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\code\source\StaticBody.cpp">
+      <Filter>source\Body</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\code\source\Windmill.cpp">
+      <Filter>source\Object\Complex</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

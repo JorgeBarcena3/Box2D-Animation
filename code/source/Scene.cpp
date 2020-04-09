@@ -175,17 +175,13 @@ void Box2DAnimation::Scene::poolActionsToDo()
         else if (action == "D")
         {
             auto body = player->body;
-
             auto newSpeed = b2Vec2(300 * body->GetMass(), 0);
-
             body->ApplyLinearImpulse(newSpeed, body->GetPosition(), true); 
         }
         else if (action == "A")
         {
             auto body = player->body;
-
             auto newSpeed = b2Vec2(-300 * body->GetMass(), 0);
-
             body->ApplyLinearImpulse(newSpeed, body->GetPosition(), true);
         }
     }
