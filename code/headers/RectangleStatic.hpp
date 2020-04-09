@@ -39,7 +39,7 @@ namespace Box2DAnimation
         
     public:
 
-        RectangleStatic(Body::BOX2D_LOCATION_ATTRBUTES location, World& world, Body::SMLF_SHAPES_ATIBUTES attrb);
+        RectangleStatic(Body::BOX2D_LOCATION_ATTRBUTES location, World& world, Body::SMLF_SHAPES_ATIBUTES attrb, float isSensor = false);
 
         void render(sf::RenderWindow& renderWindow) override;
         

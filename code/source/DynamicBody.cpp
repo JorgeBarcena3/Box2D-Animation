@@ -11,6 +11,7 @@ Box2DAnimation::DynamicBody::DynamicBody(Body::BOX2D_LOCATION_ATTRBUTES transfor
     body_definition.angle = transform.rotation * 3.1415 / 180;
 
     body = world.createBody(std::shared_ptr<Body>(this));
+    
 
 }
 

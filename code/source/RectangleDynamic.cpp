@@ -4,8 +4,8 @@
 
 using namespace Box2DAnimation;
 
-Box2DAnimation::RectangleDynamic::RectangleDynamic(Body::BOX2D_LOCATION_ATTRBUTES transform, World& world, Body::SMLF_SHAPES_ATIBUTES attrb)
-    : DynamicBody(transform,  world)
+Box2DAnimation::RectangleDynamic::RectangleDynamic(Body::BOX2D_LOCATION_ATTRBUTES transform, World& world, Body::SMLF_SHAPES_ATIBUTES attrb, bool isSensor)
+    : DynamicBody(transform, world)
 {
 
     sf::RectangleShape* rectangle = new sf::RectangleShape(sf::Vector2f(transform.size.x, transform.size.y));
@@ -25,16 +25,25 @@ Box2DAnimation::RectangleDynamic::RectangleDynamic(Body::BOX2D_LOCATION_ATTRBUTE
     shape = std::shared_ptr<b2Shape>(new b2PolygonShape(new_shape));
 
     body_fixture.shape = shape.get();
-    body_fixture.isSensor = true;
-    body_fixture.filter.groupIndex = -2;
-    body->CreateFixture(&body_fixture);
 
+    if (isSensor) 
+    {
+        body_fixture.isSensor = true;
+        body_fixture.filter.groupIndex = -2;
+    }
+    else
+    {
+        body_fixture.density = 400;
+        body_fixture.friction = 0.0f;
+    }
+
+    body->CreateFixture(&body_fixture);
 
 }
 
 void Box2DAnimation::RectangleDynamic::render(sf::RenderWindow& renderWindow)
 {
-   
+
     renderWindow.draw(*sfml_shape);
 }
 

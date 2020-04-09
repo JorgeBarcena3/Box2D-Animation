@@ -13,42 +13,66 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-#ifndef RECTANGLEDYNAMIC_BOX2DANIMATION
-#define RECTANGLEDYNAMIC_BOX2DANIMATION
+#ifndef ROTATIONTORQUE_BOX2DANIMATION
+#define ROTATIONTORQUE_BOX2DANIMATION
 
 #include <memory>
 #include <vector>
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
 #include <box2d/box2d.h>
-#include "DynamicBody.hpp"
+#include "StaticBody.hpp"
 
 
 namespace Box2DAnimation
 {
-   
 
 
     class World;
+    class Body;
 
     /*
     * Abstraccion de la clase de b2World de box2D
     */
-    class RectangleDynamic : public DynamicBody
+    class RotationTorque
     {
-        
+
+    private:
+
+        float radius;
+
+        b2CircleShape circle;
+
+        b2RevoluteJoint* torqueJoin;
+
+        std::shared_ptr<World> world;
+
+        std::shared_ptr<sf::Shape> sfml_shape;
+
     public:
 
-        RectangleDynamic(Body::BOX2D_LOCATION_ATTRBUTES location, World& world, Body::SMLF_SHAPES_ATIBUTES attrb, bool isSensor = false);
+        RotationTorque(float r, Body::BOX2D_LOCATION_ATTRBUTES transform, World& world, Body::SMLF_SHAPES_ATIBUTES attrb);
 
-        void render(sf::RenderWindow& renderWindow) override;
+        void render(sf::RenderWindow& renderWindow);
+
+        void update(float time);
+
+        void setJointBodies(Body& A, Body& B, b2Vec2 center);
+
+        inline void setSpeed(float speed)
+        {
+            torqueJoin->SetMotorSpeed(speed);
+        }
         
-        void update(float time) override;
+        inline void eneableMotor(bool eneable)
+        {
+            torqueJoin->EnableMotor(eneable);
+        }
 
-        void modifyFixture(b2PolygonShape newFixture);
-
-        virtual void updateFixture(b2FixtureDef fixture) override;
-
+        inline b2Body * getDynamicBody()
+        {
+            return torqueJoin->GetBodyB();
+        }
 
     };
 

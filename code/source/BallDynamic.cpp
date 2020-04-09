@@ -24,9 +24,9 @@ Box2DAnimation::BallDynamic::BallDynamic(float r, Body::BOX2D_LOCATION_ATTRBUTES
     shape = std::shared_ptr<b2Shape>(new b2CircleShape(new_shape));
 
     body_fixture.shape = shape.get();
-    body_fixture.density = 1;
+    body_fixture.density = 10;
     body_fixture.friction = 0;
-    body_fixture.restitution = 0.6f; // Make it bounce a little bit
+    body_fixture.restitution = 0.0f; // Make it bounce a little bit
 
     body->CreateFixture(&body_fixture);
 

@@ -78,6 +78,16 @@ namespace Box2DAnimation
 
         virtual void updateFixture(b2FixtureDef fixture) = 0;
 
+        inline void setBodyAwake(bool awake)
+        {
+            body->SetAwake(awake);
+        };
+
+        inline void setGravity(float grav)
+        {
+            body->SetGravityScale(grav);
+        };
+
         ~Body();
 
     };

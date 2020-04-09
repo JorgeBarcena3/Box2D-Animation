@@ -22,6 +22,9 @@
     <Filter Include="headers\Objects\Complex">
       <UniqueIdentifier>{84f61029-5d03-40df-a68d-d228eacbec9e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="headers\Objects\Join">
+      <UniqueIdentifier>{56f61b9e-b95d-4d65-9b02-89bbbe966912}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\code\source\main.cpp">
@@ -57,6 +60,12 @@
     <ClCompile Include="..\..\code\source\Car.cpp">
       <Filter>source</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\code\source\RotationTorque.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\code\source\Windmill.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\code\headers\World.hpp">
@@ -88,6 +97,12 @@
     </ClInclude>
     <ClInclude Include="..\..\code\headers\Car.hpp">
       <Filter>headers\Objects\Complex</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\code\headers\Windmill.hpp">
+      <Filter>headers\Objects\Complex</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\code\headers\RotationTorque.hpp">
+      <Filter>headers\Objects\Join</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

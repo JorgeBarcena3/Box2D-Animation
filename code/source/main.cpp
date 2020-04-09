@@ -24,10 +24,14 @@
 #include "../headers/World.hpp"
 #include "..\headers\RectangleKinematic.hpp"
 #include "..\headers\RectangleStatic.hpp"
+#include "..\headers\RectangleDynamic.hpp"
 #include "..\headers\BallDynamic.hpp"
+#include "..\headers\Windmill.hpp"
 
 using namespace sf;
 using namespace Box2DAnimation;
+
+Box2DAnimation::Windmill* windmill;
 
 void configScene(std::vector<Body*>& body_list, World& world)
 {
@@ -36,9 +40,17 @@ void configScene(std::vector<Body*>& body_list, World& world)
     sf::Color green = sf::Color(64, 192, 64);
 
     //Contenedor de bolas
-    body_list.push_back(new RectangleKinematic(Body::BOX2D_LOCATION_ATTRBUTES({ { 1241, 511 }, 0, {38,387} }), world, Body::SMLF_SHAPES_ATIBUTES({ backColor })));
-    body_list.push_back(new RectangleStatic(Body::BOX2D_LOCATION_ATTRBUTES({ { 1150, 286 }, -64, {38,200} }), world, Body::SMLF_SHAPES_ATIBUTES({ backColor })));
-    body_list.push_back(new RectangleStatic(Body::BOX2D_LOCATION_ATTRBUTES({ { 1331, 286 }, 64, {38,200} }), world, Body::SMLF_SHAPES_ATIBUTES({ backColor })));
+    body_list.push_back(new RectangleStatic(Body::BOX2D_LOCATION_ATTRBUTES({ { 1241, 511 }, 0, {38,387} }), world, Body::SMLF_SHAPES_ATIBUTES({ backColor }), true));
+    body_list.push_back(new RectangleDynamic(Body::BOX2D_LOCATION_ATTRBUTES({ { 1150, 286 }, -50, {38,200} }), world, Body::SMLF_SHAPES_ATIBUTES({ green })));
+    body_list.push_back(new RectangleDynamic(Body::BOX2D_LOCATION_ATTRBUTES({ { 1331, 286 }, 50, {38,200} }), world, Body::SMLF_SHAPES_ATIBUTES({ green })));
+
+    windmill = new Windmill(
+        { 1240, 335 },
+        body_list[body_list.size() - 3],
+        { body_list[body_list.size() - 2],body_list[body_list.size() - 1] }
+    );
+
+    windmill->setTorqueSpeed(0.5f);
 
     //Suelo izquierda
     body_list.push_back(new RectangleStatic(Body::BOX2D_LOCATION_ATTRBUTES({ { 96, 697 }, 0, {192,206} }), world, Body::SMLF_SHAPES_ATIBUTES({ backColor })));
@@ -122,6 +134,18 @@ int main()
 
                     body->ApplyLinearImpulse(newSpeed, body->GetPosition(), true);
 
+                    if (windmill->isEneabled())
+                    {
+
+                        windmill->stopTorque();
+
+                    }
+                    else
+                    {
+                        windmill->startTorque();
+                    }
+
+
                 }
 
                 break;
@@ -132,10 +156,12 @@ int main()
         }
 
         world.Update(0);
+        windmill->update(0);
 
         window.clear(sf::Color::White);
 
         world.render(window);
+        windmill->render(window);
 
         window.display();
 

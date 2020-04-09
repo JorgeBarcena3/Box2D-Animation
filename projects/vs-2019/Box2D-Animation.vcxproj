@@ -20,7 +20,9 @@
     <ClCompile Include="..\..\code\source\RectangleKinematic.cpp" />
     <ClCompile Include="..\..\code\source\RectangleStatic.cpp" />
     <ClCompile Include="..\..\code\source\main.cpp" />
+    <ClCompile Include="..\..\code\source\RotationTorque.cpp" />
     <ClCompile Include="..\..\code\source\StaticBody.cpp" />
+    <ClCompile Include="..\..\code\source\Windmill.cpp" />
     <ClCompile Include="..\..\code\source\World.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -32,7 +34,9 @@
     <ClInclude Include="..\..\code\headers\RectangleDynamic.hpp" />
     <ClInclude Include="..\..\code\headers\RectangleKinematic.hpp" />
     <ClInclude Include="..\..\code\headers\RectangleStatic.hpp" />
+    <ClInclude Include="..\..\code\headers\RotationTorque.hpp" />
     <ClInclude Include="..\..\code\headers\StaticBody.hpp" />
+    <ClInclude Include="..\..\code\headers\Windmill.hpp" />
     <ClInclude Include="..\..\code\headers\World.hpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

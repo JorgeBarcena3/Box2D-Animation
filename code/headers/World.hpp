@@ -67,6 +67,11 @@ namespace Box2DAnimation
             world->SetGravity(gravity);
         }
 
+        inline std::shared_ptr<b2World> get_b2World()
+        {
+            return world;
+        }
+
         inline float getWorldScale() { return worldScale; }
 
     };

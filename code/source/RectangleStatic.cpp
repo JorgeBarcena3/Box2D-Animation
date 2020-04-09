@@ -4,7 +4,7 @@
 
 using namespace Box2DAnimation;
 
-Box2DAnimation::RectangleStatic::RectangleStatic(Body::BOX2D_LOCATION_ATTRBUTES transform, World& world, Body::SMLF_SHAPES_ATIBUTES attrb)
+Box2DAnimation::RectangleStatic::RectangleStatic(Body::BOX2D_LOCATION_ATTRBUTES transform, World& world, Body::SMLF_SHAPES_ATIBUTES attrb, float isSensor)
     : StaticBody(transform,  world)
 {
 
@@ -25,6 +25,16 @@ Box2DAnimation::RectangleStatic::RectangleStatic(Body::BOX2D_LOCATION_ATTRBUTES 
     shape = std::shared_ptr<b2Shape>(new b2PolygonShape(new_shape));
 
     body_fixture.shape = shape.get();
+    if (isSensor)
+    {
+        body_fixture.isSensor = true;
+        body_fixture.filter.groupIndex = -2;
+    }
+    else
+    {
+        body_fixture.density = 400;
+        body_fixture.friction = 0.0f;
+    }
 
     body->CreateFixture(&body_fixture);
     //body->CreateFixture(shape.get(), 0);

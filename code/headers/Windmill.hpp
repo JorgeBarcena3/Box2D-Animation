@@ -13,42 +13,57 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-#ifndef RECTANGLEDYNAMIC_BOX2DANIMATION
-#define RECTANGLEDYNAMIC_BOX2DANIMATION
+#ifndef WINDMILL_BOX2DANIMATION
+#define WINDMILL_BOX2DANIMATION
 
 #include <memory>
 #include <vector>
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
 #include <box2d/box2d.h>
-#include "DynamicBody.hpp"
+#include "RotationTorque.hpp"
 
 
 namespace Box2DAnimation
 {
-   
 
 
     class World;
+    class Body;
 
     /*
     * Abstraccion de la clase de b2World de box2D
     */
-    class RectangleDynamic : public DynamicBody
+    class Windmill
     {
-        
+
+    private:
+
+        b2Vec2 center;
+
+        float torqueSpeed; 
+
+        std::vector<std::shared_ptr<RotationTorque>> torques;
+
+        std::shared_ptr<Body> stick;
+
+        bool eneabled;
+
     public:
 
-        RectangleDynamic(Body::BOX2D_LOCATION_ATTRBUTES location, World& world, Body::SMLF_SHAPES_ATIBUTES attrb, bool isSensor = false);
+        Windmill(b2Vec2 center, Body * Stick, std::vector<Body *> Bodies);
 
-        void render(sf::RenderWindow& renderWindow) override;
-        
-        void update(float time) override;
+        void render(sf::RenderWindow& renderWindow);
 
-        void modifyFixture(b2PolygonShape newFixture);
+        void update(float time);
 
-        virtual void updateFixture(b2FixtureDef fixture) override;
+        void startTorque();
 
+        void stopTorque();
+
+        void setTorqueSpeed(float speed);
+
+        inline bool isEneabled() { return eneabled; };
 
     };
 
