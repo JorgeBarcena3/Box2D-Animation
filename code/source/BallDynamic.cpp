@@ -29,7 +29,7 @@ Box2DAnimation::BallDynamic::BallDynamic(float r, Body::BOX2D_LOCATION_ATTRBUTES
     body_fixture.restitution = 0.0f; // Make it bounce a little bit
 
     body->CreateFixture(&body_fixture);
-
+    body->SetUserData(this);
 
 }
 

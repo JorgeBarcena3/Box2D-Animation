@@ -69,6 +69,8 @@ namespace Box2DAnimation
         b2Body * body;
 
         std::shared_ptr< World > world;
+
+        std::string tag;
         
     public:
 

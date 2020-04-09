@@ -38,6 +38,8 @@ Box2DAnimation::RectangleDynamic::RectangleDynamic(Body::BOX2D_LOCATION_ATTRBUTE
     }
 
     body->CreateFixture(&body_fixture);
+    body->SetUserData(this);
+
 
 }
 

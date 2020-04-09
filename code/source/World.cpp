@@ -25,6 +25,7 @@ World::World(float x, float y, float _worldScale)
     gravity = b2Vec2(x, y);
     worldScale = _worldScale;
     world = std::shared_ptr<b2World>(new b2World(gravity));
+    world->SetContactListener(&contactHandler);
 
 
 }

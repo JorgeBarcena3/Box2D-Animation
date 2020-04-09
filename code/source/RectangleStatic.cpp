@@ -37,6 +37,8 @@ Box2DAnimation::RectangleStatic::RectangleStatic(Body::BOX2D_LOCATION_ATTRBUTES 
     }
 
     body->CreateFixture(&body_fixture);
+    body->SetUserData(this);
+
     //body->CreateFixture(shape.get(), 0);
 
 

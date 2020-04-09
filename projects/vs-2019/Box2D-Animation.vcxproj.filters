@@ -25,6 +25,9 @@
     <Filter Include="headers\Objects\Join">
       <UniqueIdentifier>{56f61b9e-b95d-4d65-9b02-89bbbe966912}</UniqueIdentifier>
     </Filter>
+    <Filter Include="headers\Contact">
+      <UniqueIdentifier>{d6525ae6-129a-4f46-a4f5-53d7ec359883}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\code\source\main.cpp">
@@ -66,6 +69,12 @@
     <ClCompile Include="..\..\code\source\Windmill.cpp">
       <Filter>source</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\code\source\ContactHandler.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\code\source\Scene.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\code\headers\World.hpp">
@@ -103,6 +112,12 @@
     </ClInclude>
     <ClInclude Include="..\..\code\headers\RotationTorque.hpp">
       <Filter>headers\Objects\Join</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\code\headers\ContactHandler.hpp">
+      <Filter>headers\Contact</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\code\headers\Scene.hpp">
+      <Filter>headers</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

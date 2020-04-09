@@ -13,69 +13,65 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-#ifndef WORLD_BOX2DANIMATION
-#define WORLD_BOX2DANIMATION
+#ifndef SCENE_BOX2DANIMATION
+#define SCENE_BOX2DANIMATION
 
 #include <memory>
 #include <vector>
-#include <box2d/b2_world.h>
+#include <box2d/box2d.h>
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
-#include "ContactHandler.hpp"
+#include "World.hpp"
+#include "Windmill.hpp"
 
 namespace Box2DAnimation
 {
     class Body;
-    
+
     /*
-    * Abstraccion de la clase de b2World de box2D 
+    * Abstraccion de la clase de b2World de box2D
     */
-    class World
+    class Scene
     {
     private:
 
-        static std::shared_ptr< World > instance;
+        static std::shared_ptr< Scene > instance;
 
     public:
 
-        static std::shared_ptr<World> getInstance();
+        static std::shared_ptr<Scene> getInstance();
+
+        static void addActionToPool(std::string action);
 
     private:
 
-        float worldScale;
+        std::vector<std::string> actionsToDo;
 
-        b2Vec2 gravity;
-
-        std::shared_ptr< b2World > world;
+        World world;
 
         std::vector<std::shared_ptr<Body>> body_list;
 
-        ContactHandler contactHandler;
+        std::shared_ptr<Box2DAnimation::Windmill> windmill;
+
+        std::shared_ptr<Body> player;
 
     public:
 
-        World(float x, float y, float worldScale = 1);
+        Scene();
 
-        ~World();
+        ~Scene();
 
-        b2Body* createBody(std::shared_ptr<Body> body);
-
-        void Update(float t);
+        void update(float t);
 
         void render(sf::RenderWindow& renderWindow);
 
-        inline void setGravity(float x, float y)
-        {
-            gravity = b2Vec2(x, y);
-            world->SetGravity(gravity);
-        }
+        bool manageInput(sf::RenderWindow& window);
 
-        inline std::shared_ptr<b2World> get_b2World()
-        {
-            return world;
-        }
+    private:
 
-        inline float getWorldScale() { return worldScale; }
+        void configScene();
+
+        void poolActionsToDo();
 
     };
 

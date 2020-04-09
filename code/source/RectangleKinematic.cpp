@@ -28,6 +28,8 @@ Box2DAnimation::RectangleKinematic::RectangleKinematic(Body::BOX2D_LOCATION_ATTR
     body_fixture.isSensor = true;
     body_fixture.filter.groupIndex = -2;
     body->CreateFixture(&body_fixture);
+    body->SetUserData(this);
+
 
 
 }

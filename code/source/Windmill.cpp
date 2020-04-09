@@ -5,7 +5,7 @@
 Box2DAnimation::Windmill::Windmill(b2Vec2 _center, Body* _Stick, std::vector<Body*> _Bodies)
 {
     center = _center;
-    stick = std::shared_ptr<Body>( _Stick );
+    stick = std::shared_ptr<Body>(_Stick);
     eneabled = false;
 
     for (auto body : _Bodies)
@@ -13,15 +13,15 @@ Box2DAnimation::Windmill::Windmill(b2Vec2 _center, Body* _Stick, std::vector<Bod
         torques.push_back
         (
             std::shared_ptr<RotationTorque>
-            ( 
+            (
                 new RotationTorque
                 (
-                    10, 
+                    10,
                     Body::BOX2D_LOCATION_ATTRBUTES({ { 1240, 335 }, 0, {0,0} }),
                     *(World::getInstance()),
                     Body::SMLF_SHAPES_ATIBUTES({ sf::Color::Red })
                 )
-             )
+                )
         );
 
         body->setGravity(0);
@@ -65,16 +65,17 @@ void Box2DAnimation::Windmill::update(float deltatime)
 
 void Box2DAnimation::Windmill::startTorque()
 {
-
-    for (auto join : torques)
+    if (!eneabled)
     {
-        join->eneableMotor(true);
-        join->getDynamicBody()->SetGravityScale(1);
+        for (auto join : torques)
+        {
+            join->eneableMotor(true);
+            join->getDynamicBody()->SetGravityScale(1);
+        }
+
+        eneabled = true;
     }
 
-    eneabled = true;
-
-    
 }
 
 void Box2DAnimation::Windmill::stopTorque()
