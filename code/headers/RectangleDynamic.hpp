@@ -41,7 +41,7 @@ namespace Box2DAnimation
 
         RectangleDynamic(Body::BOX2D_LOCATION_ATTRBUTES location, World& world, Body::SMLF_SHAPES_ATIBUTES attrb, bool isSensor = false);
 
-        void render(sf::RenderWindow& renderWindow) override;
+        virtual void render(sf::RenderWindow& renderWindow) override;
         
         void update(float time) override;
 

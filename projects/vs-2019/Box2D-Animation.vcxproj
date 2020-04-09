@@ -14,6 +14,7 @@
     <ClCompile Include="..\..\code\source\BallDynamic.cpp" />
     <ClCompile Include="..\..\code\source\Body.cpp" />
     <ClCompile Include="..\..\code\source\Car.cpp" />
+    <ClCompile Include="..\..\code\source\Chasis.cpp" />
     <ClCompile Include="..\..\code\source\ContactHandler.cpp" />
     <ClCompile Include="..\..\code\source\DynamicBody.cpp" />
     <ClCompile Include="..\..\code\source\KinematicBody.cpp" />
@@ -24,6 +25,7 @@
     <ClCompile Include="..\..\code\source\RotationTorque.cpp" />
     <ClCompile Include="..\..\code\source\Scene.cpp" />
     <ClCompile Include="..\..\code\source\StaticBody.cpp" />
+    <ClCompile Include="..\..\code\source\Wheel.cpp" />
     <ClCompile Include="..\..\code\source\Windmill.cpp" />
     <ClCompile Include="..\..\code\source\World.cpp" />
   </ItemGroup>
@@ -31,6 +33,7 @@
     <ClInclude Include="..\..\code\headers\BallDynamic.hpp" />
     <ClInclude Include="..\..\code\headers\Body.hpp" />
     <ClInclude Include="..\..\code\headers\Car.hpp" />
+    <ClInclude Include="..\..\code\headers\Chasis.hpp" />
     <ClInclude Include="..\..\code\headers\ContactHandler.hpp" />
     <ClInclude Include="..\..\code\headers\DynamicBody.hpp" />
     <ClInclude Include="..\..\code\headers\KinematicBody.hpp" />
@@ -40,6 +43,7 @@
     <ClInclude Include="..\..\code\headers\RotationTorque.hpp" />
     <ClInclude Include="..\..\code\headers\Scene.hpp" />
     <ClInclude Include="..\..\code\headers\StaticBody.hpp" />
+    <ClInclude Include="..\..\code\headers\Wheel.hpp" />
     <ClInclude Include="..\..\code\headers\Windmill.hpp" />
     <ClInclude Include="..\..\code\headers\World.hpp" />
   </ItemGroup>

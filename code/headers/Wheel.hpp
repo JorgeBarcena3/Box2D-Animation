@@ -13,66 +13,34 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-#ifndef SCENE_BOX2DANIMATION
-#define SCENE_BOX2DANIMATION
+#ifndef WHEEL_BOX2DANIMATION
+#define WHEEL_BOX2DANIMATION
 
 #include <memory>
 #include <vector>
-#include <box2d/box2d.h>
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
-#include "World.hpp"
-#include "Windmill.hpp"
-#include "Car.hpp"
+#include <box2d/box2d.h>
+#include "BallDynamic.hpp"
+
 
 namespace Box2DAnimation
 {
-    class Body;
+   
+    class World;
 
     /*
     * Abstraccion de la clase de b2World de box2D
     */
-    class Scene
+    class Wheel : public BallDynamic
     {
-    private:
-
-        static std::shared_ptr< Scene > instance;
-
+        
     public:
 
-        static std::shared_ptr<Scene> getInstance();
+        Wheel(Body::BOX2D_LOCATION_ATTRBUTES location, World& world, Body::SMLF_SHAPES_ATIBUTES attrb);
+        
+        void update(float time);
 
-        static void addActionToPool(std::string action);
-
-    private:
-
-        std::vector<std::string> actionsToDo;
-
-        World world;
-
-        std::vector<std::shared_ptr<Body>> body_list;
-
-        std::shared_ptr<Box2DAnimation::Windmill> windmill;
-
-        std::shared_ptr<Car> car;
-
-    public:
-
-        Scene();
-
-        ~Scene();
-
-        void update(float t);
-
-        void render(sf::RenderWindow& renderWindow);
-
-        bool manageInput(sf::RenderWindow& window);
-
-    private:
-
-        void configScene();
-
-        void poolActionsToDo();
 
     };
 

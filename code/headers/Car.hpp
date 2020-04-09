@@ -22,6 +22,8 @@
 #include <SFML/Graphics.hpp>
 #include <box2d/box2d.h>
 #include "DynamicBody.hpp"
+#include "Chasis.hpp"
+#include "Wheel.hpp"
 
 
 namespace Box2DAnimation
@@ -34,12 +36,32 @@ namespace Box2DAnimation
     */
     class Car
     {
+
+    public:
+
+        struct CAR_ATTRBUTES
+        {
+            b2Vec2 position;
+            float rotation;
+            b2Vec2 size;
+
+        };
+
+    private:
+
+        std::shared_ptr<Chasis> chasis;
+
+        std::shared_ptr<Wheel> front_wheel;
+
+        std::shared_ptr<Wheel> back_wheel;
         
     public:
 
-        Car(Body::BOX2D_LOCATION_ATTRBUTES location, World& world, Body::SMLF_SHAPES_ATIBUTES attrb);
+        Car(CAR_ATTRBUTES location,  Body::SMLF_SHAPES_ATIBUTES attrb, std::string tag = "");
         
         void update(float time);
+
+        void render(sf::RenderWindow& window);
 
 
     };

@@ -45,12 +45,12 @@ Box2DAnimation::RectangleDynamic::RectangleDynamic(Body::BOX2D_LOCATION_ATTRBUTE
 
 void Box2DAnimation::RectangleDynamic::render(sf::RenderWindow& renderWindow)
 {
-
     renderWindow.draw(*sfml_shape);
 }
 
 void Box2DAnimation::RectangleDynamic::update(float time)
 {
+
     sfml_shape->setPosition(
         body->GetPosition().x * World::getInstance()->getWorldScale(),
         body->GetPosition().y * World::getInstance()->getWorldScale()

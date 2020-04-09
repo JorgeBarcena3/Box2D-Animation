@@ -33,8 +33,7 @@ Box2DAnimation::Scene::Scene() : world(0, 100.0f, 1)
     Scene::instance = std::shared_ptr<Scene>(this);
     configScene();
     //Objeto de prueba
-    player = std::shared_ptr<Body>(new BallDynamic(30, Body::BOX2D_LOCATION_ATTRBUTES({ { 89, 510}, 0, {0,0} }), world, Body::SMLF_SHAPES_ATIBUTES({ Color::Yellow })));
-    player->tag = "Coche";
+    car = std::shared_ptr<Car>(new Car(Car::CAR_ATTRBUTES({}), Body::SMLF_SHAPES_ATIBUTES({ sf::Color::Yellow }), "Coche"));
 
 }
 
@@ -47,7 +46,7 @@ void Box2DAnimation::Scene::update(float t)
 
     world.Update(t);
     windmill->update(t);
-    player->update(t);
+    car->update(t);
 
 }
 
@@ -56,7 +55,7 @@ void Box2DAnimation::Scene::render(sf::RenderWindow& renderWindow)
 
     world.render(renderWindow);
     windmill->render(renderWindow);
-    player->render(renderWindow);
+    car->render(renderWindow);
 
 }
 
@@ -174,15 +173,15 @@ void Box2DAnimation::Scene::poolActionsToDo()
         }
         else if (action == "D")
         {
-            auto body = player->body;
+            /*auto body = car->body;
             auto newSpeed = b2Vec2(300 * body->GetMass(), 0);
-            body->ApplyLinearImpulse(newSpeed, body->GetPosition(), true); 
+            body->ApplyLinearImpulse(newSpeed, body->GetPosition(), true); */
         }
         else if (action == "A")
         {
-            auto body = player->body;
+       /*     auto body = car->body;
             auto newSpeed = b2Vec2(-300 * body->GetMass(), 0);
-            body->ApplyLinearImpulse(newSpeed, body->GetPosition(), true);
+            body->ApplyLinearImpulse(newSpeed, body->GetPosition(), true);*/
         }
     }
 
