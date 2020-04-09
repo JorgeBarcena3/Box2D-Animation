@@ -33,7 +33,7 @@ Box2DAnimation::RectangleDynamic::RectangleDynamic(Body::BOX2D_LOCATION_ATTRBUTE
     }
     else
     {
-        body_fixture.density = 400;
+        body_fixture.density = 1000;
         body_fixture.friction = 0.0f;
     }
 

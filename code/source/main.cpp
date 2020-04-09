@@ -19,8 +19,10 @@
 //
 
 
+#include <SFML/System/Time.hpp>
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
+#include <SFML/System/Clock.hpp>
 #include "../headers/World.hpp"
 #include "..\headers\RectangleKinematic.hpp"
 #include "..\headers\RectangleStatic.hpp"
@@ -41,8 +43,8 @@ void configScene(std::vector<Body*>& body_list, World& world)
 
     //Contenedor de bolas
     body_list.push_back(new RectangleStatic(Body::BOX2D_LOCATION_ATTRBUTES({ { 1241, 511 }, 0, {38,387} }), world, Body::SMLF_SHAPES_ATIBUTES({ backColor }), true));
-    body_list.push_back(new RectangleDynamic(Body::BOX2D_LOCATION_ATTRBUTES({ { 1150, 286 }, -50, {38,200} }), world, Body::SMLF_SHAPES_ATIBUTES({ green })));
-    body_list.push_back(new RectangleDynamic(Body::BOX2D_LOCATION_ATTRBUTES({ { 1331, 286 }, 50, {38,200} }), world, Body::SMLF_SHAPES_ATIBUTES({ green })));
+    body_list.push_back(new RectangleDynamic(Body::BOX2D_LOCATION_ATTRBUTES({ { 1175, 286 }, -50, {38,200} }), world, Body::SMLF_SHAPES_ATIBUTES({ green })));
+    body_list.push_back(new RectangleDynamic(Body::BOX2D_LOCATION_ATTRBUTES({ { 1311, 286 }, 50, {38,200} }), world, Body::SMLF_SHAPES_ATIBUTES({ green })));
 
     windmill = new Windmill(
         { 1240, 335 },
@@ -110,6 +112,8 @@ int main()
 
     bool exit = false;
 
+    sf::Clock clock;
+
     do
     {
         Event event;
@@ -134,16 +138,8 @@ int main()
 
                     body->ApplyLinearImpulse(newSpeed, body->GetPosition(), true);
 
-                    if (windmill->isEneabled())
-                    {
+                    windmill->startTorque();
 
-                        windmill->stopTorque();
-
-                    }
-                    else
-                    {
-                        windmill->startTorque();
-                    }
 
 
                 }
@@ -155,8 +151,11 @@ int main()
 
         }
 
-        world.Update(0);
-        windmill->update(0);
+        sf::Time elapsed = clock.restart();
+
+
+        world.Update(elapsed.asSeconds());
+        windmill->update(elapsed.asSeconds());
 
         window.clear(sf::Color::White);
 

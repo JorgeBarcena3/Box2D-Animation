@@ -39,11 +39,27 @@ void Box2DAnimation::Windmill::render(sf::RenderWindow& renderWindow)
     }
 }
 
-void Box2DAnimation::Windmill::update(float time)
+void Box2DAnimation::Windmill::update(float deltatime)
 {
+
+    if (eneabled)
+    {
+        time += deltatime;
+
+        if (time > animationTime)
+        {
+            eneabled = false;
+            stopTorque();
+
+        }
+    }
+    else
+    {
+    }
+
     for (auto join : torques)
     {
-        join->update(time);
+        join->update(deltatime);
     }
 }
 
@@ -69,6 +85,7 @@ void Box2DAnimation::Windmill::stopTorque()
         join->eneableMotor(false);
         join->getDynamicBody()->SetGravityScale(0);
         join->getDynamicBody()->SetLinearVelocity(b2Vec2_zero);
+        join->getDynamicBody()->SetAngularVelocity(0);
     }
 
     setTorqueSpeed(0);

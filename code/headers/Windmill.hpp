@@ -49,6 +49,10 @@ namespace Box2DAnimation
 
         bool eneabled;
 
+        float time = 0;
+
+        float animationTime = 6.0f;
+
     public:
 
         Windmill(b2Vec2 center, Body * Stick, std::vector<Body *> Bodies);
