@@ -155,7 +155,7 @@ void Box2DAnimation::Scene::configScene()
     body_list.push_back(std::shared_ptr<Body>(new RectangleStatic(Body::BOX2D_LOCATION_ATTRBUTES({ { 378, 777}, -346, { 93, 96} }), world, Body::SMLF_SHAPES_ATIBUTES({ backColor }))));
     body_list.push_back(std::shared_ptr<Body>(new RectangleStatic(Body::BOX2D_LOCATION_ATTRBUTES({ { 456, 785}, -356, { 80, 84} }), world, Body::SMLF_SHAPES_ATIBUTES({ backColor }))));
     body_list.push_back(std::shared_ptr<Body>(new RectangleStatic(Body::BOX2D_LOCATION_ATTRBUTES({ { 538, 786},   -8, { 87, 90} }), world, Body::SMLF_SHAPES_ATIBUTES({ backColor }))));
-    body_list.push_back(std::shared_ptr<Body>(new RectangleStatic(Body::BOX2D_LOCATION_ATTRBUTES({ { 625, 765},  -25, {113,106} }), world, Body::SMLF_SHAPES_ATIBUTES({ backColor }))));
+    body_list.push_back(std::shared_ptr<Body>(new RectangleStatic(Body::BOX2D_LOCATION_ATTRBUTES({ { 625, 770},  -20, {113,106} }), world, Body::SMLF_SHAPES_ATIBUTES({ backColor }))));
 
     //Fondo Rampa
     body_list.push_back(std::shared_ptr<Body>(new RectangleStatic(Body::BOX2D_LOCATION_ATTRBUTES({ { 437, 800},    0, {491,100} }), world, Body::SMLF_SHAPES_ATIBUTES({ backColor }))));

@@ -54,9 +54,9 @@ namespace Box2DAnimation
 
         std::shared_ptr<Wheel> back_wheel;
 
-        b2PrismaticJoint* front_join;
+        b2RevoluteJoint * front_join;
 
-        b2PrismaticJoint * back_join;
+        b2RevoluteJoint* back_join;
 
         int status;
         

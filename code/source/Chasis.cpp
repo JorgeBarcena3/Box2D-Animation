@@ -43,7 +43,7 @@ void Box2DAnimation::Chasis::configChasis(Body::BOX2D_LOCATION_ATTRBUTES transfo
     /* Caja principal */
     body_fixture_def.shape = shape.get();
 
-    body_fixture_def.density = 10000;
+    body_fixture_def.density = 500 / 10;
     body_fixture_def.friction = 3;
     body_fixture_def.restitution = 0;
     body_fixture_def.filter.groupIndex = -1;
@@ -65,10 +65,10 @@ void Box2DAnimation::Chasis::configChasis(Body::BOX2D_LOCATION_ATTRBUTES transfo
 
     back_elements.sfml_shape = std::shared_ptr<sf::Shape>(rectangle);
 
-    back_elements.b2_shape.SetAsBox(new_size, new_size, body->GetLocalPoint({transform.position.x - new_size,  transform.position.y - new_size}) , 0);
+    back_elements.b2_shape.SetAsBox(new_size / 3, new_size , body->GetLocalPoint({transform.position.x - (new_size * 2.3f),  transform.position.y - (new_size )}) , 0);
 
     back_elements.fixtureDefinition.shape = &back_elements.b2_shape;
-    back_elements.fixtureDefinition.density = 100;
+    back_elements.fixtureDefinition.density = 100 / 10;
     back_elements.fixtureDefinition.friction = 3;
     back_elements.fixtureDefinition.restitution = 0;
     back_elements.fixtureDefinition.filter.groupIndex = -1;
@@ -86,10 +86,10 @@ void Box2DAnimation::Chasis::configChasis(Body::BOX2D_LOCATION_ATTRBUTES transfo
 
     front_elements.sfml_shape = std::shared_ptr<sf::Shape>(rectangle);
 
-    front_elements.b2_shape.SetAsBox(new_size, new_size , body->GetLocalPoint({ transform.position.x + new_size,  transform.position.y - new_size }), 0);
+    front_elements.b2_shape.SetAsBox(new_size / 3, new_size, body->GetLocalPoint({ transform.position.x + (new_size * 2.4f),  transform.position.y - (new_size * 1) }), 0);
 
     front_elements.fixtureDefinition.shape = &front_elements.b2_shape;
-    front_elements.fixtureDefinition.density = 100;
+    front_elements.fixtureDefinition.density = 100 / 10;
     front_elements.fixtureDefinition.friction = 3;
     front_elements.fixtureDefinition.restitution = 0;
     front_elements.fixtureDefinition.filter.groupIndex = -1;

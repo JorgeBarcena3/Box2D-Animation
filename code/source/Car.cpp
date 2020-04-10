@@ -54,34 +54,28 @@ void Box2DAnimation::Car::update(float time)
 
     case -1:
 
-        motorSpeed += 1;
+        motorSpeed += 0.5f;
         break;
 
     case 1:
 
-        motorSpeed -= 1;
+        motorSpeed -= 0.1f;
         break;
 
     default:
 
+        //motorSpeed -= motorSpeed > 0 ? 0.1f : 0;
         break;
     }
 
     status = 0;
-
-    motorSpeed *= 0.99;
-    if (motorSpeed < -25) {
-        motorSpeed = -25;
+    motorSpeed *= 0.99f;
+    if (motorSpeed > 5)
+    {                
+        motorSpeed = 5;
     }
-    front_wheel->acelerate(motorSpeed);
-    back_wheel->acelerate(motorSpeed);
-
-    front_join->SetMaxMotorForce(abs(600 * front_join->GetJointTranslation()));
-    front_join->SetMotorSpeed((front_join->GetMotorSpeed() - 10 * front_join->GetJointTranslation()));
-
-    back_join->SetMaxMotorForce(abs(600 * back_join->GetJointTranslation()));
-    back_join->SetMotorSpeed((back_join->GetMotorSpeed() - 10 * back_join->GetJointTranslation()));
-
+    front_join->SetMotorSpeed(motorSpeed);
+    back_join->SetMotorSpeed( motorSpeed);
 
     if (chasis != nullptr)
         chasis->update(time);
@@ -107,14 +101,16 @@ void Box2DAnimation::Car::render(sf::RenderWindow& window)
 
 void Box2DAnimation::Car::acelerate(int state)
 {
-
+    front_join->EnableMotor(true);
+    back_join->EnableMotor(true);
     status = state;
 }
 
 void Box2DAnimation::Car::decelerate()
 {
-    front_wheel->decelerate();
-    back_wheel->decelerate();
+    front_join->EnableMotor(false);
+    back_join->EnableMotor( false);
+
 }
 
 void Box2DAnimation::Car::configJoins()
@@ -122,23 +118,32 @@ void Box2DAnimation::Car::configJoins()
 
     // ************************ PRISMATIC JOINTS ************************ //
             //  definition
-    b2PrismaticJointDef axlePrismaticJointDef = b2PrismaticJointDef();
-    axlePrismaticJointDef.lowerTranslation = -0.3f;
-    axlePrismaticJointDef.upperTranslation = 0.5f;
-    axlePrismaticJointDef.enableLimit = true;
-    axlePrismaticJointDef.enableMotor = true;
+    b2RevoluteJointDef axlePrismaticJointDef = b2RevoluteJointDef();
+
 
     // front axle
-    axlePrismaticJointDef.bodyA = chasis->body;
-    axlePrismaticJointDef.bodyB = front_wheel->getAxe()->getb2Body();
-    axlePrismaticJointDef.Initialize(chasis->body, front_wheel->getAxe()->getb2Body(), front_wheel->getAxe()->getb2Body()->GetWorldCenter(), b2Vec2(cosf(b2_pi / 3), sinf(b2_pi / 3)));
-    front_join = (b2PrismaticJoint*)World::getInstance()->get_b2World()->CreateJoint(&axlePrismaticJointDef);
+
+    axlePrismaticJointDef.Initialize(chasis->body, front_wheel->body, front_wheel->body->GetWorldCenter());
+
+    axlePrismaticJointDef.collideConnected = true;
+    axlePrismaticJointDef.referenceAngle = 0;
+    axlePrismaticJointDef.localAnchorA.Set(-50, 20);
+    axlePrismaticJointDef.localAnchorB.Set(0, 0);
+    axlePrismaticJointDef.enableMotor = false;
+    axlePrismaticJointDef.maxMotorTorque = powf(10, 16);
+
+    front_join = (b2RevoluteJoint*)World::getInstance()->get_b2World()->CreateJoint(&axlePrismaticJointDef);
 
     // rear axle
-    axlePrismaticJointDef.bodyA = chasis->body;
-    axlePrismaticJointDef.bodyB = back_wheel->getAxe()->getb2Body();
-    axlePrismaticJointDef.Initialize(chasis->body, back_wheel->getAxe()->getb2Body(), back_wheel->getAxe()->getb2Body()->GetWorldCenter(), b2Vec2(1, 0));
-    back_join = (b2PrismaticJoint*)World::getInstance()->get_b2World()->CreateJoint(&axlePrismaticJointDef);
+    axlePrismaticJointDef.Initialize(chasis->body, back_wheel->body, back_wheel->body->GetWorldCenter());
+    axlePrismaticJointDef.collideConnected = true;
+    axlePrismaticJointDef.referenceAngle = 0;
+    axlePrismaticJointDef.localAnchorA.Set(+50, 20);
+    axlePrismaticJointDef.localAnchorB.Set(0, 0);
+    axlePrismaticJointDef.enableMotor = false;
+    axlePrismaticJointDef.maxMotorTorque = powf(10, 16);
+
+    back_join = (b2RevoluteJoint*)World::getInstance()->get_b2World()->CreateJoint(&axlePrismaticJointDef);
 
 
 }
