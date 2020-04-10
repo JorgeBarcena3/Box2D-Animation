@@ -32,8 +32,7 @@ Box2DAnimation::Scene::Scene() : world(0, 200, 1)
 {
     Scene::instance = std::shared_ptr<Scene>(this);
     configScene();
-    //Objeto de prueba
-    car = std::shared_ptr<Car>(new Car(Car::CAR_ATTRBUTES({}), Body::SMLF_SHAPES_ATIBUTES({ sf::Color::Yellow }), "Coche"));
+
 
 }
 
@@ -48,6 +47,8 @@ void Box2DAnimation::Scene::update(float t)
     windmill->update(t);
     car->update(t);
     elevator->update(t);
+    particleSystem->update(t);
+
 
 }
 
@@ -58,6 +59,7 @@ void Box2DAnimation::Scene::render(sf::RenderWindow& renderWindow)
     car->render(renderWindow);
     elevator->render(renderWindow);
     world.render(renderWindow);
+    particleSystem->render(renderWindow);
 
 }
 
@@ -143,7 +145,7 @@ void Box2DAnimation::Scene::configScene()
 
     //Suelo izquierda
     body_list.push_back(std::shared_ptr<Body>(new RectangleStatic(Body::BOX2D_LOCATION_ATTRBUTES({ { 96, 697 }, 0, {192,206} }), world, Body::SMLF_SHAPES_ATIBUTES({ backColor }))));
-   
+
     //Suelo derecha
     body_list.push_back(std::shared_ptr<Body>(new RectangleStatic(Body::BOX2D_LOCATION_ATTRBUTES({ { 1149, 773 }, -9, {620,225} }), world, Body::SMLF_SHAPES_ATIBUTES({ backColor }))));
 
@@ -187,6 +189,21 @@ void Box2DAnimation::Scene::configScene()
     elevator = std::shared_ptr<Elevator>(new Elevator(Body::BOX2D_LOCATION_ATTRBUTES({ { 760, 1200}, 0, {195,34} }), world, Body::SMLF_SHAPES_ATIBUTES({ green })));
     elevator->tag = "Elevator";
 
+    //Objeto de prueba
+    car = std::shared_ptr<Car>(new Car(Car::CAR_ATTRBUTES({}), Body::SMLF_SHAPES_ATIBUTES({ sf::Color::Yellow }), "Coche"));
+
+    //Sistema de particulas
+    Box2DAnimation::ParticleSystem::ParticleSystemDef def;
+    def.color = sf::Color::Red;
+    def.randomColor = true;
+    def.coneAngle = 15;
+    def.direction = { 0,1 };
+    def.particlesNumber = 50;
+    def.type = Box2DAnimation::PARTICLE_TYPE::RECTANGLE;
+    def.baseSize = { 10,10 };
+    def.speedRange = { 1,5 };
+    particleSystem = std::shared_ptr<ParticleSystem>(new ParticleSystem({ 400,500 }, def, true));
+
 }
 
 void Box2DAnimation::Scene::poolActionsToDo()
@@ -219,7 +236,7 @@ void Box2DAnimation::Scene::poolActionsToDo()
         }
         else if (action == "ElevatorStart")
         {
-            elevator->up(5,250);
+            elevator->up(5, 250);
         }
     }
 

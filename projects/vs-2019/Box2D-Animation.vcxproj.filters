@@ -55,6 +55,12 @@
     <Filter Include="source\Debug">
       <UniqueIdentifier>{da198723-48d6-4cbf-8659-f2409b3937b1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="headers\ParticleSystem">
+      <UniqueIdentifier>{f797f077-dd2b-4c27-bd7f-1c36e0b5d678}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\ParticleSystem">
+      <UniqueIdentifier>{02a46d54-1ea6-47fb-9902-5367183dac0b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\code\source\main.cpp">
@@ -114,6 +120,12 @@
     <ClCompile Include="..\..\code\source\Elevator.cpp">
       <Filter>source\Object\Complex</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\code\source\Particle.cpp">
+      <Filter>source\ParticleSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\code\source\ParticleSystem.cpp">
+      <Filter>source\ParticleSystem</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\code\headers\World.hpp">
@@ -169,6 +181,12 @@
     </ClInclude>
     <ClInclude Include="..\..\code\headers\Elevator.hpp">
       <Filter>headers\Objects\Complex</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\code\headers\Particle.hpp">
+      <Filter>headers\ParticleSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\code\headers\ParticleSystem.hpp">
+      <Filter>headers\ParticleSystem</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

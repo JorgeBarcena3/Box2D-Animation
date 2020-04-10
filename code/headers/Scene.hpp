@@ -26,6 +26,7 @@
 #include "Car.hpp"
 #include "SFMLDebugDraw.h"
 #include "Elevator.hpp"
+#include "ParticleSystem.hpp"
 
 namespace Box2DAnimation
 {
@@ -59,6 +60,8 @@ namespace Box2DAnimation
         std::shared_ptr<Car> car;
 
         std::shared_ptr<Elevator> elevator;
+
+        std::shared_ptr<ParticleSystem> particleSystem;
 
     public:
 

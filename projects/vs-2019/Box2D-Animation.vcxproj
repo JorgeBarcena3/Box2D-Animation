@@ -19,6 +19,8 @@
     <ClCompile Include="..\..\code\source\DynamicBody.cpp" />
     <ClCompile Include="..\..\code\source\Elevator.cpp" />
     <ClCompile Include="..\..\code\source\KinematicBody.cpp" />
+    <ClCompile Include="..\..\code\source\Particle.cpp" />
+    <ClCompile Include="..\..\code\source\ParticleSystem.cpp" />
     <ClCompile Include="..\..\code\source\RectangleDynamic.cpp" />
     <ClCompile Include="..\..\code\source\RectangleKinematic.cpp" />
     <ClCompile Include="..\..\code\source\RectangleStatic.cpp" />
@@ -40,6 +42,8 @@
     <ClInclude Include="..\..\code\headers\DynamicBody.hpp" />
     <ClInclude Include="..\..\code\headers\Elevator.hpp" />
     <ClInclude Include="..\..\code\headers\KinematicBody.hpp" />
+    <ClInclude Include="..\..\code\headers\Particle.hpp" />
+    <ClInclude Include="..\..\code\headers\ParticleSystem.hpp" />
     <ClInclude Include="..\..\code\headers\RectangleDynamic.hpp" />
     <ClInclude Include="..\..\code\headers\RectangleKinematic.hpp" />
     <ClInclude Include="..\..\code\headers\RectangleStatic.hpp" />
