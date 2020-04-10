@@ -25,6 +25,7 @@
 #include "Windmill.hpp"
 #include "Car.hpp"
 #include "SFMLDebugDraw.h"
+#include "Elevator.hpp"
 
 namespace Box2DAnimation
 {
@@ -56,6 +57,8 @@ namespace Box2DAnimation
         std::shared_ptr<Box2DAnimation::Windmill> windmill;
 
         std::shared_ptr<Car> car;
+
+        std::shared_ptr<Elevator> elevator;
 
     public:
 

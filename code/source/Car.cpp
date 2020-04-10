@@ -59,45 +59,40 @@ void Box2DAnimation::Car::update(float time)
 
     case 1:
 
-        motorSpeed -= 0.1f;
+        motorSpeed -= 0.2f;
         break;
 
     default:
 
-        //motorSpeed -= motorSpeed > 0 ? 0.1f : 0;
+        motorSpeed -= motorSpeed > 0 ? 0.01f : 0;
         break;
     }
 
     status = 0;
     motorSpeed *= 0.99f;
     if (motorSpeed > 5)
-    {                
+    {
         motorSpeed = 5;
     }
     front_join->SetMotorSpeed(motorSpeed);
-    back_join->SetMotorSpeed( motorSpeed);
+    back_join->SetMotorSpeed(motorSpeed);
 
-    if (chasis != nullptr)
-        chasis->update(time);
+    chasis->update(time);
+    back_wheel->update(time);
+    front_wheel->update(time);
 
-    if (back_wheel != nullptr)
-        back_wheel->update(time);
-
-    if (front_wheel != nullptr)
-        front_wheel->update(time);
+    if (chasis->body->GetPosition().y > 800)
+        respawnCar();
 }
 
 void Box2DAnimation::Car::render(sf::RenderWindow& window)
 {
 
-    if (back_wheel != nullptr)
-        back_wheel->render(window);
+    back_wheel->render(window);
 
-    if (front_wheel != nullptr)
-        front_wheel->render(window);
+    front_wheel->render(window);
 
-    if (chasis != nullptr)
-        chasis->render(window);
+    chasis->render(window);
 
 
 }
@@ -112,7 +107,7 @@ void Box2DAnimation::Car::acelerate(int state)
 void Box2DAnimation::Car::decelerate()
 {
     front_join->EnableMotor(false);
-    back_join->EnableMotor( false);
+    back_join->EnableMotor(false);
 
 }
 
@@ -133,7 +128,7 @@ void Box2DAnimation::Car::configJoins()
 
     front_join = (b2RevoluteJoint*)World::getInstance()->get_b2World()->CreateJoint(&revoluteJointDef);
 
- 
+
     revoluteJointDef.Initialize(chasis->body, back_wheel->body, back_wheel->body->GetWorldCenter());
     revoluteJointDef.collideConnected = true;
     revoluteJointDef.referenceAngle = 0;
@@ -144,5 +139,14 @@ void Box2DAnimation::Car::configJoins()
 
     back_join = (b2RevoluteJoint*)World::getInstance()->get_b2World()->CreateJoint(&revoluteJointDef);
 
+
+}
+
+void Box2DAnimation::Car::respawnCar()
+{
+
+    chasis->body->SetTransform({ 96, 450 }, 0);
+    front_wheel->body->SetTransform({ 56, 510 }, 0);
+    back_wheel->body->SetTransform({ 130, 510 }, 0);
 
 }

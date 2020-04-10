@@ -47,17 +47,17 @@ void Box2DAnimation::Scene::update(float t)
     world.Update(t);
     windmill->update(t);
     car->update(t);
+    elevator->update(t);
 
 }
 
 void Box2DAnimation::Scene::render(sf::RenderWindow& renderWindow)
 {
 
-    world.render(renderWindow);
     windmill->render(renderWindow);
     car->render(renderWindow);
-
-
+    elevator->render(renderWindow);
+    world.render(renderWindow);
 
 }
 
@@ -85,6 +85,14 @@ bool Box2DAnimation::Scene::manageInput(sf::RenderWindow& window)
             else if (event.key.code == sf::Keyboard::A)
             {
                 Scene::addActionToPool("A");
+            }
+            else if (event.key.code == sf::Keyboard::P)
+            {
+                Scene::addActionToPool("AppearElevator");
+            }
+            else if (event.key.code == sf::Keyboard::O)
+            {
+                Scene::addActionToPool("Stop");
             }
 
             break;
@@ -136,11 +144,12 @@ void Box2DAnimation::Scene::configScene()
     //Suelo izquierda
     body_list.push_back(std::shared_ptr<Body>(new RectangleStatic(Body::BOX2D_LOCATION_ATTRBUTES({ { 96, 697 }, 0, {192,206} }), world, Body::SMLF_SHAPES_ATIBUTES({ backColor }))));
     body_list.push_back(std::shared_ptr<Body>(new RectangleStatic(Body::BOX2D_LOCATION_ATTRBUTES({ { 1149, 773 }, -9, {620,225} }), world, Body::SMLF_SHAPES_ATIBUTES({ backColor }))));
-    body_list.push_back(std::shared_ptr<Body>(new RectangleStatic(Body::BOX2D_LOCATION_ATTRBUTES({ { 1490, 722 }, -9, {121,232} }), world, Body::SMLF_SHAPES_ATIBUTES({ green }))));
 
     //Zona de activacion
-    body_list.push_back(std::shared_ptr<Body>(new RectangleStatic(Body::BOX2D_LOCATION_ATTRBUTES({ { 1500, 400 }, 0, {50,800} }), world, Body::SMLF_SHAPES_ATIBUTES({ Color::Red }))));
+    body_list.push_back(std::shared_ptr<Body>(new RectangleStatic(Body::BOX2D_LOCATION_ATTRBUTES({ { 1490, 722 }, -9, {121,232} }), world, Body::SMLF_SHAPES_ATIBUTES({ green }))));
     body_list[body_list.size() - 1]->tag = "Activacion";
+
+    body_list.push_back(std::shared_ptr<Body>(new RectangleStatic(Body::BOX2D_LOCATION_ATTRBUTES({ { 1550, 400 }, 0, {50,800} }), world, Body::SMLF_SHAPES_ATIBUTES({ Color::Red }))));
 
     //Caja de destino para meter las bolas
     body_list.push_back(std::shared_ptr<Body>(new RectangleStatic(Body::BOX2D_LOCATION_ATTRBUTES({ { 548, 254}, 0, {192,34} }), world, Body::SMLF_SHAPES_ATIBUTES({ backColor }))));
@@ -173,6 +182,9 @@ void Box2DAnimation::Scene::configScene()
     body_list.push_back(std::shared_ptr<Body>(new BallDynamic(15, Body::BOX2D_LOCATION_ATTRBUTES({ { 1260, 220}, 0, {0,0} }), world, Body::SMLF_SHAPES_ATIBUTES({ green }))));
     body_list.push_back(std::shared_ptr<Body>(new BallDynamic(15, Body::BOX2D_LOCATION_ATTRBUTES({ { 1280, 220}, 0, {0,0} }), world, Body::SMLF_SHAPES_ATIBUTES({ green }))));
 
+    //Ascensor
+    elevator = std::shared_ptr<Elevator>(new Elevator(Body::BOX2D_LOCATION_ATTRBUTES({ { 760, 1200}, 0, {195,34} }), world, Body::SMLF_SHAPES_ATIBUTES({ green })));
+    elevator->tag = "Elevator";
 
 }
 
@@ -195,6 +207,18 @@ void Box2DAnimation::Scene::poolActionsToDo()
         {
 
             car->acelerate(-1);
+        }
+        else if (action == "AppearElevator")
+        {
+            elevator->up(0, 725);
+        }
+        else if (action == "Stop")
+        {
+            elevator->Stop();
+        }
+        else if (action == "ElevatorStart")
+        {
+            elevator->up(5,250);
         }
     }
 

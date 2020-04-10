@@ -17,6 +17,7 @@
     <ClCompile Include="..\..\code\source\Chasis.cpp" />
     <ClCompile Include="..\..\code\source\ContactHandler.cpp" />
     <ClCompile Include="..\..\code\source\DynamicBody.cpp" />
+    <ClCompile Include="..\..\code\source\Elevator.cpp" />
     <ClCompile Include="..\..\code\source\KinematicBody.cpp" />
     <ClCompile Include="..\..\code\source\RectangleDynamic.cpp" />
     <ClCompile Include="..\..\code\source\RectangleKinematic.cpp" />
@@ -37,6 +38,7 @@
     <ClInclude Include="..\..\code\headers\Chasis.hpp" />
     <ClInclude Include="..\..\code\headers\ContactHandler.hpp" />
     <ClInclude Include="..\..\code\headers\DynamicBody.hpp" />
+    <ClInclude Include="..\..\code\headers\Elevator.hpp" />
     <ClInclude Include="..\..\code\headers\KinematicBody.hpp" />
     <ClInclude Include="..\..\code\headers\RectangleDynamic.hpp" />
     <ClInclude Include="..\..\code\headers\RectangleKinematic.hpp" />

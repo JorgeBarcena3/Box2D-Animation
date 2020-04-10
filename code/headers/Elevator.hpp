@@ -13,8 +13,8 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-#ifndef CAR_BOX2DANIMATION
-#define CAR_BOX2DANIMATION
+#ifndef ELEVATOR_BOX2DANIMATION
+#define ELEVATOR_BOX2DANIMATION
 
 #include <memory>
 #include <vector>
@@ -22,62 +22,51 @@
 #include <SFML/Graphics.hpp>
 #include <box2d/box2d.h>
 #include "DynamicBody.hpp"
-#include "Chasis.hpp"
-#include "Wheel.hpp"
+#include "RectangleStatic.hpp"
 
 
 namespace Box2DAnimation
-{
-   
+{ 
+
+
     class World;
 
     /*
     * Abstraccion de la clase de b2World de box2D
     */
-    class Car
+    class Elevator : public DynamicBody
     {
 
-    public:
-
-        struct CAR_ATTRBUTES
-        {
-            b2Vec2 position;
-            b2Vec2 size;
-
-        };
 
     private:
 
-        std::shared_ptr<Chasis> chasis;
+        RectangleStatic* anchorRectangle;
 
-        std::shared_ptr<Wheel> front_wheel;
+        b2PrismaticJoint*  elevatorJoin;
 
-        std::shared_ptr<Wheel> back_wheel;
+        bool eneabled = false;
 
-        b2RevoluteJoint * front_join;
+        float maxTimer = 0;
 
-        b2RevoluteJoint* back_join;
+        float currentTime = 0;
 
-        int status;
+        float yLimit = 0;
         
     public:
 
-        Car(CAR_ATTRBUTES location,  Body::SMLF_SHAPES_ATIBUTES attrb, std::string tag = "");
+        Elevator(Body::BOX2D_LOCATION_ATTRBUTES location, World& world, Body::SMLF_SHAPES_ATIBUTES attrb, bool isSensor = false);
+
+        virtual void render(sf::RenderWindow& renderWindow) override;
         
-        void update(float time);
+        void update(float time) override;
 
-        void render(sf::RenderWindow& window);
+        void modifyFixture(b2PolygonShape newFixture);
 
-        void acelerate(int state);
+        virtual void updateFixture(b2FixtureDef fixture) override;
 
-        void decelerate();
+        void up(float timeToStart = 0, float limit = 0);
 
-
-    private:
-
-        void configJoins();
-
-        void respawnCar();
+        void Stop();
 
 
     };

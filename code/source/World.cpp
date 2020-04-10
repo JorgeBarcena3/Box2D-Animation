@@ -75,7 +75,7 @@ void Box2DAnimation::World::render(sf::RenderWindow& renderWindow)
         body->render(renderWindow);
     }
 
-    world->DebugDraw();
+    //world->DebugDraw();
 
 }
 

@@ -111,6 +111,9 @@
     <ClCompile Include="..\..\code\source\SFMLDebugDraw.cpp">
       <Filter>source\Debug</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\code\source\Elevator.cpp">
+      <Filter>source\Object\Complex</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\code\headers\World.hpp">
@@ -163,6 +166,9 @@
     </ClInclude>
     <ClInclude Include="..\..\code\headers\SFMLDebugDraw.h">
       <Filter>headers\Debug</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\code\headers\Elevator.hpp">
+      <Filter>headers\Objects\Complex</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

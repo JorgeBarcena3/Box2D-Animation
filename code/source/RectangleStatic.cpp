@@ -34,6 +34,8 @@ Box2DAnimation::RectangleStatic::RectangleStatic(Body::BOX2D_LOCATION_ATTRBUTES 
     {
         body_fixture_def.density = 400;
         body_fixture_def.friction = 3.0f;
+        body_fixture_def.filter.groupIndex = -3;
+
     }
 
     body_fixture = body->CreateFixture(&body_fixture_def);
