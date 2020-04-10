@@ -56,7 +56,7 @@ int main()
         myScene.update(elapsed.asSeconds());
 
         /* CICLO DE RENDER */
-        window.clear(sf::Color::White);
+        window.clear(sf::Color(240,240,240));
         myScene.render(window);
         window.display();
 
