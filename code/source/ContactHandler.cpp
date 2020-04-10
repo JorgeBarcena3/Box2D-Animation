@@ -27,7 +27,7 @@ void Box2DAnimation::ContactHandler::BeginContact(b2Contact* contact)
     {
         Scene::addActionToPool("ElevatorStart");
     }
-    else if (o1->tag == "Plataforma final" && o2->tag == "Coche")
+    else if (o1->tag == "Plataforma final" && o2->tag == "Pelota")
     {
         Scene::addActionToPool("StartParticles");
     }

@@ -76,7 +76,7 @@ void Box2DAnimation::Car::update(float time)
     b2Vec2 pos = b2Mul(chasis->body->GetTransform(), b2Vec2(-70, -50));
     particleSystem[0]->setPosition({ pos.x, pos.y });
 
-    pos = b2Mul(chasis->body->GetTransform(), b2Vec2(65, -50)); 
+    pos = b2Mul(chasis->body->GetTransform(), b2Vec2(65, -50));
     particleSystem[1]->setPosition({ pos.x, pos.y });
 
     if (chasis->body->GetPosition().y > 800)
@@ -112,8 +112,12 @@ void Box2DAnimation::Car::SetCarSpeed()
     {
         motorSpeed = 5;
     }
-    front_join->SetMotorSpeed(motorSpeed);
-    back_join->SetMotorSpeed(motorSpeed);
+
+    if (!rotating)
+    {
+        front_join->SetMotorSpeed(motorSpeed);
+        back_join->SetMotorSpeed(motorSpeed);
+    }
 }
 
 void Box2DAnimation::Car::render(sf::RenderWindow& window)
@@ -161,6 +165,17 @@ void Box2DAnimation::Car::stopParticles()
     {
         system->stop();
     }
+}
+
+void Box2DAnimation::Car::rotateCar()
+{
+    decelerate();
+
+    front_join->SetMotorSpeed(0);
+    back_join->SetMotorSpeed(0);
+    chasis->body->SetAngularVelocity(-200);
+    rotating = true;
+
 }
 
 void Box2DAnimation::Car::configJoins()

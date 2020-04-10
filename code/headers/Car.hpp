@@ -62,6 +62,8 @@ namespace Box2DAnimation
         int status;
 
         std::vector< std::shared_ptr<ParticleSystem> > particleSystem;
+
+        bool rotating;
         
     public:
 
@@ -78,6 +80,8 @@ namespace Box2DAnimation
         void startParticles();
 
         void stopParticles();
+
+        void rotateCar();
 
 
     private:

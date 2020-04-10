@@ -102,6 +102,10 @@ bool Box2DAnimation::Scene::manageInput(sf::RenderWindow& window)
             {
                 Scene::addActionToPool("StopParticles");
             }
+            else if (event.key.code == sf::Keyboard::R)
+            {
+                Scene::addActionToPool("RotateCar");
+            }
 
             break;
 
@@ -162,10 +166,11 @@ void Box2DAnimation::Scene::configScene()
     body_list.push_back(std::shared_ptr<Body>(new RectangleStatic(Body::BOX2D_LOCATION_ATTRBUTES({ { 1550, 400 }, 0, {50,800} }), world, Body::SMLF_SHAPES_ATIBUTES({ Color::Red }))));
 
     //Caja de destino para meter las bolas
-    body_list.push_back(std::shared_ptr<Body>(new RectangleStatic(Body::BOX2D_LOCATION_ATTRBUTES({ { 548, 254}, 0, {192,34} }), world, Body::SMLF_SHAPES_ATIBUTES({ backColor }))));
+    body_list.push_back(std::shared_ptr<Body>(new RectangleStatic(Body::BOX2D_LOCATION_ATTRBUTES({ { 548, 254}, 0, {300,34} }), world, Body::SMLF_SHAPES_ATIBUTES({ backColor }))));
+    body_list.push_back(std::shared_ptr<Body>(new RectangleStatic(Body::BOX2D_LOCATION_ATTRBUTES({ { 350, 300}, 51, {34,150} }), world, Body::SMLF_SHAPES_ATIBUTES({ backColor }))));
     body_list[body_list.size() - 1]->tag = "Plataforma final";
-    body_list.push_back(std::shared_ptr<Body>(new RectangleStatic(Body::BOX2D_LOCATION_ATTRBUTES({ { 429, 283}, 51, {34,98} }), world, Body::SMLF_SHAPES_ATIBUTES({ backColor }))));
-    body_list.push_back(std::shared_ptr<Body>(new RectangleStatic(Body::BOX2D_LOCATION_ATTRBUTES({ { 370, 283}, -51, {34,98} }), world, Body::SMLF_SHAPES_ATIBUTES({ backColor }))));
+    body_list.push_back(std::shared_ptr<Body>(new RectangleStatic(Body::BOX2D_LOCATION_ATTRBUTES({ { 250, 300}, -51, {34,150} }), world, Body::SMLF_SHAPES_ATIBUTES({ backColor }))));
+    body_list[body_list.size() - 1]->tag = "Plataforma final";
 
     //Rampa aproximada con cubos
     body_list.push_back(std::shared_ptr<Body>(new RectangleStatic(Body::BOX2D_LOCATION_ATTRBUTES({ { 193, 670}, -310, {110,100} }), world, Body::SMLF_SHAPES_ATIBUTES({ backColor }))));
@@ -184,13 +189,21 @@ void Box2DAnimation::Scene::configScene()
 
     //Pelotas a spawnear
     body_list.push_back(std::shared_ptr<Body>(new BallDynamic(15, Body::BOX2D_LOCATION_ATTRBUTES({ { 1241, 272}, 0, {0,0} }), world, Body::SMLF_SHAPES_ATIBUTES({ green }))));
+    body_list[body_list.size() - 1]->tag = "Pelota";
     body_list.push_back(std::shared_ptr<Body>(new BallDynamic(15, Body::BOX2D_LOCATION_ATTRBUTES({ { 1220, 240}, 0, {0,0} }), world, Body::SMLF_SHAPES_ATIBUTES({ green }))));
+    body_list[body_list.size() - 1]->tag = "Pelota";
     body_list.push_back(std::shared_ptr<Body>(new BallDynamic(15, Body::BOX2D_LOCATION_ATTRBUTES({ { 1241, 240}, 0, {0,0} }), world, Body::SMLF_SHAPES_ATIBUTES({ green }))));
+    body_list[body_list.size() - 1]->tag = "Pelota";
     body_list.push_back(std::shared_ptr<Body>(new BallDynamic(15, Body::BOX2D_LOCATION_ATTRBUTES({ { 1260, 240}, 0, {0,0} }), world, Body::SMLF_SHAPES_ATIBUTES({ green }))));
+    body_list[body_list.size() - 1]->tag = "Pelota";
     body_list.push_back(std::shared_ptr<Body>(new BallDynamic(15, Body::BOX2D_LOCATION_ATTRBUTES({ { 1200, 220}, 0, {0,0} }), world, Body::SMLF_SHAPES_ATIBUTES({ green }))));
+    body_list[body_list.size() - 1]->tag = "Pelota";
     body_list.push_back(std::shared_ptr<Body>(new BallDynamic(15, Body::BOX2D_LOCATION_ATTRBUTES({ { 1220, 220}, 0, {0,0} }), world, Body::SMLF_SHAPES_ATIBUTES({ green }))));
+    body_list[body_list.size() - 1]->tag = "Pelota";
     body_list.push_back(std::shared_ptr<Body>(new BallDynamic(15, Body::BOX2D_LOCATION_ATTRBUTES({ { 1241, 220}, 0, {0,0} }), world, Body::SMLF_SHAPES_ATIBUTES({ green }))));
+    body_list[body_list.size() - 1]->tag = "Pelota";
     body_list.push_back(std::shared_ptr<Body>(new BallDynamic(15, Body::BOX2D_LOCATION_ATTRBUTES({ { 1260, 220}, 0, {0,0} }), world, Body::SMLF_SHAPES_ATIBUTES({ green }))));
+    body_list[body_list.size() - 1]->tag = "Pelota";
 
     //Ascensor
     elevator = std::shared_ptr<Elevator>(new Elevator(Body::BOX2D_LOCATION_ATTRBUTES({ { 760, 1200}, 0, {195,34} }), world, Body::SMLF_SHAPES_ATIBUTES({ green })));
@@ -243,6 +256,11 @@ void Box2DAnimation::Scene::poolActionsToDo()
         {
             car->stopParticles();
         }
+        else if (action == "RotateCar")
+        {
+            car->rotateCar();
+        }  
+       
     }
 
     actionsToDo.clear();
