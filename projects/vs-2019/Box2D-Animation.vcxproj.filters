@@ -49,6 +49,12 @@
     <Filter Include="source\Object\Join">
       <UniqueIdentifier>{0f1f710d-1e15-46af-8411-23133963be1d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="headers\Debug">
+      <UniqueIdentifier>{7e2ebce7-d284-46a4-85a1-e79efc03330e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\Debug">
+      <UniqueIdentifier>{da198723-48d6-4cbf-8659-f2409b3937b1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\code\source\main.cpp">
@@ -102,6 +108,9 @@
     <ClCompile Include="..\..\code\source\Wheel.cpp">
       <Filter>source\Object\Complex</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\code\source\SFMLDebugDraw.cpp">
+      <Filter>source\Debug</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\code\headers\World.hpp">
@@ -151,6 +160,9 @@
     </ClInclude>
     <ClInclude Include="..\..\code\headers\Chasis.hpp">
       <Filter>headers\Objects\Complex</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\code\headers\SFMLDebugDraw.h">
+      <Filter>headers\Debug</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

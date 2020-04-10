@@ -24,6 +24,7 @@
 #include "World.hpp"
 #include "Windmill.hpp"
 #include "Car.hpp"
+#include "SFMLDebugDraw.h"
 
 namespace Box2DAnimation
 {
@@ -67,6 +68,8 @@ namespace Box2DAnimation
         void render(sf::RenderWindow& renderWindow);
 
         bool manageInput(sf::RenderWindow& window);
+
+        void setDrawTool(SFMLDebugDraw& draw);
 
     private:
 

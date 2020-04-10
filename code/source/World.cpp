@@ -72,8 +72,10 @@ void Box2DAnimation::World::render(sf::RenderWindow& renderWindow)
 {
     for (auto body : body_list)
     {
-        body->render(renderWindow);
+       // body->render(renderWindow);
     }
+
+    world->DebugDraw();
 
 }
 

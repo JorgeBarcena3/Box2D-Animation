@@ -11,11 +11,11 @@ Box2DAnimation::BallDynamic::BallDynamic(float r, Body::BOX2D_LOCATION_ATTRBUTES
 
     radius = r;
 
-    sf::CircleShape* circle = new sf::CircleShape(radius);
-    circle->setPosition(transform.position.x, transform.position.y);
-    circle->setOrigin(radius, radius);
-    circle->setFillColor(attrb.fillColor);
-    sfml_shape = std::shared_ptr<sf::Shape>(circle);
+    sf::RectangleShape* rectangle = new sf::RectangleShape(sf::Vector2f(radius * 2, radius * 2));
+    rectangle->setPosition(transform.position.x, transform.position.y);
+    rectangle->setOrigin(r,r);
+    rectangle->setFillColor(attrb.fillColor);
+    sfml_shape = std::shared_ptr<sf::Shape>(rectangle);
 
     b2CircleShape new_shape;
     new_shape.m_radius = r;
@@ -23,12 +23,12 @@ Box2DAnimation::BallDynamic::BallDynamic(float r, Body::BOX2D_LOCATION_ATTRBUTES
 
     shape = std::shared_ptr<b2Shape>(new b2CircleShape(new_shape));
 
-    body_fixture.shape = shape.get();
-    body_fixture.density = 10;
-    body_fixture.friction = 0;
-    body_fixture.restitution = 0.0f; // Make it bounce a little bit
+    body_fixture_def.shape = shape.get();
+    body_fixture_def.density = 1;
+    body_fixture_def.friction = 0;
+    body_fixture_def.restitution = 0.0f; // Make it bounce a little bit
 
-    body->CreateFixture(&body_fixture);
+    body_fixture = body->CreateFixture(&body_fixture_def);
     body->SetUserData(this);
 
 }
@@ -61,19 +61,21 @@ void Box2DAnimation::BallDynamic::modifyFixture(b2CircleShape newShape, b2Fixtur
  
     shape = std::shared_ptr<b2Shape>(new b2CircleShape(newShape));
 
-    body_fixture = newFixture;
-    body_fixture.shape = shape.get();
+    body_fixture_def = newFixture;
+    body_fixture_def.shape = shape.get();
  
-    body->CreateFixture(&body_fixture);
+    body->DestroyFixture(body_fixture);
+    body_fixture = body->CreateFixture(&body_fixture_def);
 
 }
 
 void Box2DAnimation::BallDynamic::updateFixture(b2FixtureDef fixture)
 {
 
-    body_fixture = fixture;
-    body_fixture.shape = shape.get();
+    body_fixture_def = fixture;
+    body_fixture_def.shape = shape.get();
 
-    body->CreateFixture(&body_fixture);
+    body->DestroyFixture(body_fixture);
+    body_fixture = body->CreateFixture(&body_fixture_def);
 
 }

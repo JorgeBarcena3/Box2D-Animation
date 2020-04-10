@@ -42,7 +42,6 @@ namespace Box2DAnimation
         struct CAR_ATTRBUTES
         {
             b2Vec2 position;
-            float rotation;
             b2Vec2 size;
 
         };
@@ -54,6 +53,12 @@ namespace Box2DAnimation
         std::shared_ptr<Wheel> front_wheel;
 
         std::shared_ptr<Wheel> back_wheel;
+
+        b2PrismaticJoint* front_join;
+
+        b2PrismaticJoint * back_join;
+
+        int status;
         
     public:
 
@@ -62,6 +67,15 @@ namespace Box2DAnimation
         void update(float time);
 
         void render(sf::RenderWindow& window);
+
+        void acelerate(int state);
+
+        void decelerate();
+
+
+    private:
+
+        void configJoins();
 
 
     };

@@ -46,9 +46,9 @@ namespace Box2DAnimation
 
         BallDynamic(float r, Body::BOX2D_LOCATION_ATTRBUTES transform, World& world, Body::SMLF_SHAPES_ATIBUTES attrb);
 
-        void render(sf::RenderWindow& renderWindow) override;
+        virtual void render(sf::RenderWindow& renderWindow) override;
         
-        void update(float time) override;
+        virtual void update(float time) override;
 
         void modifyFixture(b2CircleShape newShape, b2FixtureDef newFixture);
 

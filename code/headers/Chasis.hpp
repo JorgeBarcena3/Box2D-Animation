@@ -47,7 +47,7 @@ namespace Box2DAnimation
 
             void update(b2Body * body)
             {
-
+                
                 sfml_shape->setPosition(
                     body->GetPosition().x * World::getInstance()->getWorldScale() + positionOffset.x,
                     body->GetPosition().y * World::getInstance()->getWorldScale() + positionOffset.y

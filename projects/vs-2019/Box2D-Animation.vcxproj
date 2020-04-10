@@ -24,6 +24,7 @@
     <ClCompile Include="..\..\code\source\main.cpp" />
     <ClCompile Include="..\..\code\source\RotationTorque.cpp" />
     <ClCompile Include="..\..\code\source\Scene.cpp" />
+    <ClCompile Include="..\..\code\source\SFMLDebugDraw.cpp" />
     <ClCompile Include="..\..\code\source\StaticBody.cpp" />
     <ClCompile Include="..\..\code\source\Wheel.cpp" />
     <ClCompile Include="..\..\code\source\Windmill.cpp" />
@@ -42,6 +43,7 @@
     <ClInclude Include="..\..\code\headers\RectangleStatic.hpp" />
     <ClInclude Include="..\..\code\headers\RotationTorque.hpp" />
     <ClInclude Include="..\..\code\headers\Scene.hpp" />
+    <ClInclude Include="..\..\code\headers\SFMLDebugDraw.h" />
     <ClInclude Include="..\..\code\headers\StaticBody.hpp" />
     <ClInclude Include="..\..\code\headers\Wheel.hpp" />
     <ClInclude Include="..\..\code\headers\Windmill.hpp" />

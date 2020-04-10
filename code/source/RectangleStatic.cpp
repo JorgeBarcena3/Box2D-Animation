@@ -24,19 +24,19 @@ Box2DAnimation::RectangleStatic::RectangleStatic(Body::BOX2D_LOCATION_ATTRBUTES 
 
     shape = std::shared_ptr<b2Shape>(new b2PolygonShape(new_shape));
 
-    body_fixture.shape = shape.get();
+    body_fixture_def.shape = shape.get();
     if (isSensor)
     {
-        body_fixture.isSensor = true;
-        body_fixture.filter.groupIndex = -2;
+        body_fixture_def.isSensor = true;
+        body_fixture_def.filter.groupIndex = -2;
     }
     else
     {
-        body_fixture.density = 400;
-        body_fixture.friction = 0.0f;
+        body_fixture_def.density = 400;
+        body_fixture_def.friction = 3.0f;
     }
 
-    body->CreateFixture(&body_fixture);
+    body_fixture = body->CreateFixture(&body_fixture_def);
     body->SetUserData(this);
 
     //body->CreateFixture(shape.get(), 0);
@@ -73,14 +73,14 @@ void Box2DAnimation::RectangleStatic::modifyFixture(b2PolygonShape new_shape)
 
     shape = std::shared_ptr<b2Shape>(new b2PolygonShape(new_shape));
 
-    body_fixture.shape = shape.get();
-    body->CreateFixture(&body_fixture);
+    body_fixture_def.shape = shape.get();
+    body->CreateFixture(&body_fixture_def);
 }
 
 void Box2DAnimation::RectangleStatic::updateFixture(b2FixtureDef fixture)
 {
-    body_fixture = fixture;
-    body_fixture.shape = shape.get();
-    body->CreateFixture(&body_fixture);
+    body_fixture_def = fixture;
+    body_fixture_def.shape = shape.get();
+    body->CreateFixture(&body_fixture_def);
 
 }

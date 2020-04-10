@@ -28,7 +28,7 @@ void Box2DAnimation::Scene::addActionToPool(std::string action)
     instance->actionsToDo.push_back(action);
 }
 
-Box2DAnimation::Scene::Scene() : world(0, 100.0f, 1)
+Box2DAnimation::Scene::Scene() : world(0, 200, 1)
 {
     Scene::instance = std::shared_ptr<Scene>(this);
     configScene();
@@ -54,8 +54,10 @@ void Box2DAnimation::Scene::render(sf::RenderWindow& renderWindow)
 {
 
     world.render(renderWindow);
-    windmill->render(renderWindow);
-    car->render(renderWindow);
+ /*   windmill->render(renderWindow); */
+   /* car->render(renderWindow);*/
+    
+
 
 }
 
@@ -80,7 +82,7 @@ bool Box2DAnimation::Scene::manageInput(sf::RenderWindow& window)
             {
                 Scene::addActionToPool("D");
             }
-            else if(event.key.code == sf::Keyboard::A)
+            else if (event.key.code == sf::Keyboard::A)
             {
                 Scene::addActionToPool("A");
             }
@@ -96,6 +98,17 @@ bool Box2DAnimation::Scene::manageInput(sf::RenderWindow& window)
 
     return false;
 
+
+}
+
+void Box2DAnimation::Scene::setDrawTool(SFMLDebugDraw& draw)
+{
+    world.drawer = &draw;
+    world.get_b2World()->SetDebugDraw(&draw);
+
+    draw.SetFlags(b2Draw::e_shapeBit);
+    draw.AppendFlags(b2Draw::e_centerOfMassBit);
+    draw.AppendFlags(b2Draw::e_jointBit);
 
 }
 
@@ -165,6 +178,7 @@ void Box2DAnimation::Scene::configScene()
 
 void Box2DAnimation::Scene::poolActionsToDo()
 {
+
     for (auto action : actionsToDo)
     {
         if (action == "Start Windmill")
@@ -173,15 +187,14 @@ void Box2DAnimation::Scene::poolActionsToDo()
         }
         else if (action == "D")
         {
-            /*auto body = car->body;
-            auto newSpeed = b2Vec2(300 * body->GetMass(), 0);
-            body->ApplyLinearImpulse(newSpeed, body->GetPosition(), true); */
+           
+            car->acelerate(1);
+
         }
         else if (action == "A")
         {
-       /*     auto body = car->body;
-            auto newSpeed = b2Vec2(-300 * body->GetMass(), 0);
-            body->ApplyLinearImpulse(newSpeed, body->GetPosition(), true);*/
+
+            car->acelerate(-1);
         }
     }
 

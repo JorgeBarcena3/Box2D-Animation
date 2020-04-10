@@ -24,10 +24,10 @@ Box2DAnimation::RectangleKinematic::RectangleKinematic(Body::BOX2D_LOCATION_ATTR
 
     shape = std::shared_ptr<b2Shape>(new b2PolygonShape(new_shape));
 
-    body_fixture.shape = shape.get();
-    body_fixture.isSensor = true;
-    body_fixture.filter.groupIndex = -2;
-    body->CreateFixture(&body_fixture);
+    body_fixture_def.shape = shape.get();
+    body_fixture_def.isSensor = true;
+    body_fixture_def.filter.groupIndex = -2;
+    body_fixture = body->CreateFixture(&body_fixture_def);
     body->SetUserData(this);
 
 
@@ -63,14 +63,14 @@ void Box2DAnimation::RectangleKinematic::modifyFixture(b2PolygonShape new_shape)
 
     shape = std::shared_ptr<b2Shape>(new b2PolygonShape(new_shape));
 
-    body_fixture.shape = shape.get();
-    body->CreateFixture(&body_fixture);
+    body_fixture_def.shape = shape.get();
+    body->CreateFixture(&body_fixture_def);
 }
 
 void Box2DAnimation::RectangleKinematic::updateFixture(b2FixtureDef fixture)
 {
-    body_fixture = fixture;
-    body_fixture.shape = shape.get();
-    body->CreateFixture(&body_fixture);
+    body_fixture_def = fixture;
+    body_fixture_def.shape = shape.get();
+    body->CreateFixture(&body_fixture_def);
 
 }

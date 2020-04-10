@@ -22,6 +22,7 @@
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
 #include "ContactHandler.hpp"
+#include "SFMLDebugDraw.h"
 
 namespace Box2DAnimation
 {
@@ -39,6 +40,10 @@ namespace Box2DAnimation
     public:
 
         static std::shared_ptr<World> getInstance();
+
+    public:
+
+        SFMLDebugDraw * drawer;
 
     private:
 

@@ -62,7 +62,9 @@ namespace Box2DAnimation
 
         b2BodyDef body_definition;
 
-        b2FixtureDef body_fixture;
+        b2FixtureDef body_fixture_def;
+
+        b2Fixture* body_fixture;
 
         std::shared_ptr< b2Shape > shape;
 

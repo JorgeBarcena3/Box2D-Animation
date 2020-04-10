@@ -22,6 +22,8 @@
 #include <SFML/Graphics.hpp>
 #include <box2d/box2d.h>
 #include "BallDynamic.hpp"
+#include "World.hpp"
+#include "RectangleDynamic.hpp"
 
 
 namespace Box2DAnimation
@@ -34,13 +36,72 @@ namespace Box2DAnimation
     */
     class Wheel : public BallDynamic
     {
+
+    private:
+
+        struct WHEEL_PARTS_ELEMENTS
+        {
+
+            std::shared_ptr<RectangleDynamic> body;
+            b2Vec2 positionOffset;
+            std::shared_ptr<sf::Shape> sfml_shape;
+
+            void update(float time)
+            {
+                body->update(time);
+
+                sfml_shape->setPosition(
+                    body->body->GetPosition().x * World::getInstance()->getWorldScale() + positionOffset.x,
+                    body->body->GetPosition().y * World::getInstance()->getWorldScale() + positionOffset.y
+                );
+
+                sfml_shape->setRotation(
+                    body->body->GetAngle() * 180 / b2_pi
+                );
+            }
+
+            void draw(sf::RenderWindow& window)
+            {
+                body->render(window);
+
+                window.draw(*sfml_shape);
+            }
+
+            b2Body * getb2Body()
+            {
+                return body->body;
+            }
+        };
+
+
+    private:
+
+        WHEEL_PARTS_ELEMENTS axe;
+
+        b2RevoluteJoint* join;
         
     public:
 
         Wheel(Body::BOX2D_LOCATION_ATTRBUTES location, World& world, Body::SMLF_SHAPES_ATIBUTES attrb);
         
-        void update(float time);
+        void update(float time) override;
 
+        void render(sf::RenderWindow& window) override;
+
+        inline WHEEL_PARTS_ELEMENTS* getAxe()
+        {
+            return &axe;
+        }
+
+        void acelerate(float speed);
+
+        void decelerate();
+
+    private:
+
+        void configAxe(Body::BOX2D_LOCATION_ATTRBUTES location, World& world, Body::SMLF_SHAPES_ATIBUTES attrb);
+
+        void configJoins();
 
     };
 

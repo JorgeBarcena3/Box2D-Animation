@@ -23,7 +23,9 @@
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
 #include <SFML/System/Clock.hpp>
+#include <box2d/b2_world.h>
 #include "../headers/Scene.hpp"
+#include "../headers/SFMLDebugDraw.h"
 
 using namespace sf;
 using namespace Box2DAnimation;
@@ -32,7 +34,11 @@ int main()
 {
     RenderWindow window(VideoMode(1500, 800), "Box2D Animation - Jorge Barcena Lumbreras");
 
-    Scene myScene;    
+    /* Initialize SFML Debug Draw */
+    SFMLDebugDraw debugDraw(window);
+
+    Scene myScene;  
+    myScene.setDrawTool(debugDraw);
 
     window.setVerticalSyncEnabled(true);
 
