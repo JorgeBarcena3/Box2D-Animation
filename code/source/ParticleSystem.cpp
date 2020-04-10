@@ -18,28 +18,17 @@ Box2DAnimation::ParticleSystem::ParticleSystem(sf::Vector2f _position, ParticleS
 void Box2DAnimation::ParticleSystem::update(float time)
 {
 
-    if (eneabled)
+    for (auto particle : particlePool)
     {
-
-        for (auto particle : particlePool)
-        {
-            particle->Update(time);
-        }
-
+        particle->Update(time);
     }
-
 }
 
 void Box2DAnimation::ParticleSystem::render(sf::RenderWindow& window)
 {
-    if (eneabled)
+    for (auto particle : particlePool)
     {
-
-        for (auto particle : particlePool)
-        {
-            particle->render(window);
-        }
-
+        particle->render(window);
     }
 }
 

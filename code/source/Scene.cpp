@@ -47,7 +47,6 @@ void Box2DAnimation::Scene::update(float t)
     windmill->update(t);
     car->update(t);
     elevator->update(t);
-    particleSystem->update(t);
 
 
 }
@@ -59,7 +58,6 @@ void Box2DAnimation::Scene::render(sf::RenderWindow& renderWindow)
     car->render(renderWindow);
     elevator->render(renderWindow);
     world.render(renderWindow);
-    particleSystem->render(renderWindow);
 
 }
 
@@ -95,6 +93,14 @@ bool Box2DAnimation::Scene::manageInput(sf::RenderWindow& window)
             else if (event.key.code == sf::Keyboard::O)
             {
                 Scene::addActionToPool("Stop");
+            }
+            else if (event.key.code == sf::Keyboard::N)
+            {
+                Scene::addActionToPool("StartParticles");
+            }
+            else if (event.key.code == sf::Keyboard::M)
+            {
+                Scene::addActionToPool("StopParticles");
             }
 
             break;
@@ -157,6 +163,7 @@ void Box2DAnimation::Scene::configScene()
 
     //Caja de destino para meter las bolas
     body_list.push_back(std::shared_ptr<Body>(new RectangleStatic(Body::BOX2D_LOCATION_ATTRBUTES({ { 548, 254}, 0, {192,34} }), world, Body::SMLF_SHAPES_ATIBUTES({ backColor }))));
+    body_list[body_list.size() - 1]->tag = "Plataforma final";
     body_list.push_back(std::shared_ptr<Body>(new RectangleStatic(Body::BOX2D_LOCATION_ATTRBUTES({ { 429, 283}, 51, {34,98} }), world, Body::SMLF_SHAPES_ATIBUTES({ backColor }))));
     body_list.push_back(std::shared_ptr<Body>(new RectangleStatic(Body::BOX2D_LOCATION_ATTRBUTES({ { 370, 283}, -51, {34,98} }), world, Body::SMLF_SHAPES_ATIBUTES({ backColor }))));
 
@@ -192,17 +199,7 @@ void Box2DAnimation::Scene::configScene()
     //Objeto de prueba
     car = std::shared_ptr<Car>(new Car(Car::CAR_ATTRBUTES({}), Body::SMLF_SHAPES_ATIBUTES({ sf::Color::Yellow }), "Coche"));
 
-    //Sistema de particulas
-    Box2DAnimation::ParticleSystem::ParticleSystemDef def;
-    def.color = sf::Color::Red;
-    def.randomColor = true;
-    def.coneAngle = 15;
-    def.direction = { 0,1 };
-    def.particlesNumber = 50;
-    def.type = Box2DAnimation::PARTICLE_TYPE::RECTANGLE;
-    def.baseSize = { 10,10 };
-    def.speedRange = { 1,5 };
-    particleSystem = std::shared_ptr<ParticleSystem>(new ParticleSystem({ 400,500 }, def, true));
+
 
 }
 
@@ -237,6 +234,14 @@ void Box2DAnimation::Scene::poolActionsToDo()
         else if (action == "ElevatorStart")
         {
             elevator->up(5, 250);
+        }
+        else if (action == "StartParticles")
+        {
+            car->startParticles();
+        }
+        else if (action == "StopParticles")
+        {
+            car->stopParticles();
         }
     }
 

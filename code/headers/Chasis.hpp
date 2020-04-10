@@ -65,7 +65,7 @@ namespace Box2DAnimation
         };
       
 
-    private:
+    public:
 
         CHASIS_PART_ELEMENTS back_elements;
 

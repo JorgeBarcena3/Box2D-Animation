@@ -61,8 +61,6 @@ namespace Box2DAnimation
 
         std::shared_ptr<Elevator> elevator;
 
-        std::shared_ptr<ParticleSystem> particleSystem;
-
     public:
 
         Scene();

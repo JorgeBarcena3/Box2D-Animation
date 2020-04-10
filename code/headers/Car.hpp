@@ -24,6 +24,7 @@
 #include "DynamicBody.hpp"
 #include "Chasis.hpp"
 #include "Wheel.hpp"
+#include "ParticleSystem.hpp"
 
 
 namespace Box2DAnimation
@@ -59,6 +60,8 @@ namespace Box2DAnimation
         b2RevoluteJoint* back_join;
 
         int status;
+
+        std::vector< std::shared_ptr<ParticleSystem> > particleSystem;
         
     public:
 
@@ -72,12 +75,18 @@ namespace Box2DAnimation
 
         void decelerate();
 
+        void startParticles();
+
+        void stopParticles();
+
 
     private:
 
         void configJoins();
 
         void respawnCar();
+
+        void SetCarSpeed();
 
 
     };

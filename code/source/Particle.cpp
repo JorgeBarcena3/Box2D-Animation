@@ -6,7 +6,7 @@ Box2DAnimation::Particle::Particle(ParticleSystem* _system, bool _active)
     particleSystem = std::shared_ptr<ParticleSystem>(_system);
     active = _active;
 
-    particleDefinition.color = particleSystem->particleDefinition.randomColor ? sf::Color(rand() % + 255, rand() % +255, rand() % +255, 255) : particleSystem->particleDefinition.color;
+    particleDefinition.color = particleSystem->particleDefinition.randomColor ? sf::Color(rand() % +255, rand() % +255, rand() % +255, 255) : particleSystem->particleDefinition.color;
     particleDefinition.size = particleSystem->particleDefinition.baseSize;
 
     switch (particleSystem->particleDefinition.type)
@@ -36,7 +36,7 @@ Box2DAnimation::Particle::Particle(ParticleSystem* _system, bool _active)
 
 void Box2DAnimation::Particle::Update(float time)
 {
-    if (active)
+    if (active || alpha > 0)
     {
         position += direction * speed;
         alpha -= speed;
@@ -45,7 +45,7 @@ void Box2DAnimation::Particle::Update(float time)
         particleDefinition.shape->setPosition(position);
         particleDefinition.shape->setFillColor(particleDefinition.color);
 
-        if (alpha <= 0)
+        if (alpha <= 0  && active)
         {
             reset();
         }
@@ -54,7 +54,7 @@ void Box2DAnimation::Particle::Update(float time)
 
 void Box2DAnimation::Particle::render(sf::RenderWindow& window)
 {
-    if (active)
+    if (active || alpha > 0)
     {
         window.draw(*particleDefinition.shape);
     }

@@ -41,12 +41,50 @@ Box2DAnimation::Car::Car(CAR_ATTRBUTES CAR_ATTRB, Body::SMLF_SHAPES_ATIBUTES att
     back_wheel = std::shared_ptr<Wheel>(new Wheel(back_wheel_attrb, *World::getInstance().get(), attrb));
     back_wheel->tag = "Coche";
     configJoins();
+
+    //Sistema de particulas
+    Box2DAnimation::ParticleSystem::ParticleSystemDef def;
+    def.color = sf::Color::Red;
+    def.randomColor = true;
+    def.coneAngle = 15;
+    def.direction = { 0,1 };
+    def.particlesNumber = 50;
+    def.type = Box2DAnimation::PARTICLE_TYPE::RECTANGLE;
+    def.baseSize = { 10,10 };
+    def.speedRange = { 1,5 };
+
+    particleSystem.push_back(std::shared_ptr<ParticleSystem>(new ParticleSystem({ 0,0 }, def, false)));
+    particleSystem.push_back(std::shared_ptr<ParticleSystem>(new ParticleSystem({ 0,0 }, def, false)));
 }
 
 
 void Box2DAnimation::Car::update(float time)
 {
 
+    SetCarSpeed();
+
+    chasis->update(time);
+    back_wheel->update(time);
+    front_wheel->update(time);
+
+    for (auto system : particleSystem)
+    {
+        system->update(time);
+
+    }
+
+    b2Vec2 pos = b2Mul(chasis->body->GetTransform(), b2Vec2(-70, -50));
+    particleSystem[0]->setPosition({ pos.x, pos.y });
+
+    pos = b2Mul(chasis->body->GetTransform(), b2Vec2(65, -50)); 
+    particleSystem[1]->setPosition({ pos.x, pos.y });
+
+    if (chasis->body->GetPosition().y > 800)
+        respawnCar();
+}
+
+void Box2DAnimation::Car::SetCarSpeed()
+{
     static float motorSpeed = 0;
 
     switch (status)
@@ -76,13 +114,6 @@ void Box2DAnimation::Car::update(float time)
     }
     front_join->SetMotorSpeed(motorSpeed);
     back_join->SetMotorSpeed(motorSpeed);
-
-    chasis->update(time);
-    back_wheel->update(time);
-    front_wheel->update(time);
-
-    if (chasis->body->GetPosition().y > 800)
-        respawnCar();
 }
 
 void Box2DAnimation::Car::render(sf::RenderWindow& window)
@@ -93,6 +124,11 @@ void Box2DAnimation::Car::render(sf::RenderWindow& window)
     front_wheel->render(window);
 
     chasis->render(window);
+
+    for (auto system : particleSystem)
+    {
+        system->render(window);
+    }
 
 
 }
@@ -109,6 +145,22 @@ void Box2DAnimation::Car::decelerate()
     front_join->EnableMotor(false);
     back_join->EnableMotor(false);
 
+}
+
+void Box2DAnimation::Car::startParticles()
+{
+    for (auto system : particleSystem)
+    {
+        system->start();
+    }
+}
+
+void Box2DAnimation::Car::stopParticles()
+{
+    for (auto system : particleSystem)
+    {
+        system->stop();
+    }
 }
 
 void Box2DAnimation::Car::configJoins()
