@@ -59,7 +59,7 @@ void Box2DAnimation::Car::update(float time)
 
     case 1:
 
-        motorSpeed -= 0.2f;
+        motorSpeed -= 0.1f;
         break;
 
     default:

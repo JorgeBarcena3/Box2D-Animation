@@ -143,6 +143,8 @@ void Box2DAnimation::Scene::configScene()
 
     //Suelo izquierda
     body_list.push_back(std::shared_ptr<Body>(new RectangleStatic(Body::BOX2D_LOCATION_ATTRBUTES({ { 96, 697 }, 0, {192,206} }), world, Body::SMLF_SHAPES_ATIBUTES({ backColor }))));
+   
+    //Suelo derecha
     body_list.push_back(std::shared_ptr<Body>(new RectangleStatic(Body::BOX2D_LOCATION_ATTRBUTES({ { 1149, 773 }, -9, {620,225} }), world, Body::SMLF_SHAPES_ATIBUTES({ backColor }))));
 
     //Zona de activacion
@@ -180,7 +182,6 @@ void Box2DAnimation::Scene::configScene()
     body_list.push_back(std::shared_ptr<Body>(new BallDynamic(15, Body::BOX2D_LOCATION_ATTRBUTES({ { 1220, 220}, 0, {0,0} }), world, Body::SMLF_SHAPES_ATIBUTES({ green }))));
     body_list.push_back(std::shared_ptr<Body>(new BallDynamic(15, Body::BOX2D_LOCATION_ATTRBUTES({ { 1241, 220}, 0, {0,0} }), world, Body::SMLF_SHAPES_ATIBUTES({ green }))));
     body_list.push_back(std::shared_ptr<Body>(new BallDynamic(15, Body::BOX2D_LOCATION_ATTRBUTES({ { 1260, 220}, 0, {0,0} }), world, Body::SMLF_SHAPES_ATIBUTES({ green }))));
-    body_list.push_back(std::shared_ptr<Body>(new BallDynamic(15, Body::BOX2D_LOCATION_ATTRBUTES({ { 1280, 220}, 0, {0,0} }), world, Body::SMLF_SHAPES_ATIBUTES({ green }))));
 
     //Ascensor
     elevator = std::shared_ptr<Elevator>(new Elevator(Body::BOX2D_LOCATION_ATTRBUTES({ { 760, 1200}, 0, {195,34} }), world, Body::SMLF_SHAPES_ATIBUTES({ green })));
