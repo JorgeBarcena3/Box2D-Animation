@@ -54,9 +54,9 @@ void Box2DAnimation::Scene::render(sf::RenderWindow& renderWindow)
 {
 
     world.render(renderWindow);
- /*   windmill->render(renderWindow); */
-   /* car->render(renderWindow);*/
-    
+    windmill->render(renderWindow);
+    car->render(renderWindow);
+
 
 
 }
@@ -187,7 +187,7 @@ void Box2DAnimation::Scene::poolActionsToDo()
         }
         else if (action == "D")
         {
-           
+
             car->acelerate(1);
 
         }

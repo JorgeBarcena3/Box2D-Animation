@@ -89,14 +89,17 @@ void Box2DAnimation::Car::update(float time)
 
 void Box2DAnimation::Car::render(sf::RenderWindow& window)
 {
-    if (chasis != nullptr)
-        chasis->render(window);
 
     if (back_wheel != nullptr)
         back_wheel->render(window);
 
     if (front_wheel != nullptr)
         front_wheel->render(window);
+
+    if (chasis != nullptr)
+        chasis->render(window);
+
+
 }
 
 void Box2DAnimation::Car::acelerate(int state)
@@ -116,34 +119,30 @@ void Box2DAnimation::Car::decelerate()
 void Box2DAnimation::Car::configJoins()
 {
 
-    // ************************ PRISMATIC JOINTS ************************ //
-            //  definition
-    b2RevoluteJointDef axlePrismaticJointDef = b2RevoluteJointDef();
+    b2RevoluteJointDef revoluteJointDef = b2RevoluteJointDef();
 
 
-    // front axle
+    revoluteJointDef.Initialize(chasis->body, front_wheel->body, front_wheel->body->GetWorldCenter());
 
-    axlePrismaticJointDef.Initialize(chasis->body, front_wheel->body, front_wheel->body->GetWorldCenter());
+    revoluteJointDef.collideConnected = true;
+    revoluteJointDef.referenceAngle = 0;
+    revoluteJointDef.localAnchorA.Set(-50, 20);
+    revoluteJointDef.localAnchorB.Set(0, 0);
+    revoluteJointDef.enableMotor = false;
+    revoluteJointDef.maxMotorTorque = powf(10, 16);
 
-    axlePrismaticJointDef.collideConnected = true;
-    axlePrismaticJointDef.referenceAngle = 0;
-    axlePrismaticJointDef.localAnchorA.Set(-50, 20);
-    axlePrismaticJointDef.localAnchorB.Set(0, 0);
-    axlePrismaticJointDef.enableMotor = false;
-    axlePrismaticJointDef.maxMotorTorque = powf(10, 16);
+    front_join = (b2RevoluteJoint*)World::getInstance()->get_b2World()->CreateJoint(&revoluteJointDef);
 
-    front_join = (b2RevoluteJoint*)World::getInstance()->get_b2World()->CreateJoint(&axlePrismaticJointDef);
+ 
+    revoluteJointDef.Initialize(chasis->body, back_wheel->body, back_wheel->body->GetWorldCenter());
+    revoluteJointDef.collideConnected = true;
+    revoluteJointDef.referenceAngle = 0;
+    revoluteJointDef.localAnchorA.Set(+50, 20);
+    revoluteJointDef.localAnchorB.Set(0, 0);
+    revoluteJointDef.enableMotor = false;
+    revoluteJointDef.maxMotorTorque = powf(10, 16);
 
-    // rear axle
-    axlePrismaticJointDef.Initialize(chasis->body, back_wheel->body, back_wheel->body->GetWorldCenter());
-    axlePrismaticJointDef.collideConnected = true;
-    axlePrismaticJointDef.referenceAngle = 0;
-    axlePrismaticJointDef.localAnchorA.Set(+50, 20);
-    axlePrismaticJointDef.localAnchorB.Set(0, 0);
-    axlePrismaticJointDef.enableMotor = false;
-    axlePrismaticJointDef.maxMotorTorque = powf(10, 16);
-
-    back_join = (b2RevoluteJoint*)World::getInstance()->get_b2World()->CreateJoint(&axlePrismaticJointDef);
+    back_join = (b2RevoluteJoint*)World::getInstance()->get_b2World()->CreateJoint(&revoluteJointDef);
 
 
 }

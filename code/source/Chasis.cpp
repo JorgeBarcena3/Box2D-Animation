@@ -25,15 +25,21 @@ void Box2DAnimation::Chasis::render(sf::RenderWindow& window)
     {
         b2PolygonShape* shape = (b2PolygonShape*)f->GetShape();
 
-        World::getInstance()->drawer->DrawSolidPolygon(shape->m_vertices, shape->m_count, b2Color(1, 0, 0));
+
+
+        sf::ConvexShape polygon(shape->m_count);
+        for (int i = 0; i < shape->m_count; i++)
+        {
+            sf::Vector2f transformedVec = SFMLDebugDraw::B2VecToSFVec(b2Mul(body->GetTransform(), shape->m_vertices[i]));
+            polygon.setPoint(i, sf::Vector2f(std::floor(transformedVec.x), std::floor(transformedVec.y))); 
+        }																								   
+        polygon.setFillColor(sf::Color::Red);
+
+        window.draw(polygon);
+
 
     }
 
-
-    //RectangleDynamic::render(window);
-
-    ////back_elements.draw(window);
-    //front_elements.draw(window);
 
 }
 

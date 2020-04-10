@@ -11,11 +11,12 @@ Box2DAnimation::BallDynamic::BallDynamic(float r, Body::BOX2D_LOCATION_ATTRBUTES
 
     radius = r;
 
-    sf::RectangleShape* rectangle = new sf::RectangleShape(sf::Vector2f(radius * 2, radius * 2));
-    rectangle->setPosition(transform.position.x, transform.position.y);
-    rectangle->setOrigin(r,r);
-    rectangle->setFillColor(attrb.fillColor);
-    sfml_shape = std::shared_ptr<sf::Shape>(rectangle);
+    sf::CircleShape* circle = new sf::CircleShape(radius);
+    circle->setPosition(transform.position.x, transform.position.y);
+    circle->setOrigin(radius, radius);
+    circle->setFillColor(attrb.fillColor);
+    sfml_shape = std::shared_ptr<sf::Shape>(circle);
+
 
     b2CircleShape new_shape;
     new_shape.m_radius = r;
