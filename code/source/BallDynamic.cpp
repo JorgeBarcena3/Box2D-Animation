@@ -15,16 +15,16 @@ Box2DAnimation::BallDynamic::BallDynamic(float r, Body::BOX2D_LOCATION_ATTRBUTES
     circle->setPosition(transform.position.x, transform.position.y);
     circle->setOrigin(radius, radius);
     circle->setFillColor(attrb.fillColor);
-    sfml_shape = std::shared_ptr<sf::Shape>(circle);
+    sfml_shape = circle;
 
 
     b2CircleShape new_shape;
     new_shape.m_radius = r;
 
 
-    shape = std::shared_ptr<b2Shape>(new b2CircleShape(new_shape));
+    shape = new b2CircleShape(new_shape);
 
-    body_fixture_def.shape = shape.get();
+    body_fixture_def.shape = shape;
     body_fixture_def.density = 1;
     body_fixture_def.friction = 0;
     body_fixture_def.restitution = 0.0f; // Make it bounce a little bit
@@ -60,10 +60,10 @@ void Box2DAnimation::BallDynamic::update(float time)
 void Box2DAnimation::BallDynamic::modifyFixture(b2CircleShape newShape, b2FixtureDef newFixture)
 {
  
-    shape = std::shared_ptr<b2Shape>(new b2CircleShape(newShape));
+    shape = new b2CircleShape(newShape);
 
     body_fixture_def = newFixture;
-    body_fixture_def.shape = shape.get();
+    body_fixture_def.shape = shape;
  
     body->DestroyFixture(body_fixture);
     body_fixture = body->CreateFixture(&body_fixture_def);
@@ -74,7 +74,7 @@ void Box2DAnimation::BallDynamic::updateFixture(b2FixtureDef fixture)
 {
 
     body_fixture_def = fixture;
-    body_fixture_def.shape = shape.get();
+    body_fixture_def.shape = shape;
 
     body->DestroyFixture(body_fixture);
     body_fixture = body->CreateFixture(&body_fixture_def);

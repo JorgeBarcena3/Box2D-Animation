@@ -8,14 +8,14 @@ using namespace Box2DAnimation;
 Box2DAnimation::RotationTorque::RotationTorque(float r, Body::BOX2D_LOCATION_ATTRBUTES transform, World& _world, Body::SMLF_SHAPES_ATIBUTES attrb)
 {
 
-    world = std::shared_ptr < World >(&_world);
+    world = &_world;
     radius = r;
 
     sf::CircleShape* circle = new sf::CircleShape(radius);
     circle->setPosition(transform.position.x, transform.position.y);
     circle->setOrigin(radius, radius);
     circle->setFillColor(attrb.fillColor);
-    sfml_shape = std::shared_ptr<sf::Shape>(circle);
+    sfml_shape = circle;
 
     b2CircleShape new_shape;
     new_shape.m_radius = r;

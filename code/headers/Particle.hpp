@@ -47,7 +47,7 @@ namespace Box2DAnimation
 		struct ParticleDefinition
 		{
 
-			std::shared_ptr<sf::Shape> shape;
+			sf::Shape * shape;
 
 			sf::Color color;
 
@@ -71,7 +71,7 @@ namespace Box2DAnimation
 
 		float speed;
 	   
-		std::shared_ptr<ParticleSystem> particleSystem;
+		ParticleSystem * particleSystem;
 
 		ParticleDefinition particleDefinition;
 

@@ -40,9 +40,9 @@ namespace Box2DAnimation
 
     private:
 
-        RectangleStatic* anchorRectangle;
+        RectangleStatic * anchorRectangle;
 
-        b2PrismaticJoint*  elevatorJoin;
+        b2PrismaticJoint *  elevatorJoin;
 
         bool eneabled = false;
 
@@ -55,6 +55,8 @@ namespace Box2DAnimation
     public:
 
         Elevator(Body::BOX2D_LOCATION_ATTRBUTES location, World& world, Body::SMLF_SHAPES_ATIBUTES attrb, bool isSensor = false);
+
+        ~Elevator();
 
         virtual void render(sf::RenderWindow& renderWindow) override;
         

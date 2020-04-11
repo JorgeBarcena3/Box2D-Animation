@@ -27,23 +27,23 @@
 namespace Box2DAnimation
 {
     class Body;
-    
+
     /*
-    * Abstraccion de la clase de b2World de box2D 
+    * Abstraccion de la clase de b2World de box2D
     */
     class World
     {
     private:
 
-        static std::shared_ptr< World > instance;
+        static World * instance;
 
     public:
 
-        static std::shared_ptr<World> getInstance();
+        static World * getInstance();
 
     public:
 
-        SFMLDebugDraw * drawer;
+        SFMLDebugDraw* drawer;
 
     private:
 
@@ -51,9 +51,9 @@ namespace Box2DAnimation
 
         b2Vec2 gravity;
 
-        std::shared_ptr< b2World > world;
+        b2World* world;
 
-        std::vector<std::shared_ptr<Body>> body_list;
+        std::vector<Body*> body_list;
 
         ContactHandler contactHandler;
 
@@ -63,7 +63,7 @@ namespace Box2DAnimation
 
         ~World();
 
-        b2Body* createBody(std::shared_ptr<Body> body);
+        b2Body* createBody(Body * body);
 
         void Update(float t);
 
@@ -75,7 +75,7 @@ namespace Box2DAnimation
             world->SetGravity(gravity);
         }
 
-        inline std::shared_ptr<b2World> get_b2World()
+        inline b2World * get_b2World()
         {
             return world;
         }

@@ -36,9 +36,6 @@ namespace Box2DAnimation
 
         friend class World;
 
-    private:
-
-        static std::vector<std::shared_ptr<Body>> instances;
 
     public:
 
@@ -58,19 +55,19 @@ namespace Box2DAnimation
 
     public:
 
-        std::shared_ptr<sf::Shape> sfml_shape;
+        sf::Shape * sfml_shape;
 
         b2BodyDef body_definition;
 
         b2FixtureDef body_fixture_def;
 
-        b2Fixture* body_fixture;
+        b2Fixture * body_fixture;
 
-        std::shared_ptr< b2Shape > shape;
+        b2Shape * shape;
 
         b2Body * body;
 
-        std::shared_ptr< World > world;
+        World * world;
 
         std::string tag;
         

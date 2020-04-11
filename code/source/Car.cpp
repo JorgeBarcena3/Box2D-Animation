@@ -1,6 +1,7 @@
 #include "..\headers\Body.hpp"
 #include "..\headers\Car.hpp"
 #include "..\headers\World.hpp"
+#include <box2d/b2_world.h>
 
 using namespace Box2DAnimation;
 
@@ -18,7 +19,7 @@ Box2DAnimation::Car::Car(CAR_ATTRBUTES CAR_ATTRB, Body::SMLF_SHAPES_ATIBUTES att
             {120,20}
         });
 
-    chasis = std::shared_ptr<Chasis>(new Chasis(chasisAttrb, *World::getInstance().get(), carAttr));
+    chasis = new Chasis(chasisAttrb, *World::getInstance(), carAttr);
     chasis->tag = tag;
 
     Body::BOX2D_LOCATION_ATTRBUTES front_wheel_attrb(
@@ -28,7 +29,7 @@ Box2DAnimation::Car::Car(CAR_ATTRBUTES CAR_ATTRB, Body::SMLF_SHAPES_ATIBUTES att
             {20,20}
         });
 
-    front_wheel = std::shared_ptr<Wheel>(new Wheel(front_wheel_attrb, *World::getInstance().get(), attrb));
+    front_wheel = new Wheel(front_wheel_attrb, *World::getInstance(), attrb);
     front_wheel->tag = "Coche";
 
     Body::BOX2D_LOCATION_ATTRBUTES back_wheel_attrb(
@@ -38,7 +39,7 @@ Box2DAnimation::Car::Car(CAR_ATTRBUTES CAR_ATTRB, Body::SMLF_SHAPES_ATIBUTES att
             {20,20}
         });
 
-    back_wheel = std::shared_ptr<Wheel>(new Wheel(back_wheel_attrb, *World::getInstance().get(), attrb));
+    back_wheel = new Wheel(back_wheel_attrb, *World::getInstance(), attrb);
     back_wheel->tag = "Coche";
     configJoins();
 
@@ -53,8 +54,17 @@ Box2DAnimation::Car::Car(CAR_ATTRBUTES CAR_ATTRB, Body::SMLF_SHAPES_ATIBUTES att
     def.baseSize = { 5,5 };
     def.speedRange = { 1,5 };
 
-    particleSystem.push_back(std::shared_ptr<ParticleSystem>(new ParticleSystem({ 0,0 }, def, false)));
-    particleSystem.push_back(std::shared_ptr<ParticleSystem>(new ParticleSystem({ 0,0 }, def, false)));
+    particleSystem.push_back(new ParticleSystem({ 0,0 }, def, false));
+    particleSystem.push_back(new ParticleSystem({ 0,0 }, def, false));
+}
+
+Box2DAnimation::Car::~Car()
+{
+
+    delete front_wheel;
+    delete back_wheel;
+    delete chasis;
+    
 }
 
 

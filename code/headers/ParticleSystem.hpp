@@ -62,7 +62,7 @@ namespace Box2DAnimation
 
         ParticleSystemDef particleDefinition;
 
-        std::vector<std::shared_ptr<Particle>> particlePool;
+        std::vector<Particle *> particlePool;
 
     public:
 

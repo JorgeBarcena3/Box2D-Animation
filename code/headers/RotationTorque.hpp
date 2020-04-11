@@ -45,9 +45,9 @@ namespace Box2DAnimation
 
         b2RevoluteJoint* torqueJoin;
 
-        std::shared_ptr<World> world;
+        World * world;
 
-        std::shared_ptr<sf::Shape> sfml_shape;
+        sf::Shape * sfml_shape;
 
     public:
 

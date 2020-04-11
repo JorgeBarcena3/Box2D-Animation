@@ -5,23 +5,22 @@
 Box2DAnimation::Windmill::Windmill(b2Vec2 _center, Body* _Stick, std::vector<Body*> _Bodies)
 {
     center = _center;
-    stick = std::shared_ptr<Body>(_Stick);
+    stick = _Stick;
     eneabled = false;
 
     for (auto body : _Bodies)
     {
         torques.push_back
         (
-            std::shared_ptr<RotationTorque>
+
+            new RotationTorque
             (
-                new RotationTorque
-                (
-                    10,
-                    Body::BOX2D_LOCATION_ATTRBUTES({ { 1240, 335 }, 0, {0,0} }),
-                    *(World::getInstance()),
-                    Body::SMLF_SHAPES_ATIBUTES({ sf::Color::Red })
-                )
-                )
+                10,
+                Body::BOX2D_LOCATION_ATTRBUTES({ { 1240, 335 }, 0, {0,0} }),
+                *(World::getInstance()),
+                Body::SMLF_SHAPES_ATIBUTES({ sf::Color::Red })
+            )
+
         );
 
         body->setGravity(0);

@@ -18,7 +18,7 @@ Box2DAnimation::Elevator::Elevator(Body::BOX2D_LOCATION_ATTRBUTES transform, Wor
     rectangle->setOrigin(transform.size.x / 2, transform.size.y / 2);
     rectangle->setFillColor(attrb.fillColor);
 
-    sfml_shape = std::shared_ptr<sf::Shape>(rectangle);
+    sfml_shape =rectangle;
 
     b2PolygonShape new_shape;
 
@@ -27,9 +27,9 @@ Box2DAnimation::Elevator::Elevator(Body::BOX2D_LOCATION_ATTRBUTES transform, Wor
         sfml_shape->getLocalBounds().height / 2.0f / World::getInstance()->getWorldScale()
     );
 
-    shape = std::shared_ptr<b2Shape>(new b2PolygonShape(new_shape));
+    shape = new b2PolygonShape(new_shape);
 
-    body_fixture_def.shape = shape.get();
+    body_fixture_def.shape = shape;
 
 
     body_fixture_def.density = 1000;
@@ -55,6 +55,13 @@ Box2DAnimation::Elevator::Elevator(Body::BOX2D_LOCATION_ATTRBUTES transform, Wor
     elevatorJoin = (b2PrismaticJoint*)world.get_b2World()->CreateJoint(&platform_Joint);
 
 
+}
+
+Box2DAnimation::Elevator::~Elevator()
+{
+    //world->get_b2World()->DestroyJoint(elevatorJoin);
+    //world->get_b2World()->DestroyBody(body);
+    delete anchorRectangle;
 }
 
 void Box2DAnimation::Elevator::render(sf::RenderWindow& renderWindow)
@@ -107,16 +114,16 @@ void Box2DAnimation::Elevator::modifyFixture(b2PolygonShape new_shape)
         sfml_shape->getLocalBounds().height / 2.0f / World::getInstance()->getWorldScale()
     );
 
-    shape = std::shared_ptr<b2Shape>(new b2PolygonShape(new_shape));
+    shape = new b2PolygonShape(new_shape);
 
-    body_fixture_def.shape = shape.get();
+    body_fixture_def.shape = shape;
     body->CreateFixture(&body_fixture_def);
 }
 
 void Box2DAnimation::Elevator::updateFixture(b2FixtureDef fixture)
 {
     body_fixture_def = fixture;
-    body_fixture_def.shape = shape.get();
+    body_fixture_def.shape = shape;
     body->CreateFixture(&body_fixture_def);
 
 }

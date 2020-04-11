@@ -13,7 +13,7 @@ Box2DAnimation::RectangleKinematic::RectangleKinematic(Body::BOX2D_LOCATION_ATTR
     rectangle->setOrigin(transform.size.x / 2, transform.size.y / 2);
     rectangle->setFillColor(attrb.fillColor);
 
-    sfml_shape = std::shared_ptr<sf::Shape>(rectangle);
+    sfml_shape = rectangle;
 
     b2PolygonShape new_shape;
 
@@ -22,9 +22,9 @@ Box2DAnimation::RectangleKinematic::RectangleKinematic(Body::BOX2D_LOCATION_ATTR
         sfml_shape->getLocalBounds().height / 2.0f / World::getInstance()->getWorldScale()
     );
 
-    shape = std::shared_ptr<b2Shape>(new b2PolygonShape(new_shape));
+    shape = new b2PolygonShape(new_shape);
 
-    body_fixture_def.shape = shape.get();
+    body_fixture_def.shape = shape;
     body_fixture_def.isSensor = true;
     body_fixture_def.filter.groupIndex = -2;
     body_fixture = body->CreateFixture(&body_fixture_def);
@@ -61,16 +61,16 @@ void Box2DAnimation::RectangleKinematic::modifyFixture(b2PolygonShape new_shape)
         sfml_shape->getLocalBounds().height / 2.0f / World::getInstance()->getWorldScale()
     );
 
-    shape = std::shared_ptr<b2Shape>(new b2PolygonShape(new_shape));
+    shape = new b2PolygonShape(new_shape);
 
-    body_fixture_def.shape = shape.get();
+    body_fixture_def.shape = shape;
     body->CreateFixture(&body_fixture_def);
 }
 
 void Box2DAnimation::RectangleKinematic::updateFixture(b2FixtureDef fixture)
 {
     body_fixture_def = fixture;
-    body_fixture_def.shape = shape.get();
+    body_fixture_def.shape = shape;
     body->CreateFixture(&body_fixture_def);
 
 }

@@ -39,11 +39,11 @@ namespace Box2DAnimation
     {
     private:
 
-        static std::shared_ptr< Scene > instance;
+        static Scene * instance;
 
     public:
 
-        static std::shared_ptr<Scene> getInstance();
+        static Scene * getInstance();
 
         static void addActionToPool(std::string action);
 
@@ -53,13 +53,13 @@ namespace Box2DAnimation
 
         World world;
 
-        std::vector<std::shared_ptr<Body>> body_list;
+        std::vector<Body *> body_list;
 
-        std::shared_ptr<Box2DAnimation::Windmill> windmill;
+        Windmill * windmill;
 
-        std::shared_ptr<Car> car;
+        Car * car;
 
-        std::shared_ptr<Elevator> elevator;
+        Elevator * elevator;
 
     public:
 

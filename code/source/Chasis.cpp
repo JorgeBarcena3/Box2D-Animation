@@ -48,7 +48,7 @@ void Box2DAnimation::Chasis::configChasis(Body::BOX2D_LOCATION_ATTRBUTES transfo
 {
 
     /* Caja principal */
-    body_fixture_def.shape = shape.get();
+    body_fixture_def.shape = shape;
 
     body_fixture_def.density = 500 / 10;
     body_fixture_def.friction = 3;
@@ -70,7 +70,7 @@ void Box2DAnimation::Chasis::configChasis(Body::BOX2D_LOCATION_ATTRBUTES transfo
     rectangle->setOrigin(new_size / 2, new_size / 2);
     rectangle->setFillColor(sf::Color::Blue);
 
-    back_elements.sfml_shape = std::shared_ptr<sf::Shape>(rectangle);
+    back_elements.sfml_shape = rectangle;
 
     back_elements.b2_shape.SetAsBox(new_size / 3, new_size , body->GetLocalPoint({transform.position.x - (new_size * 2.3f),  transform.position.y - (new_size )}) , 0);
 
@@ -91,7 +91,7 @@ void Box2DAnimation::Chasis::configChasis(Body::BOX2D_LOCATION_ATTRBUTES transfo
     rectangle->setOrigin(new_size / 2, new_size / 2);
     rectangle->setFillColor(sf::Color::Red);
 
-    front_elements.sfml_shape = std::shared_ptr<sf::Shape>(rectangle);
+    front_elements.sfml_shape = rectangle;
 
     front_elements.b2_shape.SetAsBox(new_size / 3, new_size, body->GetLocalPoint({ transform.position.x + (new_size * 2.4f),  transform.position.y - (new_size * 1) }), 0);
 

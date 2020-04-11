@@ -5,12 +5,12 @@ Box2DAnimation::ParticleSystem::ParticleSystem(sf::Vector2f _position, ParticleS
     position = _position;
     particleDefinition = definition;
     eneabled = _eneable;
-    particlePool = std::vector<std::shared_ptr<Particle>>(particleDefinition.particlesNumber);
+    particlePool = std::vector<Particle *>(particleDefinition.particlesNumber);
 
 
     for (size_t i = 0; i < particlePool.size(); i++)
     {
-        particlePool[i] = std::shared_ptr<Particle>(new Particle(this, eneabled));
+        particlePool[i] = new Particle(this, eneabled);
     }
 
 }

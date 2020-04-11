@@ -3,7 +3,7 @@
 
 Box2DAnimation::Particle::Particle(ParticleSystem* _system, bool _active)
 {
-    particleSystem = std::shared_ptr<ParticleSystem>(_system);
+    particleSystem = _system;
     active = _active;
 
     particleDefinition.color = particleSystem->particleDefinition.randomColor ? sf::Color(rand() % +255, rand() % +255, rand() % +255, 255) : particleSystem->particleDefinition.color;
@@ -14,17 +14,17 @@ Box2DAnimation::Particle::Particle(ParticleSystem* _system, bool _active)
 
     case PARTICLE_TYPE::POLYGON:
 
-        particleDefinition.shape = std::shared_ptr<sf::ConvexShape>(new sf::ConvexShape());
+        particleDefinition.shape = new sf::ConvexShape();
         break;
 
     case PARTICLE_TYPE::RECTANGLE:
 
-        particleDefinition.shape = std::shared_ptr<sf::RectangleShape>(new sf::RectangleShape(particleDefinition.size));
+        particleDefinition.shape =new sf::RectangleShape(particleDefinition.size);
         break;
 
     case PARTICLE_TYPE::CIRCLE:
 
-        particleDefinition.shape = std::shared_ptr<sf::CircleShape>(new sf::CircleShape(particleDefinition.size.x));
+        particleDefinition.shape =new sf::CircleShape(particleDefinition.size.x);
         break;
     }
 
@@ -94,18 +94,18 @@ void Box2DAnimation::Particle::initialiceParticlesValues()
 
     case PARTICLE_TYPE::RECTANGLE:
 
-        ((sf::RectangleShape*)(particleDefinition.shape.get()))->setSize(particleDefinition.size);
+        ((sf::RectangleShape*)(particleDefinition.shape))->setSize(particleDefinition.size);
         break;
 
     case PARTICLE_TYPE::CIRCLE:
 
-        ((sf::CircleShape*)(particleDefinition.shape.get()))->setRadius(particleDefinition.size.x);
+        ((sf::CircleShape*)(particleDefinition.shape))->setRadius(particleDefinition.size.x);
         break;
     }
 
     position = particleSystem->position;
     alpha = 255;
-    speed = rand() % particleSystem->particleDefinition.speedRange.y + particleSystem->particleDefinition.speedRange.x;
+    speed = rand() % (int)particleSystem->particleDefinition.speedRange.y + (int)particleSystem->particleDefinition.speedRange.x;
 
     float angleTolerance = particleSystem->particleDefinition.coneAngle * b2_pi / 180.f;
     float HI = angleTolerance;

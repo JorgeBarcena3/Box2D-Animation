@@ -49,25 +49,27 @@ namespace Box2DAnimation
 
     private:
 
-        std::shared_ptr<Chasis> chasis;
+        Chasis * chasis;
 
-        std::shared_ptr<Wheel> front_wheel;
+        Wheel * front_wheel;
 
-        std::shared_ptr<Wheel> back_wheel;
+        Wheel * back_wheel;
 
         b2RevoluteJoint * front_join;
 
-        b2RevoluteJoint* back_join;
+        b2RevoluteJoint * back_join;
 
         int status;
 
-        std::vector< std::shared_ptr<ParticleSystem> > particleSystem;
+        std::vector< ParticleSystem * > particleSystem;
 
         bool rotating;
         
     public:
 
         Car(CAR_ATTRBUTES location,  Body::SMLF_SHAPES_ATIBUTES attrb, std::string tag = "");
+
+        ~Car();
         
         void update(float time);
 

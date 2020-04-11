@@ -43,7 +43,7 @@ namespace Box2DAnimation
             b2Fixture * fixture;
             b2Vec2 positionOffset;
             b2PolygonShape b2_shape;
-            std::shared_ptr<sf::Shape> sfml_shape;
+            sf::Shape * sfml_shape;
 
             void update(b2Body * body)
             {

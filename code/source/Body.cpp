@@ -3,9 +3,7 @@
 
 using namespace Box2DAnimation;
 
-std::vector<std::shared_ptr<Body>> Body::instances = std::vector<std::shared_ptr<Body>>();
-
 Box2DAnimation::Body::~Body()
 {
-    
+    world->get_b2World()->DestroyBody(body);
 }

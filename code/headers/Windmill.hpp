@@ -43,9 +43,9 @@ namespace Box2DAnimation
 
         float torqueSpeed; 
 
-        std::vector<std::shared_ptr<RotationTorque>> torques;
+        std::vector<RotationTorque *> torques;
 
-        std::shared_ptr<Body> stick;
+        Body * stick;
 
         bool eneabled;
 

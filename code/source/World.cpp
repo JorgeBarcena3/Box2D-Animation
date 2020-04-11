@@ -4,9 +4,9 @@
 using namespace Box2DAnimation;
 using namespace sf;
 
-std::shared_ptr< World > World::instance = std::shared_ptr<World>(nullptr);
+World* World::instance = nullptr;
 
-std::shared_ptr<World> World::getInstance()
+World * World::getInstance()
 {
 
     if (World::instance)
@@ -14,17 +14,17 @@ std::shared_ptr<World> World::getInstance()
         return instance;
     }
 
-    instance = std::shared_ptr<World>(new World(0, -9.8f));
+    instance = new World(0, -9.8f);
     return instance;
 }
 
 World::World(float x, float y, float _worldScale)
 {
 
-    World::instance = std::shared_ptr<World>(this);
+    World::instance = this;
     gravity = b2Vec2(x, y);
     worldScale = _worldScale;
-    world = std::shared_ptr<b2World>(new b2World(gravity));
+    world = new b2World(gravity);
     world->SetContactListener(&contactHandler);
 
 
@@ -32,7 +32,7 @@ World::World(float x, float y, float _worldScale)
 
 Box2DAnimation::World::~World()
 {
-    instance.reset();
+ /*   instance.reset();
 
     if (!world->IsLocked())
     {
@@ -44,12 +44,12 @@ Box2DAnimation::World::~World()
                 body_list.erase(body_list.begin() + i);
             }
         }
-    }
+    }*/
 
 
 }
 
-b2Body* Box2DAnimation::World::createBody(std::shared_ptr<Body> body)
+b2Body* Box2DAnimation::World::createBody(Body * body)
 {
 
     body_list.push_back(body);
