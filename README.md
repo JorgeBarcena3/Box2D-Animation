@@ -13,7 +13,50 @@ Todo el código esta documentado para que doxygen genere los documentos pertinen
 
 ### Índice
 
-[Modo Debug](#Modo-debug)
+ 1. [Librerias externas](#Librerias-externas)
+ 2. [Instrucciones de uso](#Instrucciones-para-la-demo)
+ 3. [Modo Debug](#Modo-debug)
+ 4. [Capturador de colisiones](#Capturador-de-colisiones)
+ 5. [Pool de acciones de la escena](#Pool-de-acciones-de-la-escena)
+ 6. [Sistema de partículas](#Sistemas-de-partículas)
+
+## Librerias externas
+
+Para la realización de este proyecto he utilizado las siguientes versiones de librerías externas:
+
+ - [Box2D](https://github.com/erincatto/box2d): Simulación de un mundo de físicas.
+ - [SFML 2.5.1](https://www.sfml-dev.org): Creación de la aplicación de ventana.
+ - [Box2D SFML2 Debug Draw](https://github.com/MrPlow442/Box2D-SFML2-Debug-Draw): Dibujar todas las fixtures de Box2D en modo debug.
+
+## Utilizacion de la Demo
+
+Para ver la demo en funcionamiento, podemos ejecutar y compilar el proyecto en Visual Studio 2019 o ejecutar el archivo llamado "JorgeBarcena-Box2D.exe" situado en la carpeta de "binaries". 
+
+### Controles
+ - **A / Flecha Izquierda:** Acelerar hacia la izquierda
+ - **D / Flecha Derecha**: Acelerar hacia la derecha
+ - **N**: Comenzar los sistemas de partículas del coche
+ - **M**: Parar el sistema de partículas
+ - **R:** Rotar el coche a la izquierda
+ - **P:** Que el ascensor aparezca para que el coche pueda subirse en el.
+
+### Instrucciones para la demo
+
+ 1. Se debe acelerar hacia la derecha todo el rato, hasta llegar a la
+    plataforma de la derecha verde.
+    
+ 2.  Una vez ahí un elevador aparecerá en el centro de la pantalla, y las
+    pelotas que están en el molino caerán.
+    
+ 3. Una vez con las pelotas en la caja, bajaremos hasta estar situados
+    en el elevador, tras 5 segundos después de haber tocado la
+    plataforma del ascensor, esta ascenderá.
+    
+ 4. Una vez arriba debemos ir hacia la izquierda.    Cuando estemos
+    preparados y en posición, presionar el botón **R** varias veces,
+    hasta que nuestro coche esté completamente rotado.     
+    
+ 5. Cuando alguna pelota caiga en el recipiente con forma de cono invertido, la demo    habrá acabado y los sistemas de partículas se activaran, impidiendo el movimiento del coche.
 
 ## Modo debug
 
@@ -80,42 +123,3 @@ Estos son dos ejemplos de sistema de partículas distintos:
 <img src="https://github.com/JorgeBarcena3/Box2D-Animation/blob/master/documents/Particles02.gif" width="200" />
 </p>
 
-
-
-## Librerias externas
-
-Para la realización de este proyecto he utilizado las siguientes versiones de librerías externas:
-
- - [Box2D](https://github.com/erincatto/box2d): Simulación de un mundo de físicas.
- - [SFML 2.5.1](https://www.sfml-dev.org): Creación de la aplicación de ventana.
- - [Box2D SFML2 Debug Draw](https://github.com/MrPlow442/Box2D-SFML2-Debug-Draw): Dibujar todas las fixtures de Box2D en modo debug.
-
-## Utilizacion de la Demo
-
-Para ver la demo en funcionamiento, podemos ejecutar y compilar el proyecto en Visual Studio 2019 o ejecutar el archivo llamado "JorgeBarcena-Box2D.exe" situado en la carpeta de "binaries". 
-
-### Controles
- - **A / Flecha Izquierda:** Acelerar hacia la izquierda
- - **D / Flecha Derecha**: Acelerar hacia la derecha
- - **N**: Comenzar los sistemas de partículas del coche
- - **M**: Parar el sistema de partículas
- - **R:** Rotar el coche a la izquierda
- - **P:** Que el ascensor aparezca para que el coche pueda subirse en el.
-
-### Instrucciones para la demo
-
- 1. Se debe acelerar hacia la derecha todo el rato, hasta llegar a la
-    plataforma de la derecha verde.
-    
- 2.  Una vez ahí un elevador aparecerá en el centro de la pantalla, y las
-    pelotas que están en el molino caerán.
-    
- 3. Una vez con las pelotas en la caja, bajaremos hasta estar situados
-    en el elevador, tras 5 segundos después de haber tocado la
-    plataforma del ascensor, esta ascenderá.
-    
- 4. Una vez arriba debemos ir hacia la izquierda.    Cuando estemos
-    preparados y en posición, presionar el botón **R** varias veces,
-    hasta que nuestro coche esté completamente rotado.     
-    
- 5. Cuando alguna pelota caiga en el recipiente con forma de cono invertido, la demo    habrá acabado y los sistemas de partículas se activaran, impidiendo el movimiento del coche.
