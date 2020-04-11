@@ -49,8 +49,8 @@ Box2DAnimation::Car::Car(CAR_ATTRBUTES CAR_ATTRB, Body::SMLF_SHAPES_ATIBUTES att
     def.coneAngle = 15;
     def.direction = { 0,1 };
     def.particlesNumber = 50;
-    def.type = Box2DAnimation::PARTICLE_TYPE::RECTANGLE;
-    def.baseSize = { 10,10 };
+    def.type = Box2DAnimation::PARTICLE_TYPE::CIRCLE;
+    def.baseSize = { 5,5 };
     def.speedRange = { 1,5 };
 
     particleSystem.push_back(std::shared_ptr<ParticleSystem>(new ParticleSystem({ 0,0 }, def, false)));
