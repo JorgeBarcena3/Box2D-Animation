@@ -32,41 +32,63 @@ namespace Box2DAnimation
     class Body;
 
     /*
-    * Abstraccion de la clase de b2World de box2D
+    * Se encarga de crear un molino
     */
     class Windmill
     {
 
     private:
 
-        b2Vec2 center;
 
-        float torqueSpeed; 
+        b2Vec2 center; ///< Centro del molino
 
-        std::vector<RotationTorque *> torques;
+        float torqueSpeed; ///< Velocidad de giro
 
-        Body * stick;
+        std::vector<RotationTorque *> torques; ///< Motor de giro
 
-        bool eneabled;
+        Body * stick; ///< Palo del molino
 
-        float time = 0;
+        bool eneabled; ///< Si esta funcionando
 
-        float animationTime = 6.0f;
+        float time = 0; ///< Tiempo que lleva activado
+
+        float animationTime = 6.0f; ///< Duracion de la animacion
 
     public:
 
+        /*
+        * Crea el molino
+        */
         Windmill(b2Vec2 center, Body * Stick, std::vector<Body *> Bodies);
 
+        /*
+        * Ciclo de render
+        */
         void render(sf::RenderWindow& renderWindow);
 
+        /*
+        * Ciclo de update
+        */
         void update(float time);
 
+        /*
+        * EMpieza a girar
+        */
         void startTorque();
 
+        /*
+        * Para de girar
+        */
         void stopTorque();
 
+        /*
+        * Determina la velocidad de giro
+        */
         void setTorqueSpeed(float speed);
 
+        /*
+        * Determina si esta funcionando o no
+        */
         inline bool isEneabled() { return eneabled; };
 
     };

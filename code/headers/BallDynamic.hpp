@@ -30,30 +30,43 @@ namespace Box2DAnimation
 
     class World;
 
-    /*
-    * Abstraccion de la clase de b2World de box2D
+    /**
+    * Crea una bola dinamica en el mundo de box2d
     */
     class BallDynamic : public DynamicBody
     {
 
     private:
 
-        float radius;
+        float radius; ///< Radio de la esfera
 
-        b2CircleShape circle;
 
     public:
 
+        /**
+        * Crea la pelota con un radio determinado
+        */
         BallDynamic(float r, Body::BOX2D_LOCATION_ATTRBUTES transform, World& world, Body::SMLF_SHAPES_ATIBUTES attrb);
 
+
+        /**
+        * Renderiza la bola en especifico
+        */
         virtual void render(sf::RenderWindow& renderWindow) override;
         
+        /**
+        * Ciclo de update
+        */
         virtual void update(float time) override;
 
+        /**
+        * Modifica la fixture del body
+        */
         void modifyFixture(b2CircleShape newShape, b2FixtureDef newFixture);
 
-
-        // Inherited via DynamicBody
+        /**
+        * Actualiza la fixture
+        */
         virtual void updateFixture(b2FixtureDef fixture) override;
 
     };

@@ -31,23 +31,39 @@ namespace Box2DAnimation
 
     class World;
 
-    /*
-    * Abstraccion de la clase de b2World de box2D
+    /**
+    * Crea un Rectangulo dinamica en el mundo de box2d
     */
     class RectangleDynamic : public DynamicBody
     {
         
     public:
 
+        /**
+        * Crea un rectangulo dinamica en el mundo de box2d
+        */
         RectangleDynamic(Body::BOX2D_LOCATION_ATTRBUTES location, World& world, Body::SMLF_SHAPES_ATIBUTES attrb, bool isSensor = false);
 
+        /**
+        * Renderiza la bola en especifico
+        */
         virtual void render(sf::RenderWindow& renderWindow) override;
-        
-        void update(float time) override;
 
+        /**
+        * Ciclo de update
+        */
+        virtual void update(float time) override;
+
+        /**
+        * Modifica la fixture del body
+        */
         void modifyFixture(b2PolygonShape newFixture);
 
+        /**
+        * Actualiza la fixture
+        */
         virtual void updateFixture(b2FixtureDef fixture) override;
+
 
 
     };

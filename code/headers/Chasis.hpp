@@ -29,56 +29,59 @@ namespace Box2DAnimation
 {
 
     /*
-    * Abstraccion de la clase de b2World de box2D
+    * Chasis del coche
     */
     class Chasis : public RectangleDynamic
     {
 
     private:
 
+        /*
+        * Define las partes del coche
+        */
         struct CHASIS_PART_ELEMENTS
         {
 
-            b2FixtureDef fixtureDefinition;
-            b2Fixture * fixture;
-            b2Vec2 positionOffset;
-            b2PolygonShape b2_shape;
-            sf::Shape * sfml_shape;
+            b2FixtureDef fixtureDefinition; ///< Definicion de la fixture
+            b2Fixture * fixture; ///< Fixture
+            b2Vec2 positionOffset; ///< Offser respecto al centro
+            b2PolygonShape b2_shape; ///< Shape box2D
 
-            void update(b2Body * body)
-            {
-                
-                sfml_shape->setPosition(
-                    body->GetPosition().x * World::getInstance()->getWorldScale() + positionOffset.x,
-                    body->GetPosition().y * World::getInstance()->getWorldScale() + positionOffset.y
-                );
-
-                sfml_shape->setRotation(
-                    body->GetAngle() * 180 / b2_pi
-                );
-            }
-
-            void draw(sf::RenderWindow& window)
-            {
-                window.draw(*sfml_shape);
-            }
         };
       
 
     public:
 
+        /*
+        * Elemento trasero
+        */
         CHASIS_PART_ELEMENTS back_elements;
 
+        /*
+        * Elemento delantero
+        */
         CHASIS_PART_ELEMENTS front_elements;
 
     public:
 
+        /*
+        * Crea el chasis del coche
+        */
         Chasis(Body::BOX2D_LOCATION_ATTRBUTES location, World& world, Body::SMLF_SHAPES_ATIBUTES attrb);
         
+        /*
+        * Ciclo de update del chasis
+        */
         void update(float time);
 
+        /*
+        * Renderiza todas las fixtures del chasis (Que son varias)
+        */
         void render(sf::RenderWindow& window) override;
 
+        /*
+        * Configura el chasis del coche
+        */
         void configChasis(Body::BOX2D_LOCATION_ATTRBUTES location, Body::SMLF_SHAPES_ATIBUTES attrb);
 
 

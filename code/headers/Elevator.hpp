@@ -32,7 +32,7 @@ namespace Box2DAnimation
     class World;
 
     /*
-    * Abstraccion de la clase de b2World de box2D
+    * Configura el ascensor
     */
     class Elevator : public DynamicBody
     {
@@ -40,34 +40,56 @@ namespace Box2DAnimation
 
     private:
 
-        RectangleStatic * anchorRectangle;
 
-        b2PrismaticJoint *  elevatorJoin;
+        RectangleStatic * anchorRectangle; ///< Plataforma a la que se enganchará el ascensor
 
-        bool eneabled = false;
+        b2PrismaticJoint *  elevatorJoint; ///< Joint del ascensor
 
-        float maxTimer = 0;
+        bool eneabled = false; ///< Activa o desactiva el ascensor
 
-        float currentTime = 0;
+        float maxTimer = 0; ///< Tiempo que estará esperando la plataforma
 
-        float yLimit = 0;
+        float currentTime = 0; ///< Tiempo que lleva actualmente la plataforma
+
+        float yLimit = 0; ///< Limite de Y
         
     public:
 
+        /*
+        * Configura el ascensor
+        */
         Elevator(Body::BOX2D_LOCATION_ATTRBUTES location, World& world, Body::SMLF_SHAPES_ATIBUTES attrb, bool isSensor = false);
 
         ~Elevator();
 
+        /*
+        * Renderiza el render
+        */
         virtual void render(sf::RenderWindow& renderWindow) override;
         
+        /*
+        * Ciclo de update
+        */
         void update(float time) override;
 
+        /*
+        * Modifica la fixture
+        */
         void modifyFixture(b2PolygonShape newFixture);
 
+        /*
+        * Hace un update de la fixture
+        */
         virtual void updateFixture(b2FixtureDef fixture) override;
 
+        /*
+        * Activa el ascensor
+        */
         void up(float timeToStart = 0, float limit = 0);
 
+        /*
+        * Para el ascensor
+        */
         void Stop();
 
 

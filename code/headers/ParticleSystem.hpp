@@ -38,46 +38,76 @@ namespace Box2DAnimation
 
     public:
 
-
+        /*
+        * Definicion del sistema de particulas
+        */
         struct ParticleSystemDef
         {
-            float coneAngle = 1;
-            int particlesNumber = 20;
-            PARTICLE_TYPE type = PARTICLE_TYPE::CIRCLE;
-            sf::Vector2f direction = { 0,1 };
-            sf::Color color = sf::Color::Red;
-            bool randomColor = false;
-            sf::Vector2f baseSize = {5,5};
-            sf::Vector2i speedRange = {1, 5};
+            float coneAngle = 1; ///< Cono de apertura para las particulas
+
+            int particlesNumber = 20; ///< Cantidad de particulas
+
+            PARTICLE_TYPE type = PARTICLE_TYPE::CIRCLE; ///< Tipo de particulas
+
+            sf::Vector2f direction = { 0,1 }; ///< Direccion de las particuals
+
+            sf::Color color = sf::Color::Red; ///< Color base
+
+            bool randomColor = false; ///< Randomiza el color
+
+            sf::Vector2f baseSize = {5,5}; ///< Tamaño de la particula
+
+            sf::Vector2i speedRange = {1, 5}; ///< Rango de velocidad
 
         };
 
     private:
 
-        bool eneabled;
+        bool eneabled; ///< Activa/Desactiva el sistema
 
-        int particlesNumber;
+        int particlesNumber; ///< Cantidad de particulas
 
-        sf::Vector2f position;
+        sf::Vector2f position; ///< Posicion
 
-        ParticleSystemDef particleDefinition;
-
-        std::vector<Particle *> particlePool;
+        ParticleSystemDef particleDefinition; ///< Definicion del sistema
+         
+        std::vector<Particle *> particlePool; ///< Particulas creadas
 
     public:
 
+        /*
+        * Crea el sistema de particulas
+        */
         ParticleSystem(sf::Vector2f position, ParticleSystemDef definition, bool eneabled = false);
 
+        /*
+        * Ciclo de render
+        */
         void update(float time);
 
+        /*
+        * Ciclo de update
+        */
         void render(sf::RenderWindow& window);
 
+        /*
+        * Empieza a emitir particulas
+        */
         void start();
 
+        /*
+        * Para el sistema de particulas
+        */
         void stop();
 
+        /*
+        * Reinicia el sistema de particulas
+        */
         void restart();
 
+        /*
+        * Determina la posicion del sistema de particulas
+        */
         void setPosition(sf::Vector2f newPosition);
 
     };

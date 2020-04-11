@@ -22,18 +22,18 @@
 
 namespace Box2DAnimation
 {    
-    /*
-    * Abstraccion de la clase de b2World de box2D 
+    /**
+    * Maneja las colisiones en la aplicacion. 
+    * Todas las colisions generadas por box2D son filtradas por aqui
     */
     class ContactHandler : public b2ContactListener
     {
 
-        /// Called when two fixtures begin to touch.
+        /**
+        * Cuando se producen dos colisiones se llama a esta funcion
+        */
         virtual void BeginContact(b2Contact* contact) override;
-
-        /// Called when two fixtures cease to touch.
-        virtual void EndContact(b2Contact* contact) override;
-
+        
     };
 
 

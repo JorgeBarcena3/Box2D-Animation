@@ -32,43 +32,64 @@ namespace Box2DAnimation
     class Body;
 
     /*
-    * Abstraccion de la clase de b2World de box2D
+    * Motor de rotacion
     */
     class RotationTorque
     {
 
     private:
 
-        float radius;
+        float radius; ///< Radio del motor
 
-        b2CircleShape circle;
+        b2CircleShape circle; ///< Figura que representa el motor
 
-        b2RevoluteJoint* torqueJoin;
+        b2RevoluteJoint* torqueJoin; ///< Motor de giro
 
-        World * world;
+        World * world; ///< Mundo al que pertenece
 
-        sf::Shape * sfml_shape;
+        sf::Shape * sfml_shape; ///< Shape de SFML
 
     public:
 
+        /*
+        * Creacion de motor de rotacion
+        */
         RotationTorque(float r, Body::BOX2D_LOCATION_ATTRBUTES transform, World& world, Body::SMLF_SHAPES_ATIBUTES attrb);
 
+        /*
+        * Ciclo de render
+        */
         void render(sf::RenderWindow& renderWindow);
 
+        /*
+        * CIclo de update
+        */
         void update(float time);
 
+        /*
+        * Une los cuerpos
+        */
         void setJointBodies(Body& A, Body& B, b2Vec2 center);
 
+        /*
+        * Determina la velocidad de giro
+        */
         inline void setSpeed(float speed)
         {
             torqueJoin->SetMotorSpeed(speed);
         }
         
+        /*
+        * ACtiva el motor
+        */
         inline void eneableMotor(bool eneable)
         {
             torqueJoin->EnableMotor(eneable);
         }
 
+        /*
+        * Devuelve el palo
+        */
         inline b2Body * getDynamicBody()
         {
             return torqueJoin->GetBodyB();

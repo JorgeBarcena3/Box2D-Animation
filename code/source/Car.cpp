@@ -41,7 +41,7 @@ Box2DAnimation::Car::Car(CAR_ATTRBUTES CAR_ATTRB, Body::SMLF_SHAPES_ATIBUTES att
 
     back_wheel = new Wheel(back_wheel_attrb, *World::getInstance(), attrb);
     back_wheel->tag = "Coche";
-    configJoins();
+    configJoints();
 
     //Sistema de particulas
     Box2DAnimation::ParticleSystem::ParticleSystemDef def;
@@ -125,8 +125,8 @@ void Box2DAnimation::Car::SetCarSpeed()
 
     if (!rotating)
     {
-        front_join->SetMotorSpeed(motorSpeed);
-        back_join->SetMotorSpeed(motorSpeed);
+        front_joint->SetMotorSpeed(motorSpeed);
+        back_joint->SetMotorSpeed(motorSpeed);
     }
 }
 
@@ -149,15 +149,15 @@ void Box2DAnimation::Car::render(sf::RenderWindow& window)
 
 void Box2DAnimation::Car::acelerate(int state)
 {
-    front_join->EnableMotor(true);
-    back_join->EnableMotor(true);
+    front_joint->EnableMotor(true);
+    back_joint->EnableMotor(true);
     status = state;
 }
 
 void Box2DAnimation::Car::decelerate()
 {
-    front_join->EnableMotor(false);
-    back_join->EnableMotor(false);
+    front_joint->EnableMotor(false);
+    back_joint->EnableMotor(false);
 
 }
 
@@ -181,14 +181,14 @@ void Box2DAnimation::Car::rotateCar()
 {
     decelerate();
 
-    front_join->SetMotorSpeed(0);
-    back_join->SetMotorSpeed(0);
+    front_joint->SetMotorSpeed(0);
+    back_joint->SetMotorSpeed(0);
     chasis->body->SetAngularVelocity(-200);
     rotating = true;
 
 }
 
-void Box2DAnimation::Car::configJoins()
+void Box2DAnimation::Car::configJoints()
 {
 
     b2RevoluteJointDef revoluteJointDef = b2RevoluteJointDef();
@@ -203,7 +203,7 @@ void Box2DAnimation::Car::configJoins()
     revoluteJointDef.enableMotor = false;
     revoluteJointDef.maxMotorTorque = powf(10, 16);
 
-    front_join = (b2RevoluteJoint*)World::getInstance()->get_b2World()->CreateJoint(&revoluteJointDef);
+    front_joint = (b2RevoluteJoint*)World::getInstance()->get_b2World()->CreateJoint(&revoluteJointDef);
 
 
     revoluteJointDef.Initialize(chasis->body, back_wheel->body, back_wheel->body->GetWorldCenter());
@@ -214,7 +214,7 @@ void Box2DAnimation::Car::configJoins()
     revoluteJointDef.enableMotor = false;
     revoluteJointDef.maxMotorTorque = powf(10, 16);
 
-    back_join = (b2RevoluteJoint*)World::getInstance()->get_b2World()->CreateJoint(&revoluteJointDef);
+    back_joint = (b2RevoluteJoint*)World::getInstance()->get_b2World()->CreateJoint(&revoluteJointDef);
 
 
 }

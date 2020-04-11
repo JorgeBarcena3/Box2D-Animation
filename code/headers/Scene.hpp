@@ -33,56 +33,77 @@ namespace Box2DAnimation
     class Body;
 
     /*
-    * Abstraccion de la clase de b2World de box2D
+    * Clase que crea la escena de la demo. Es un singleton
     */
     class Scene
     {
     private:
 
-        static Scene * instance;
+        static Scene * instance; ///< Instancia de la escena
 
     public:
 
-        static Scene * getInstance();
+        static Scene * getInstance(); ///< Devuelve la escena activa
 
-        static void addActionToPool(std::string action);
+        static void addActionToPool(std::string action); ///< Añade una accion a la pool de acciones a realizar en el ciclo de update
 
     private:
 
-        std::vector<std::string> actionsToDo;
+        std::vector<std::string> actionsToDo; ///< Acciones que hay que hacer
 
-        World world;
+        World world; ///< Mundo que tiene
 
-        std::vector<Body *> body_list;
+        std::vector<Body *> body_list; ///< Lista de cuerpos instanciados
 
-        Windmill * windmill;
+        Windmill * windmill; ///< Molino
 
-        Car * car;
+        Car * car; ///< Coche
 
-        Elevator * elevator;
-
-    public:
-
-        bool debugMode = false;
+        Elevator * elevator; ///< Ascensor
 
     public:
 
+        bool debugMode = false; ///< Modo debug activado
+
+    public:
+
+        /*
+        * Crea la escena
+        */
         Scene();
 
         ~Scene();
 
+        /*
+        * Ciclo de update
+        */
         void update(float t);
 
+        /*
+        * Ciclo de render
+        */
         void render(sf::RenderWindow& renderWindow);
 
+        /*
+        * Maneja el input
+        */
         bool manageInput(sf::RenderWindow& window);
 
+        /*
+        * Determina una herramienta de debug
+        */
         void setDrawTool(SFMLDebugDraw& draw);
 
     private:
 
+        /*
+        * Configura la escena
+        */
         void configScene();
 
+        /*
+        * Realiza las acciones que hay en el pool
+        */
         void poolActionsToDo();
 
     };

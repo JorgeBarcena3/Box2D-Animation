@@ -35,6 +35,3 @@ void Box2DAnimation::ContactHandler::BeginContact(b2Contact* contact)
 
 }
 
-void Box2DAnimation::ContactHandler::EndContact(b2Contact* contact)
-{
-}

@@ -105,7 +105,7 @@ void Box2DAnimation::Particle::initialiceParticlesValues()
 
     position = particleSystem->position;
     alpha = 255;
-    speed = rand() % (int)particleSystem->particleDefinition.speedRange.y + (int)particleSystem->particleDefinition.speedRange.x;
+    speed = (float)( rand() % (int)particleSystem->particleDefinition.speedRange.y + (int)particleSystem->particleDefinition.speedRange.x );
 
     float angleTolerance = particleSystem->particleDefinition.coneAngle * b2_pi / 180.f;
     float HI = angleTolerance;

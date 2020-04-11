@@ -30,8 +30,8 @@ namespace Box2DAnimation
 
     class World;
 
-    /*
-    * Abstraccion de la clase de b2World de box2D
+    /**
+    * Abstraccion de un cuerpo Kinematico de box2D
     */
     class KinematicBody : public Body
     {
@@ -39,12 +39,24 @@ namespace Box2DAnimation
 
     public:
 
+        /**
+        * Crea un cuerpo como un cuerpo kinematico
+        */
         KinematicBody(Body::BOX2D_LOCATION_ATTRBUTES transform, World& world);
 
+        /**
+        * Renderiza el Body. Se debe implementar en las clases hijas
+        */
         virtual void render(sf::RenderWindow& renderWindow) = 0;
 
+        /**
+        * Ciclo de update. Se debe implementar en las clases hijas
+        */
         virtual void update(float time) = 0;
 
+        /**
+        * Actualiza la fixture del body. Se debe implementar en las clases hijas
+        */
         virtual void updateFixture(b2FixtureDef fixture) = 0;
 
 

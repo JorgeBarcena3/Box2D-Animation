@@ -29,20 +29,32 @@ namespace Box2DAnimation
 
     class World;
 
-    /*
-    * Abstraccion de la clase de b2World de box2D
+    /**
+    * Abstraccion de un cuerpo estático de box2D
     */
     class StaticBody : public Body
     {
         
     public:
 
+        /**
+        * Crea el cuerpo como un cuerpo estatico
+        */
         StaticBody(Body::BOX2D_LOCATION_ATTRBUTES transform, World& world);
 
+        /**
+        * Renderiza el Body. Se debe implementar en las clases hijas
+        */
         virtual void render(sf::RenderWindow& renderWindow) = 0;
 
+        /**
+        * Ciclo de update. Se debe implementar en las clases hijas
+        */
         virtual void update(float time) = 0;
 
+        /**
+        * Actualiza la fixture del body. Se debe implementar en las clases hijas
+        */
         virtual void updateFixture(b2FixtureDef fixture) = 0;
 
     };

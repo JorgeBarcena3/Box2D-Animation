@@ -87,13 +87,13 @@ bool Box2DAnimation::Scene::manageInput(sf::RenderWindow& window)
 
         case Event::KeyPressed:
 
-            if (event.key.code == sf::Keyboard::D)
+            if (event.key.code == sf::Keyboard::D || event.key.code == sf::Keyboard::Right)
             {
-                Scene::addActionToPool("D");
+                Scene::addActionToPool("Car right");
             }
-            else if (event.key.code == sf::Keyboard::A)
+            else if (event.key.code == sf::Keyboard::A || event.key.code == sf::Keyboard::Left)
             {
-                Scene::addActionToPool("A");
+                Scene::addActionToPool("Car left");
             }
             else if (event.key.code == sf::Keyboard::P)
             {
@@ -233,16 +233,16 @@ void Box2DAnimation::Scene::poolActionsToDo()
         {
             windmill->startTorque();
         }
-        else if (action == "D")
-        {
-
-            car->acelerate(1);
-
-        }
-        else if (action == "A")
+        else if (action == "Car right")
         {
 
             car->acelerate(-1);
+
+        }
+        else if (action == "Car left")
+        {
+
+            car->acelerate(1);
         }
         else if (action == "AppearElevator")
         {

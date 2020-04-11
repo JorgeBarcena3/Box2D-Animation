@@ -52,7 +52,7 @@ Box2DAnimation::Elevator::Elevator(Body::BOX2D_LOCATION_ATTRBUTES transform, Wor
     platform_Joint.motorSpeed = 200;//5 units per second in positive axis direction
     platform_Joint.localAxisA.Set(0, 1);
 
-    elevatorJoin = (b2PrismaticJoint*)world.get_b2World()->CreateJoint(&platform_Joint);
+    elevatorJoint = (b2PrismaticJoint*)world.get_b2World()->CreateJoint(&platform_Joint);
 
 
 }
@@ -83,7 +83,7 @@ void Box2DAnimation::Elevator::update(float time)
         }
         else
         {
-            elevatorJoin->SetMotorSpeed(100);
+            elevatorJoint->SetMotorSpeed(100);
             motorSpeed += 1;
         }
 
@@ -91,7 +91,7 @@ void Box2DAnimation::Elevator::update(float time)
     }
     else
     {
-        elevatorJoin->SetMotorSpeed(0);
+        elevatorJoint->SetMotorSpeed(0);
     }
 
 
@@ -135,7 +135,7 @@ void Box2DAnimation::Elevator::up(float timeToStart, float limit)
         yLimit = limit;
         maxTimer = timeToStart;
         currentTime = 0;
-        elevatorJoin->EnableMotor(true);
+        elevatorJoint->EnableMotor(true);
         eneabled = true;
 
     }

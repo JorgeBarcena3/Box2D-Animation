@@ -32,14 +32,17 @@ namespace Box2DAnimation
    
     class World;
 
-    /*
-    * Abstraccion de la clase de b2World de box2D
+    /**
+    * Crea un coche compuesto por un chasis y unas ruedas
     */
     class Car
     {
 
     public:
 
+        /**
+        * Atributos del coche
+        */
         struct CAR_ATTRBUTES
         {
             b2Vec2 position;
@@ -49,49 +52,82 @@ namespace Box2DAnimation
 
     private:
 
-        Chasis * chasis;
+        Chasis * chasis; ///< Chasis del coche
 
-        Wheel * front_wheel;
+        Wheel * front_wheel; ///< Rueda delantera
 
-        Wheel * back_wheel;
+        Wheel * back_wheel; ///< Rueda trasera
 
-        b2RevoluteJoint * front_join;
+        b2RevoluteJoint * front_joint; ///< Motor delantero
 
-        b2RevoluteJoint * back_join;
+        b2RevoluteJoint * back_joint; ///< Rueda trasero
 
-        int status;
+        int status; ///< Estado del motor del coche
 
-        std::vector< ParticleSystem * > particleSystem;
+        std::vector< ParticleSystem * > particleSystem; ///< Sistema de particulas del coche
 
-        bool rotating;
-        
+        bool rotating; ///< Si el coche se esta rotando
+
     public:
 
+        /**
+        * Crea un coche
+        */
         Car(CAR_ATTRBUTES location,  Body::SMLF_SHAPES_ATIBUTES attrb, std::string tag = "");
 
         ~Car();
         
+        /**
+        * Ciclo de update
+        */
         void update(float time);
 
+        /**
+        * Ciclo de render
+        */
         void render(sf::RenderWindow& window);
 
+        /**
+        * Acelera el coche
+        */
         void acelerate(int state);
 
+        /**
+        * Frena el coche
+        */
         void decelerate();
 
+        /**
+        * Activa las particulas del coche
+        */
         void startParticles();
 
+        /**
+        * Desactiva las particulas del coche
+        */
         void stopParticles();
 
+        /**
+        * Rota el coche aplicando una fuerza
+        */
         void rotateCar();
 
 
     private:
 
-        void configJoins();
+        /**
+        * Configura los Joints
+        */
+        void configJoints();
 
+        /**
+        * Respawnea el coche
+        */
         void respawnCar();
 
+        /**
+        * Determina la velocidad
+        */
         void SetCarSpeed();
 
 

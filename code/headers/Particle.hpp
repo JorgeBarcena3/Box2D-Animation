@@ -26,6 +26,9 @@ namespace Box2DAnimation
 
 	class ParticleSystem;
 
+	/*
+	* Tipo de particula
+	*/
 	enum PARTICLE_TYPE
 	{
 		CIRCLE = 0,
@@ -34,26 +37,28 @@ namespace Box2DAnimation
 
 	};
 
-    /*
-    * Abstraccion de la clase de b2World de box2D
-    */
+	/*
+	* Particula
+	*/
     class Particle
     {
 
 	public:
 
 		
-
+		/*
+		* Definicion de la particula
+		*/
 		struct ParticleDefinition
 		{
 
-			sf::Shape * shape;
+			sf::Shape * shape; ///< Shape de SFMLs
 
-			sf::Color color;
+			sf::Color color; ///< Color
 
-			sf::Vector2f size;
+			sf::Vector2f size; ///< Tamaño
 
-			Box2DAnimation::PARTICLE_TYPE type;
+			Box2DAnimation::PARTICLE_TYPE type; ///< Tamaño del tipo
 
 		};
 
@@ -61,36 +66,57 @@ namespace Box2DAnimation
 
 	private:
 
-		bool active; 
+		bool active; ///< Determina si esta activada o no la particula
 
-		sf::Vector2f position;
+		sf::Vector2f position; ///< Posicion de la particula
 				
-		sf::Vector2f direction;
+		sf::Vector2f direction; ///< Direccion de la particula
 				
-		float alpha;
+		float alpha; ///< Alpha actual
 
-		float speed;
+		float speed; ///< Velocidad de la partida
 	   
-		ParticleSystem * particleSystem;
+		ParticleSystem * particleSystem; ///< Sistema de particulas
 
-		ParticleDefinition particleDefinition;
+		ParticleDefinition particleDefinition; ///< Definicion de la particula
 
 	public:
 
+		/*
+		* Crea una particula
+		*/
 		Particle(ParticleSystem* system, bool active = false);
 
+		/*
+		* Ciclo de update
+		*/
 		void Update(float time);
 
+		/*
+		* Ciclo de render
+		*/
 		void render(sf::RenderWindow& window);
 
+		/*
+		* Activa la particula
+		*/
 		void eneable();
 
+		/*
+		* Desactiva la particula
+		*/
 		void disable();
 
+		/*
+		* Resetea la particula
+		*/
 		void reset();
 
 	private:
 
+		/*
+		* Inicializa la particula
+		*/
 		void initialiceParticlesValues();
 
 

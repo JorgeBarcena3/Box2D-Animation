@@ -28,58 +28,79 @@ namespace Box2DAnimation
 {
     class Body;
 
-    /*
-    * Abstraccion de la clase de b2World de box2D
+    /**
+    * Abstraccion de la clase de b2World de box2D. Es un singleton
     */
     class World
     {
     private:
 
-        static World * instance;
+        static World * instance; ///< Instancia del mundo
 
     public:
 
-        static World * getInstance();
+        static World * getInstance(); ///< Devuelve la instancia
 
     public:
 
-        SFMLDebugDraw* drawer;
+        SFMLDebugDraw* drawer; ///< Herramienta de debug
 
     private:
 
-        float worldScale;
+        float worldScale; ///< Escala del mundo (ARREGLAR)
 
-        b2Vec2 gravity;
+        b2Vec2 gravity; ///< Gravedad del mundo
 
-        b2World* world;
+        b2World* world; ///< Mundo de box2D
 
-        std::vector<Body*> body_list;
+        std::vector<Body*> body_list; ///< Lista de cuerpos instanciados
 
-        ContactHandler contactHandler;
+        ContactHandler contactHandler; ///< Lista de contactor
 
     public:
 
+        /**
+        * Constructor del mundo
+        */
         World(float x, float y, float worldScale = 1);
 
         ~World();
 
+        /**
+        * Crea un cuerpo en el mundo
+        */
         b2Body* createBody(Body * body);
 
+        /**
+        * Ciclo de update
+        */
         void Update(float t);
 
+        /**
+        * Ciclo de render
+        */
         void render(sf::RenderWindow& renderWindow);
 
+        /**
+        * Determian la gravedad del mundo
+        */
         inline void setGravity(float x, float y)
         {
             gravity = b2Vec2(x, y);
             world->SetGravity(gravity);
         }
 
+        /**
+        * Devuelve el mundo de box2D
+        */
         inline b2World * get_b2World()
         {
             return world;
         }
 
+        /**
+        * Devuelve la escala del mundo
+        */
         inline float getWorldScale() { return worldScale; }
 
     };

@@ -32,7 +32,7 @@ namespace Box2DAnimation
     class World;
 
     /*
-    * Abstraccion de la clase de b2World de box2D
+    * Crea una rueda
     */
     class Wheel : public BallDynamic
     {
@@ -40,10 +40,19 @@ namespace Box2DAnimation
         
     public:
 
+        /*
+        * Configura la rueda
+        */
         Wheel(Body::BOX2D_LOCATION_ATTRBUTES location, World& world, Body::SMLF_SHAPES_ATIBUTES attrb);
         
+        /*
+        * Ciclo de update
+        */
         void update(float time) override;
 
+        /*
+        * Ciclo de render
+        */
         void render(sf::RenderWindow& window) override;
 
 
