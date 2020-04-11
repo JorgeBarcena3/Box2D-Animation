@@ -18,7 +18,7 @@ World * World::getInstance()
     return instance;
 }
 
-World::World(float x, float y, float _worldScale)
+World::World(float x, float y, float _worldScale) : drawer(nullptr)
 {
 
     World::instance = this;
@@ -27,25 +27,10 @@ World::World(float x, float y, float _worldScale)
     world = new b2World(gravity);
     world->SetContactListener(&contactHandler);
 
-
 }
 
 Box2DAnimation::World::~World()
 {
- /*   instance.reset();
-
-    if (!world->IsLocked())
-    {
-        if (body_list.size() != 0)
-        {
-            for (size_t i = 0; i < body_list.size(); i++)
-            {
-                world->DestroyBody(body_list[i]->body);
-                body_list.erase(body_list.begin() + i);
-            }
-        }
-    }*/
-
 
 }
 

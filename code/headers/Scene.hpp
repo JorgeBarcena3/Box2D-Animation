@@ -63,6 +63,10 @@ namespace Box2DAnimation
 
     public:
 
+        bool debugMode = false;
+
+    public:
+
         Scene();
 
         ~Scene();

@@ -34,11 +34,13 @@ int main()
 {
     RenderWindow window(VideoMode(1500, 800), "Box2D Animation - Jorge Barcena Lumbreras");
 
-    /* Initialize SFML Debug Draw */
+    // Debug draw
     SFMLDebugDraw debugDraw(window);
 
     Scene myScene;  
     myScene.setDrawTool(debugDraw);
+
+    myScene.debugMode = false;
 
     window.setVerticalSyncEnabled(true);
 

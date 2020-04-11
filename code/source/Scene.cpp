@@ -33,7 +33,6 @@ Box2DAnimation::Scene::Scene() : world(0, 200, 1)
     Scene::instance = this;
     configScene();
 
-
 }
 
 Box2DAnimation::Scene::~Scene()
@@ -57,10 +56,17 @@ void Box2DAnimation::Scene::update(float t)
 void Box2DAnimation::Scene::render(sf::RenderWindow& renderWindow)
 {
 
-    windmill->render(renderWindow);
-    car->render(renderWindow);
-    elevator->render(renderWindow);
-    world.render(renderWindow);
+    if (debugMode)
+        world.get_b2World()->DebugDraw();
+    else
+    {
+
+        windmill->render(renderWindow);
+        car->render(renderWindow);
+        elevator->render(renderWindow);
+        world.render(renderWindow);
+
+    }
 
 }
 
@@ -165,46 +171,46 @@ void Box2DAnimation::Scene::configScene()
     body_list.push_back(new RectangleStatic(Body::BOX2D_LOCATION_ATTRBUTES({ { 1490, 722 }, -9, {121,232} }), world, Body::SMLF_SHAPES_ATIBUTES({ green })));
     body_list[body_list.size() - 1]->tag = "Activacion";
 
-    body_list.push_back( new RectangleStatic(Body::BOX2D_LOCATION_ATTRBUTES({ { 1550, 400 }, 0, {50,800} }), world, Body::SMLF_SHAPES_ATIBUTES({ Color::Red })));
+    body_list.push_back(new RectangleStatic(Body::BOX2D_LOCATION_ATTRBUTES({ { 1550, 400 }, 0, {50,800} }), world, Body::SMLF_SHAPES_ATIBUTES({ Color::Red })));
 
     //Caja de destino para meter las bolas
-    body_list.push_back( new RectangleStatic(Body::BOX2D_LOCATION_ATTRBUTES({ { 548, 254}, 0, {300,34} }), world, Body::SMLF_SHAPES_ATIBUTES({ backColor })));
-    body_list.push_back( new RectangleStatic(Body::BOX2D_LOCATION_ATTRBUTES({ { 350, 300}, 51, {34,150} }), world, Body::SMLF_SHAPES_ATIBUTES({ backColor })));
+    body_list.push_back(new RectangleStatic(Body::BOX2D_LOCATION_ATTRBUTES({ { 548, 254}, 0, {300,34} }), world, Body::SMLF_SHAPES_ATIBUTES({ backColor })));
+    body_list.push_back(new RectangleStatic(Body::BOX2D_LOCATION_ATTRBUTES({ { 350, 300}, 51, {34,150} }), world, Body::SMLF_SHAPES_ATIBUTES({ backColor })));
     body_list[body_list.size() - 1]->tag = "Plataforma final";
-    body_list.push_back( new RectangleStatic(Body::BOX2D_LOCATION_ATTRBUTES({ { 250, 300}, -51, {34,150} }), world, Body::SMLF_SHAPES_ATIBUTES({ backColor })));
+    body_list.push_back(new RectangleStatic(Body::BOX2D_LOCATION_ATTRBUTES({ { 250, 300}, -51, {34,150} }), world, Body::SMLF_SHAPES_ATIBUTES({ backColor })));
     body_list[body_list.size() - 1]->tag = "Plataforma final";
 
     //Rampa aproximada con cubos
-    body_list.push_back( new RectangleStatic(Body::BOX2D_LOCATION_ATTRBUTES({ { 193, 670}, -310, {110,100} }), world, Body::SMLF_SHAPES_ATIBUTES({ backColor })));
-    body_list.push_back( new RectangleStatic(Body::BOX2D_LOCATION_ATTRBUTES({ { 234, 704}, -317, {110,100} }), world, Body::SMLF_SHAPES_ATIBUTES({ backColor })));
-    body_list.push_back( new RectangleStatic(Body::BOX2D_LOCATION_ATTRBUTES({ { 273, 738}, -324, {110,100} }), world, Body::SMLF_SHAPES_ATIBUTES({ backColor })));
-    body_list.push_back( new RectangleStatic(Body::BOX2D_LOCATION_ATTRBUTES({ { 325, 763}, -333, {110,100} }), world, Body::SMLF_SHAPES_ATIBUTES({ backColor })));
-    body_list.push_back( new RectangleStatic(Body::BOX2D_LOCATION_ATTRBUTES({ { 378, 777}, -346, { 93, 96} }), world, Body::SMLF_SHAPES_ATIBUTES({ backColor })));
-    body_list.push_back( new RectangleStatic(Body::BOX2D_LOCATION_ATTRBUTES({ { 456, 785}, -356, { 80, 84} }), world, Body::SMLF_SHAPES_ATIBUTES({ backColor })));
-    body_list.push_back( new RectangleStatic(Body::BOX2D_LOCATION_ATTRBUTES({ { 538, 786},   -8, { 87, 90} }), world, Body::SMLF_SHAPES_ATIBUTES({ backColor })));
-    body_list.push_back( new RectangleStatic(Body::BOX2D_LOCATION_ATTRBUTES({ { 625, 770},  -20, {113,106} }), world, Body::SMLF_SHAPES_ATIBUTES({ backColor })));
+    body_list.push_back(new RectangleStatic(Body::BOX2D_LOCATION_ATTRBUTES({ { 193, 670}, -310, {110,100} }), world, Body::SMLF_SHAPES_ATIBUTES({ backColor })));
+    body_list.push_back(new RectangleStatic(Body::BOX2D_LOCATION_ATTRBUTES({ { 234, 704}, -317, {110,100} }), world, Body::SMLF_SHAPES_ATIBUTES({ backColor })));
+    body_list.push_back(new RectangleStatic(Body::BOX2D_LOCATION_ATTRBUTES({ { 273, 738}, -324, {110,100} }), world, Body::SMLF_SHAPES_ATIBUTES({ backColor })));
+    body_list.push_back(new RectangleStatic(Body::BOX2D_LOCATION_ATTRBUTES({ { 325, 763}, -333, {110,100} }), world, Body::SMLF_SHAPES_ATIBUTES({ backColor })));
+    body_list.push_back(new RectangleStatic(Body::BOX2D_LOCATION_ATTRBUTES({ { 378, 777}, -346, { 93, 96} }), world, Body::SMLF_SHAPES_ATIBUTES({ backColor })));
+    body_list.push_back(new RectangleStatic(Body::BOX2D_LOCATION_ATTRBUTES({ { 456, 785}, -356, { 80, 84} }), world, Body::SMLF_SHAPES_ATIBUTES({ backColor })));
+    body_list.push_back(new RectangleStatic(Body::BOX2D_LOCATION_ATTRBUTES({ { 538, 786},   -8, { 87, 90} }), world, Body::SMLF_SHAPES_ATIBUTES({ backColor })));
+    body_list.push_back(new RectangleStatic(Body::BOX2D_LOCATION_ATTRBUTES({ { 625, 770},  -20, {113,106} }), world, Body::SMLF_SHAPES_ATIBUTES({ backColor })));
 
     //Fondo Rampa
-    body_list.push_back( new RectangleStatic(Body::BOX2D_LOCATION_ATTRBUTES({ { 437, 800},    0, {491,100} }), world, Body::SMLF_SHAPES_ATIBUTES({ backColor })));
-    body_list.push_back( new RectangleStatic(Body::BOX2D_LOCATION_ATTRBUTES({ { 201, 751},    0, {065,125} }), world, Body::SMLF_SHAPES_ATIBUTES({ backColor })));
+    body_list.push_back(new RectangleStatic(Body::BOX2D_LOCATION_ATTRBUTES({ { 437, 800},    0, {491,100} }), world, Body::SMLF_SHAPES_ATIBUTES({ backColor })));
+    body_list.push_back(new RectangleStatic(Body::BOX2D_LOCATION_ATTRBUTES({ { 201, 751},    0, {065,125} }), world, Body::SMLF_SHAPES_ATIBUTES({ backColor })));
 
 
     //Pelotas a spawnear
-    body_list.push_back( new BallDynamic(15, Body::BOX2D_LOCATION_ATTRBUTES({ { 1241, 272}, 0, {0,0} }), world, Body::SMLF_SHAPES_ATIBUTES({ green })));
+    body_list.push_back(new BallDynamic(15, Body::BOX2D_LOCATION_ATTRBUTES({ { 1241, 272}, 0, {0,0} }), world, Body::SMLF_SHAPES_ATIBUTES({ green })));
     body_list[body_list.size() - 1]->tag = "Pelota";
-    body_list.push_back( new BallDynamic(15, Body::BOX2D_LOCATION_ATTRBUTES({ { 1220, 240}, 0, {0,0} }), world, Body::SMLF_SHAPES_ATIBUTES({ green })));
+    body_list.push_back(new BallDynamic(15, Body::BOX2D_LOCATION_ATTRBUTES({ { 1220, 240}, 0, {0,0} }), world, Body::SMLF_SHAPES_ATIBUTES({ green })));
     body_list[body_list.size() - 1]->tag = "Pelota";
-    body_list.push_back( new BallDynamic(15, Body::BOX2D_LOCATION_ATTRBUTES({ { 1241, 240}, 0, {0,0} }), world, Body::SMLF_SHAPES_ATIBUTES({ green })));
+    body_list.push_back(new BallDynamic(15, Body::BOX2D_LOCATION_ATTRBUTES({ { 1241, 240}, 0, {0,0} }), world, Body::SMLF_SHAPES_ATIBUTES({ green })));
     body_list[body_list.size() - 1]->tag = "Pelota";
-    body_list.push_back( new BallDynamic(15, Body::BOX2D_LOCATION_ATTRBUTES({ { 1260, 240}, 0, {0,0} }), world, Body::SMLF_SHAPES_ATIBUTES({ green })));
+    body_list.push_back(new BallDynamic(15, Body::BOX2D_LOCATION_ATTRBUTES({ { 1260, 240}, 0, {0,0} }), world, Body::SMLF_SHAPES_ATIBUTES({ green })));
     body_list[body_list.size() - 1]->tag = "Pelota";
-    body_list.push_back( new BallDynamic(15, Body::BOX2D_LOCATION_ATTRBUTES({ { 1200, 220}, 0, {0,0} }), world, Body::SMLF_SHAPES_ATIBUTES({ green })));
+    body_list.push_back(new BallDynamic(15, Body::BOX2D_LOCATION_ATTRBUTES({ { 1200, 220}, 0, {0,0} }), world, Body::SMLF_SHAPES_ATIBUTES({ green })));
     body_list[body_list.size() - 1]->tag = "Pelota";
-    body_list.push_back( new BallDynamic(15, Body::BOX2D_LOCATION_ATTRBUTES({ { 1220, 220}, 0, {0,0} }), world, Body::SMLF_SHAPES_ATIBUTES({ green })));
+    body_list.push_back(new BallDynamic(15, Body::BOX2D_LOCATION_ATTRBUTES({ { 1220, 220}, 0, {0,0} }), world, Body::SMLF_SHAPES_ATIBUTES({ green })));
     body_list[body_list.size() - 1]->tag = "Pelota";
-    body_list.push_back( new BallDynamic(15, Body::BOX2D_LOCATION_ATTRBUTES({ { 1241, 220}, 0, {0,0} }), world, Body::SMLF_SHAPES_ATIBUTES({ green })));
+    body_list.push_back(new BallDynamic(15, Body::BOX2D_LOCATION_ATTRBUTES({ { 1241, 220}, 0, {0,0} }), world, Body::SMLF_SHAPES_ATIBUTES({ green })));
     body_list[body_list.size() - 1]->tag = "Pelota";
-    body_list.push_back( new BallDynamic(15, Body::BOX2D_LOCATION_ATTRBUTES({ { 1260, 220}, 0, {0,0} }), world, Body::SMLF_SHAPES_ATIBUTES({ green })));
+    body_list.push_back(new BallDynamic(15, Body::BOX2D_LOCATION_ATTRBUTES({ { 1260, 220}, 0, {0,0} }), world, Body::SMLF_SHAPES_ATIBUTES({ green })));
     body_list[body_list.size() - 1]->tag = "Pelota";
 
     //Ascensor

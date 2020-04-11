@@ -28,23 +28,29 @@ namespace Box2DAnimation
 
     class World;
 
-    /*
-    * Abstraccion de la clase de b2World de box2D
+    /**
+    * Abstraccion de la clase de b2Body de box2D
     */
     class Body
     {
 
-        friend class World;
+        friend class World; ///< La clase world puede acceder a todos los miembros de Body
 
 
     public:
 
+        /**
+        * Atributos de la shape que representa el Body
+        */
         struct SMLF_SHAPES_ATIBUTES
         {
             sf::Color fillColor;
             sf::Color outLineColor;
         };
 
+        /**
+        * Atributos de posicion iniciales del body
+        */
         struct BOX2D_LOCATION_ATTRBUTES
         {
             b2Vec2 position;
@@ -55,35 +61,51 @@ namespace Box2DAnimation
 
     public:
 
-        sf::Shape * sfml_shape;
 
-        b2BodyDef body_definition;
+        b2BodyDef body_definition; ///< Definicion del cuerpo
 
-        b2FixtureDef body_fixture_def;
+        b2FixtureDef body_fixture_def; ///< Definicion de la fixture
 
-        b2Fixture * body_fixture;
+        sf::Shape* sfml_shape; ///< Shape que dibuja el body
 
-        b2Shape * shape;
+        b2Fixture* body_fixture; ///< Fixture del body
 
-        b2Body * body;
+        b2Shape* shape; ///< Shape del body
 
-        World * world;
+        b2Body* body; ///< Body
 
-        std::string tag;
-        
+        World* world; ///< Mundo al que referenciamos
+
+        std::string tag; ///< Tag del body
+
     public:
 
+        /**
+        * Renderiza el Body. Se debe implementar en las clases hijas
+        */
         virtual void render(sf::RenderWindow& renderWindow) = 0;
 
+        /**
+        * Ciclo de update. Se debe implementar en las clases hijas
+        */
         virtual void update(float time) = 0;
 
+        /**
+        * Actualiza la fixture del body. Se debe implementar en las clases hijas
+        */
         virtual void updateFixture(b2FixtureDef fixture) = 0;
 
+        /**
+        * Despierta el Body para que pueda interactuar con box2D
+        */
         inline void setBodyAwake(bool awake)
         {
             body->SetAwake(awake);
         };
 
+        /**
+        * Determina colo le afecta la gravedad a nuestros Body
+        */
         inline void setGravity(float grav)
         {
             body->SetGravityScale(grav);
